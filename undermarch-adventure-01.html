@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adventure 01: What the Water Carried — The Undermarch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="undermarch-style.css">
+<style>
+.flow{background:var(--stone);border:1px solid var(--edge);border-radius:3px;padding:20px;margin:20px 0}
+.flow svg{display:block;width:100%;height:auto}
+.beat{border-left:3px solid var(--daylight);padding:0 0 0 18px;margin:0 0 26px}
+.beat h3{font-family:var(--disp);font-weight:600;font-size:20px;margin:0 0 3px}
+.beat .meta{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust);margin:0 0 12px}
+.readaloud{background:var(--shale);border:1px solid var(--edge);border-left:3px solid var(--lichen);padding:14px 18px;margin:14px 0;font-style:italic;color:#EDE7DC;font-size:14.5px}
+.readaloud p{margin:0 0 10px}
+.readaloud p:last-child{margin:0}
+.enc{border:1px solid var(--edge);background:var(--shale);padding:12px 16px;margin:12px 0;font-size:13.5px}
+.enc .eh{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);margin:0 0 6px}
+.enc p{margin:0 0 6px}
+.enc p:last-child{margin:0}
+.npc{border:1px solid var(--edge);background:var(--stone);border-radius:3px;padding:18px 20px;margin:0 0 18px}
+.npc h3{font-family:var(--disp);font-weight:600;font-size:19px;margin:0 0 2px}
+.npc .role{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--daylight);margin:0 0 12px}
+.npc dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13.5px}
+.npc dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dust);padding-top:3px;white-space:nowrap}
+.npc dd{margin:0}
+.area{border-left:2px solid var(--edge);padding:0 0 0 16px;margin:0 0 22px}
+.area.opt{border-left:2px solid var(--daylight)}
+.area h4{font-family:var(--disp);font-weight:600;font-size:17px;margin:0 0 8px;color:#F2ECE2}
+.area h4 .code{font-family:var(--mono);font-size:11px;color:var(--daylight);margin-right:8px;letter-spacing:.08em}
+.area h4 .optflag{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust);margin-left:8px}
+.dctable td:first-child{white-space:nowrap;color:var(--daylight);font-family:var(--mono);font-size:11.5px}
+.rt td:first-child{width:38px;text-align:center;color:var(--daylight);font-family:var(--mono);font-size:12px}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand">The Undermarch</span>
+  <a href="undermarch-index.html">Overview</a>
+  <a href="undermarch-atlas.html">Atlas</a>
+  <a href="undermarch-canon-established.html">Established Canon</a>
+  <a href="undermarch-canon-proposed.html">Proposed Canon</a>
+  <a href="undermarch-gameplay.html">Gameplay</a>
+  <a href="undermarch-poi.html">Points of Interest</a>
+  <a href="undermarch-adventure-01.html" class="active">Adventure 01</a>
+  <a href="undermarch-adventure-02.html">Adventure 02</a>
+  <a href="undermarch-glossary.html">Glossary</a>
+  <a href="undermarch-map-program.html">Map Program</a>
+  <a href="undermarch-work-chunks.html">Work Chunks</a>
+  <a href="undermarch-open-questions.html">Open Questions</a>
+  <a href="undermarch-history.html">History</a>
+</nav>
+<main>
+<header class="masthead">
+  <p class="eyebrow">Adventure 01 &middot; Levels 1–2 &middot; 2–3 sessions &middot; balanced for six &middot; self-contained</p>
+  <h1>What the Water Carried<em>People at the top of the shaft are drowning in their own lungs. The cause is forty metres below them, and what the party finds behind it is the first thread of everything.</em></h1>
+  <p class="lede">Everything needed to run this adventure is on this page — NPCs, keyed areas, stat blocks, hazards, tables, loot, and rules. External links go to <a href="https://2e.aonprd.com/">Archives of Nethys</a>; internal links go to the campaign bible.</p>
+</header>
+
+<div class="note" style="margin-bottom:20px"><b>2026-09-11 — expansion merged.</b> The optional chapel areas are now part of this page: <b>A9</b> the undercroft, <b>A10</b> the charity store, <b>A11</b> the fallen belfry, <b>A12</b> the singers' gallery, <b>B1a</b> the latrine cut, <b>B2a</b> the fishing pool, <b>B2b</b> the buried cache. Marked <span class="tag tag-open" style="font-size:9px">Optional</span> in the keys below. A6–A8 (the churchyard slab, the priest's cottage, the well-head bypass) were <b>cut</b> and are preserved in <a href="undermarch-history.html">History</a>.
+<p style="margin:8px 0 0">Codes are deliberately non-sequential — A9–A12 keep the numbers they were drafted under so earlier notes and sketches still match.</p></div>
+
+<div class="section-nav">
+  <a href="#overview">GM Overview</a><a href="#clock">Pressure Clock</a><a href="#npcs">NPCs</a><a href="#hooks">Hooks</a><a href="#party">The Party</a>
+  <a href="#flowchart">Flowchart</a><a href="#act1">Act 1</a><a href="#descent">The Descent</a><a href="#act2">Act 2</a>
+  <a href="#act3">Act 3</a><a href="#ascent">The Ascent</a><a href="#creatures">Creatures</a><a href="#hazards">Hazards</a><a href="#disease">Disease</a>
+  <a href="#treasure">Treasure &amp; XP</a><a href="#tables">Tables</a><a href="#rules">Rules</a><a href="#resolution">Resolution</a>
+</div>
+
+<h2 id="overview">GM Overview — the truth, in one place</h2>
+<p>The <a href="undermarch-canon-established.html#fallwater">Fallwater</a> exhales. Warm wet air rises up the Throat day and night, and what the <a href="undermarch-canon-established.html#fallwater-exhales">Vanishing Waterfall</a> mists away comes back as the permanent fog over the Lip.</p>
+<p>Forty metres down the shaft, the <a href="undermarch-poi.html#drowned-chapel">Drowned Chapel</a> is wedged into a Mouth at an angle. Forty-one members of its congregation are lying in standing water in its low corner. Nineteen days ago a small rockfall widened a crack in the chapel's downhill wall. Contaminated water now seeps out onto the open shaft face, where the updraft tears it into droplets and carries it up to the Lip, where it condenses into the fog that four hundred people breathe.</p>
+<p>Three of the chapel's congregation survived the fall, barricaded themselves in the sacristy, and counted thirty-one days on the plaster. Then they left through the altar-breach into the caves behind, deliberately, taking the lamp oil. They made a camp four hundred metres in and lived there for weeks.</p>
+<p>Then something came, and they are gone, and the lamp oil is still sitting by the cold fire.</p>
+<div class="note"><strong>What the party can actually learn:</strong> everything above except the last paragraph. They will find the camp, the tracks, and the mark. They will not find the three people, and nothing will explain what took them. That is <a href="#act3">the First Sign</a> and it is meant to stay unexplained.</div>
+
+<h2 id="clock">The Pressure Clock</h2>
+<p>Run this visibly. Days pass when the party rests, rigs, or travels. Tell them what a day costs.</p>
+<table>
+<tr><th>Day</th><th>State of the Lip</th></tr>
+<tr><td>1</td><td>26 sick, 3 dead. The Vigil's chapter-house is a ward. Boiling order still in force and still useless.</td></tr>
+<tr><td>3</td><td>The ward runs out of floor. Patients are being laid in the street, in the fog, which makes it worse.</td></tr>
+<tr><td>5</td><td>First death since the party was hired. If they met that person in the ward, say so by name.</td></tr>
+<tr><td>7</td><td>The Compact's quarantine line at the winch-heads breaks. People try to leave up the cables.</td></tr>
+<tr><td>10+</td><td>Beyond this the adventure has failed on its own terms. Don't kill the colony — escalate to the Compact ordering the Lip abandoned, which is its own disaster.</td></tr>
+</table>
+<div class="note"><strong>Hours matter too, now that there are optional areas.</strong> The party can spend roughly <strong>ten hours below</strong> in one descent before the winch crews stand down. A descent that does not finish the job means coming up or camping, and <strong>advances this clock one day</strong>. The mandatory spine is 4–6 hours; the seven optional areas add 7.75; the body haul alone is nearly five. <strong>It does not all fit.</strong> That is the point — say the prices out loud before they commit to a room.</div>
+
+<h2 id="npcs">NPCs</h2>
+
+<div class="npc">
+<h3>Sergeant Halvard Reyne</h3>
+<p class="role">Undertear Compact &middot; hook-giver &middot; garrison</p>
+<dl>
+<dt>Appearance</dt><dd>Fifties, grey-stubbled, a Compact surcoat over mail that doesn't match it — his own nation's kit under coalition colours, which is true of everyone here and bothers him more than he admits.</dd>
+<dt>Manner</dt><dd>Formal to the point of stiffness. Writes everything down. Does not make jokes and does not appreciate them mid-crisis.</dd>
+<dt>Wants</dt><dd>The cause found and stopped. Does not care what it is.</dd>
+<dt>Withholds</dt><dd>Why the contract specifies reporting to the Compact first and exclusively. He will not explain it. The honest answer is that his own orders say so and he doesn't know either.</dd>
+<dt>Voice</dt><dd><em>"Written contract. Fixed fee. You report to me, not to the wardens and not to the surveyors. That's the term, and it's not mine to negotiate."</em></dd>
+<dt>If pushed</dt><dd>Diplomacy DC 18 gets an admission that the exclusivity clause came down from above him and he finds it strange too.</dd>
+</dl>
+</div>
+
+<div class="npc">
+<h3>Warden Ilse Cotter</h3>
+<p class="role">Vigil of the Weeping &middot; hook-giver &middot; the ward</p>
+<dl>
+<dt>Appearance</dt><dd>Thirties, four days without sleep and visibly past the point where that's still functional. Wet cloth mask pushed down around her neck because it never helped.</dd>
+<dt>Manner</dt><dd>Direct, exhausted, entirely without ceremony. Asks rather than hires, and is not embarrassed about having no money.</dd>
+<dt>Wants</dt><dd>The cause found and stopped, <em>and</em> any dead recovered and given rites. Both. She will not trade one for the other.</dd>
+<dt>Withholds</dt><dd>Nothing. She is the most straightforward person in the adventure.</dd>
+<dt>Voice</dt><dd><em>"I can't pay you. I can tell you that forty-one people went down that shaft two months ago and nobody has said a word over any of them."</em></dd>
+<dt>Leverage</dt><dd>If the party performs or permits the rites at the chapel, her regard is worth more later than the Compact's fee is now. The <a href="#a9">reliquary in A9</a> is the other thing she cares about, and she will not ask for it directly.</dd>
+<dt>Chain of command</dt><dd>Warden is the Vigil's ordinary rank. She answers at a distance to <a href="undermarch-gameplay.html#npc-fenn">Elder Cael Fenn</a>, who is not resident at the Fallwater.</dd>
+</dl>
+</div>
+
+<div class="npc">
+<h3>Surveyor Nen Ashfeld</h3>
+<p class="role">The Sounding Line &middot; hook-giver &middot; junior researcher</p>
+<dl>
+<dt>Appearance</dt><dd>Twenties, ink-stained, carrying more equipment than she can comfortably manage. Sample vials in a padded rack she clearly made herself.</dd>
+<dt>Manner</dt><dd>Fast-talking, genuinely excited by a problem, tactless about the fact that people are dying while she finds it interesting.</dd>
+<dt>Wants</dt><dd>Air and condensate samples at descending intervals down the Throat, in sequence, properly labelled. Data first; solving it second, and she'll say so out loud.</dd>
+<dt>Withholds</dt><dd>That this commission is unauthorised and she is paying from her own stipend. Admits it readily if asked directly.</dd>
+<dt>Voice</dt><dd><em>"It's not in the water. It was never in the water. The air comes up from below, so whatever's in it comes up from below too — and nobody senior will put that in writing."</em></dd>
+<dt>After the adventure</dt><dd>She is the thread into the <a href="undermarch-canon-proposed.html#species-basis">Sounding Line's</a> internal split. Her report on the mark will quietly fail to be logged — and if the party bring her <a href="#b2a">the survey marker from B2a</a>, so will that one, and she will notice the pattern.</dd>
+</dl>
+</div>
+
+<div class="npc">
+<h3>Winch-hand Bett Orrow</h3>
+<p class="role">Minor NPC &middot; local knowledge &middot; the descent</p>
+<dl>
+<dt>Role</dt><dd>Works the winch-heads. Knows the shaft face better than anyone at the Lip because she looks at it all day.</dd>
+<dt>Knows</dt><dd>The Drowned Chapel by sight and location. That nobody has been inside. That rigging a traverse to it would take a day and gear she'd have to sign out.</dd>
+<dt>Voice</dt><dd><em>"The chapel? Forty metres, west face, wedged in a Mouth like a bone in a throat. Everyone's seen it. Why would anyone go in? It's full of dead people."</em></dd>
+<dt>Uses</dt><dd>Gives the party the location without a check if they ask anyone at the winch-heads. Can be hired as a rigger — see <a href="#descent">The Descent</a>. She also works the winch on <a href="#ascent">the Ascent</a>, which is where she becomes someone the party care about.</dd>
+</dl>
+</div>
+
+<h2 id="hooks">Hooks — three factions, three pairs, one winch</h2>
+<p>Each faction wants the same problem solved for a different reason, and each will ask for something the others would not. With the campaign's six characters, run all three: each <a href="#party">pair of characters</a> answers one faction, and the Compact's single winch line makes them one party.</p>
+
+<div class="beat">
+<h3>The Compact's Contract</h3>
+<p class="meta">Best for combat-forward parties &middot; Lawful characters &middot; Soldiers and mercenaries</p>
+<p><a href="#npcs">Sergeant Reyne</a> hires the party as auxiliaries — formally, with a written contract, a fixed fee, and a chit redeemable against colony stores. The garrison cannot spare regulars: a third of them are sick, and the rest are holding a quarantine line at the winch-heads that half the Lip wants to break.</p>
+<p><strong>What they want:</strong> the cause found and stopped. They do not care what it is.</p>
+<p><strong>The catch:</strong> the contract specifies the party reports to the Compact <em>first</em> and exclusively.</p>
+<p><strong>Pay:</strong> 8 gp per character on completion, plus a stores chit (see <a href="#treasure">Treasure</a>).</p>
+</div>
+
+<div class="beat">
+<h3>The Vigil's Petition</h3>
+<p class="meta">Best for divine classes &middot; Clerics, champions, oracles &middot; Characters with a duty of care</p>
+<p><a href="#npcs">Warden Cotter</a> approaches the party directly, without money, and asks. The chapter-house has become a ward, the wardens are working in wet cloth masks that do not help, and this one has been awake for four days.</p>
+<p><strong>What they want:</strong> the cause found and stopped, and any dead recovered and given rites. Both, not one.</p>
+<p><strong>The catch:</strong> the rites are non-negotiable and will cost the party time in a place where time is dangerous.</p>
+<p><strong>Pay:</strong> no coin. Vigil standing, healing services, and one <a href="#treasure">minor item</a> from the chapter-house stores.</p>
+</div>
+
+<div class="beat">
+<h3>The Sounding Line's Commission</h3>
+<p class="meta">Best for knowledge-forward parties &middot; Wizards, investigators, rangers &middot; Characters who want to understand</p>
+<p><a href="#npcs">Surveyor Ashfeld</a> has a hypothesis nobody senior will entertain: the sickness is not in the water, it is in the <em>air</em> — and since the Fallwater's air comes up from below, so does the cause.</p>
+<p><strong>What they want:</strong> data. Solving the problem is secondary to understanding it.</p>
+<p><strong>The catch:</strong> she is junior, this commission is not authorised, and she is paying out of her own stipend.</p>
+<p><strong>Pay:</strong> 5 gp per character (all she has), plus her sample kit and her genuine friendship, which is worth more.</p>
+</div>
+
+<h3 id="party">The party — three pairs</h3>
+<p>Nobody meets five strangers at once. Open on three short scenes, one per pair, each ending on its faction's ask, then bring all six together at the winch-heads. Suggested order: the ward, the workshop, the winch-heads, then <a href="#one-winch">One Winch</a>.</p>
+
+<div class="beat">
+<h3>The Ward — Corvin and Balthor</h3>
+<p class="meta">Answers the Vigil's Petition &middot; the chapter-house &middot; opening scene</p>
+<p><strong>Corvin</strong> is a patient. He already has <a href="#disease">Lip Sickness</a> when play opens — run him at stage 1 and let him make his daily save like anyone else; Cotter will Treat Disease on him for free. He is the only character who was here before the Weeping. He grew up in the rim village whose chapel is now in two pieces: half still standing on the Lip, sliced open like a dollhouse, and half forty metres down. He knew that congregation by name, which gives the Vigil's rites a weight no one else at the table carries.</p>
+<p><strong>Balthor</strong> is not Vigil. He lived in Brannock's desert with a nomadic band of elves who took him in, which is how a human came to live without trouble inside a country whose interior foreigners never see. Cotter has not slept in four days and accepts anyone who will sit with the dying; Balthor has been doing it for a week. That is how he knows Corvin.</p>
+<p><strong>The ask:</strong> Cotter delivers the petition to both of them, standing over Corvin's place on the floor.</p>
+<div class="note"><strong>Corvin's sister.</strong> She was lost in the Fallwater Undertear, and that story is the player's. She is <strong>not</strong> in the chapel and <strong>not</strong> one of <a href="#act3">the three from the sacristy</a>. No character's backstory resolves in session one.</div>
+</div>
+
+<div class="beat">
+<h3>The Workshop — Andgar and CE-11</h3>
+<p class="meta">Answers the Sounding Line's Commission &middot; the Line's survey chapter</p>
+<p><strong>Andgar</strong> holds the Diarchy's seat in the Fallwater's Line survey chapter — the seat Corrach-Nom took as the price of the lantern schematics. He is a genuine scholar, and his standing brief from home is to take a particular interest in technique.</p>
+<p><strong>CE-11</strong> came up as a specimen, found dormant in a cavern below by a Line-sponsored crew — <a href="#pair-winch">Nyrel and Vesper's</a>. The Diarchy seat gives Andgar first claim to examine it. If the player has no other meaning for the name, it is the Line's catalogue tag: construct, entry eleven.</p>
+<p><strong>The ask:</strong> Ashfeld comes looking for hands, and a Diarchy delegate on her unauthorised commission makes it much harder for her seniors to quash it.</p>
+<div class="note"><strong>GM only.</strong> CE-11's construction is <em>legible</em> to Andgar — joins and tolerances that feel like his own guild's work, only far older. This is the Aftermath secret, felt and never explained. Andgar's honest report on CE-11 goes home and is read by the Diarchy's engineering unit (<a href="undermarch-canon-established.html">Established Canon &rarr; Unknown Knowledge</a>). He does not know the unit exists. CE-11 is now something Corrach-Nom wants.</div>
+</div>
+
+<div class="beat" id="pair-winch">
+<h3>The Winch-Heads — Nyrel and Vesper</h3>
+<p class="meta">Answers the Compact's Contract &middot; the quarantine line</p>
+<p><strong>Nyrel</strong> maps for Line-sponsored crews; the Line buys survey data rather than fielding its own expeditions. <strong>Vesper</strong> is the crew member who goes where the lanterns don't. They were on the crew that found CE-11, and CE-11's first memory is Nyrel's lamp. When Nyrel brushed its mind while it lay dormant, the mind was not empty. It was counting.</p>
+<p><strong>The ask:</strong> Reyne needs auxiliaries, and these two are the only freelance crew at the Lip with Throat experience who are not sick.</p>
+<div class="note"><strong>Vesper's origin is open.</strong> Two things to avoid when you decide it: making Vesper one of <a href="undermarch-adventure-02.html">the Hushed</a>, which spends Adventure 02's first contact, and giving Vesper a no-memory arrival from below, which doubles CE-11's hook.</div>
+</div>
+
+<div class="beat" id="one-winch">
+<h3>One Winch</h3>
+<p class="meta">Convergence &middot; the winch-heads &middot; end of the opening</p>
+<p>Three errands arrive at the same winch-head on the same morning. <a href="#npcs">Bett Orrow</a> will rig one traverse and sign out one set of gear on her own name, and Reyne will log one party. Whoever holds the lift line holds everything below it.</p>
+<div class="readaloud"><p>"Three errands. One line. You go down together, or you queue."</p></div>
+<p><strong>The collision:</strong> every descent runs under Reyne's contract, so the Compact's report-first clause now binds all six — including the pair working for the Vigil and the pair working for the Line. Each pair keeps its own faction's pay. Who hears about the chapel first becomes the party's first real argument, and they have it before they've been down.</p>
+</div>
+
+<h2 id="flowchart">Flowchart</h2>
+<div class="flow">
+<svg viewBox="0 0 900 620" role="img" aria-label="Adventure flowchart: three faction hooks converge on the Lip investigation, optionally divert to the Catchbasin to clear the water as a suspect, then descend to the Drowned Chapel, then behind the altar to the First Sign, then to three possible faction resolutions.">
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M1 1 L9 5 L1 9" fill="none" stroke="#9A9086" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<g font-family="Archivo, sans-serif" font-size="12">
+
+<rect x="20" y="20" width="180" height="42" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="110" y="38" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Compact contract</text>
+<text x="110" y="53" fill="#9A9086" text-anchor="middle" font-size="10">report to us first</text>
+
+<rect x="215" y="20" width="180" height="42" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="305" y="38" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Vigil petition</text>
+<text x="305" y="53" fill="#9A9086" text-anchor="middle" font-size="10">recover the dead too</text>
+
+<rect x="410" y="20" width="180" height="42" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="500" y="38" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Sounding Line</text>
+<text x="500" y="53" fill="#9A9086" text-anchor="middle" font-size="10">samples in sequence</text>
+
+<line x1="110" y1="62" x2="290" y2="106" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+<line x1="305" y1="62" x2="305" y2="106" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+<line x1="500" y1="62" x2="322" y2="106" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+
+<rect x="185" y="112" width="240" height="52" rx="3" fill="#2A2620" stroke="#E3B23C" stroke-width="1.5"/>
+<text x="305" y="132" fill="#E3B23C" text-anchor="middle" font-size="12.5" font-weight="600">ACT 1 — The Lip</text>
+<text x="305" y="150" fill="#9A9086" text-anchor="middle" font-size="10">worst near the Throat's mouth</text>
+
+<rect x="620" y="100" width="185" height="52" rx="3" fill="#26221D" stroke="#3A342B" stroke-dasharray="4 3"/>
+<text x="712" y="120" fill="#E4DDD1" text-anchor="middle" font-size="11">Catchbasin, ~300m</text>
+<text x="712" y="137" fill="#9A9086" text-anchor="middle" font-size="10">water is fine — cleared</text>
+<line x1="425" y1="130" x2="616" y2="126" stroke="#9A9086" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+
+<line x1="305" y1="164" x2="305" y2="206" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+<text x="318" y="188" fill="#7A8B6F" font-size="10">the source is below the victims</text>
+
+<rect x="185" y="212" width="240" height="52" rx="3" fill="#2A2620" stroke="#E3B23C" stroke-width="1.5"/>
+<text x="305" y="232" fill="#E3B23C" text-anchor="middle" font-size="12.5" font-weight="600">ACT 2 — The Drowned Chapel</text>
+<text x="305" y="250" fill="#9A9086" text-anchor="middle" font-size="10">41 dead in standing water, 40m down</text>
+
+<rect x="470" y="212" width="200" height="52" rx="3" fill="#26221D" stroke="#3A342B" stroke-dasharray="4 3"/>
+<text x="570" y="232" fill="#E4DDD1" text-anchor="middle" font-size="11">Stop the sickness</text>
+<text x="570" y="249" fill="#9A9086" text-anchor="middle" font-size="10">bodies out, seal the crack</text>
+<line x1="425" y1="238" x2="466" y2="238" stroke="#7A8B6F" stroke-width="1.2" marker-end="url(#ar)"/>
+
+<line x1="305" y1="264" x2="305" y2="306" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+<text x="318" y="288" fill="#7A8B6F" font-size="10">the sacristy was sealed from inside</text>
+
+<rect x="185" y="312" width="240" height="52" rx="3" fill="#2A2620" stroke="#A63D2F" stroke-width="1.5"/>
+<text x="305" y="332" fill="#C4705E" text-anchor="middle" font-size="12.5" font-weight="600">ACT 3 — Behind the Altar</text>
+<text x="305" y="350" fill="#9A9086" text-anchor="middle" font-size="10">the survivors went into the caves</text>
+
+<line x1="305" y1="364" x2="305" y2="406" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+
+<rect x="150" y="412" width="310" height="56" rx="3" fill="#2E1E1A" stroke="#A63D2F" stroke-width="1.5"/>
+<text x="305" y="433" fill="#C4705E" text-anchor="middle" font-size="12.5" font-weight="600">THE FIRST SIGN</text>
+<text x="305" y="450" fill="#9A9086" text-anchor="middle" font-size="10">tracks matching nothing — and a deliberate mark</text>
+<text x="305" y="463" fill="#9A9086" text-anchor="middle" font-size="10">made with a tool, by something with a reason</text>
+
+<line x1="220" y1="468" x2="130" y2="516" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+<line x1="305" y1="468" x2="305" y2="516" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+<line x1="390" y1="468" x2="480" y2="516" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar)"/>
+
+<rect x="20" y="522" width="200" height="58" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="120" y="542" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Report to Compact</text>
+<text x="120" y="558" fill="#9A9086" text-anchor="middle" font-size="10">"a beast. or a rival nation's</text>
+<text x="120" y="571" fill="#9A9086" text-anchor="middle" font-size="10">sappers." patrols double.</text>
+
+<rect x="228" y="522" width="200" height="58" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="328" y="542" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Report to Sounding Line</text>
+<text x="328" y="558" fill="#9A9086" text-anchor="middle" font-size="10">the surveyor is thrilled —</text>
+<text x="328" y="571" fill="#9A9086" text-anchor="middle" font-size="10">then her report vanishes.</text>
+
+<rect x="436" y="522" width="200" height="58" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="536" y="542" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Report to Vigil</text>
+<text x="536" y="558" fill="#9A9086" text-anchor="middle" font-size="10">read as omen, recorded</text>
+<text x="536" y="571" fill="#9A9086" text-anchor="middle" font-size="10">faithfully, believed by nobody.</text>
+
+<rect x="620" y="300" width="260" height="170" rx="3" fill="#1B1815" stroke="#3A342B" stroke-dasharray="3 3"/>
+<text x="750" y="324" fill="#E3B23C" text-anchor="middle" font-size="10.5" font-family="JetBrains Mono, monospace">PRESSURE CLOCK</text>
+<text x="750" y="348" fill="#9A9086" text-anchor="middle" font-size="10">Day 1 — 26 sick, 3 dead</text>
+<text x="750" y="370" fill="#9A9086" text-anchor="middle" font-size="10">Day 3 — the ward runs out of floor</text>
+<text x="750" y="392" fill="#9A9086" text-anchor="middle" font-size="10">Day 5 — first death since</text>
+<text x="750" y="414" fill="#9A9086" text-anchor="middle" font-size="10">Day 7 — quarantine line breaks</text>
+<text x="750" y="444" fill="#C4705E" text-anchor="middle" font-size="10">the clock runs while they delve</text>
+</g>
+</svg>
+</div>
+
+<h2 id="act1">Act 1 — The Lip</h2>
+<div class="beat">
+<h3>The Ward</h3>
+<p class="meta">Surface &middot; one scene &middot; investigation</p>
+<div class="readaloud">
+<p>The fog is waist-deep at the Lip and does not move. It sits in the streets between the scaffolds, thick enough that the winch-towers are shapes rather than structures, and it tastes faintly of wet stone and something underneath that.</p>
+<p>The Vigil chapter-house has run out of beds and started using the floor. The sound in here is not moaning — it is coughing, dozens of people, layered and continuous, wet and deep and going nowhere.</p>
+<p>A warden hands you a strip of damp cloth for your face without being asked, and does not tell you it works.</p>
+</div>
+<p><strong>Investigation DCs:</strong></p>
+<table class="dctable">
+<tr><th>Check</th><th>What it reveals</th></tr>
+<tr><td>Medicine 15</td><td>This is in the lungs, not the gut. Nobody is catching it by drinking — which is why eleven days of boiling accomplished nothing.</td></tr>
+<tr><td>Medicine 18</td><td>Not spreading person to person. Wardens elbow-deep in it for a fortnight are fine; someone who never went near a patient has fallen ill. Exposure isn't about contact.</td></tr>
+<tr><td>Society 14</td><td>Canvassing house to house: the sick cluster tightly around the winch-heads and the dockside quarters nearest the Throat's mouth. At the settlement's edges, cases thin to almost nothing.</td></tr>
+<tr><td>Survival or Nature 16</td><td>The fog is not weather. It rises out of the Throat continuously and has since the settlement was founded. Something in it changed; the fog did not.</td></tr>
+<tr><td>Perception 17</td><td>At the Throat's edge: the updraft lifts a dropped scrap of cloth back up over the Lip. Anything light enough, coming off the shaft wall below, ends up here.</td></tr>
+</table>
+<div class="note"><strong>The gradient is the clue.</strong> The fog blankets the whole Lip evenly, but the sickness doesn't — it's worst exactly where the Throat's exhaust hits hardest and thins with distance. That points down, into the shaft, for whatever is riding the updraft.</div>
+<p><strong>If the party stalls:</strong> <a href="#npcs">Bett Orrow</a> at the winch-heads mentions the chapel unprompted if anyone asks her what's on the shaft face. No check required — this adventure should not gate on a roll.</p>
+</div>
+
+<div class="beat">
+<h3>The Catchbasin — ruling it out</h3>
+<p class="meta">~300m &middot; optional &middot; a suspect cleared</p>
+<p>Most parties will want to check the water anyway, and they should. The descent is routine, the <a href="undermarch-poi.html#catchbasin">Catchbasin</a> is loud and cold and unpleasant, and the water is <em>fine</em> — a little mineral, nothing worse.</p>
+<p>The noise here imposes a <strong>&minus;4 circumstance penalty</strong> to Perception checks relying on hearing, and conversation above a shout is impossible.</p>
+<ul>
+<li><strong>Perception (DC 13) on the ascent:</strong> a Mouth at roughly forty metres with a building wedged in it, at an angle, half-visible through the mist.</li>
+<li><strong>Any winch-hand, asked:</strong> that is the chapel from the rim village. There is no reason to go in — it is full of dead people.</li>
+</ul>
+</div>
+
+<h2 id="descent">The Descent</h2>
+<div class="beat">
+<h3>Rigging the traverse</h3>
+<p class="meta">Preparation &middot; costs one day</p>
+<p>Reaching the chapel means going down the shaft and traversing sideways off the descent line to a Mouth nobody has rigged. This costs the party <strong>one full day</strong> on the <a href="#clock">pressure clock</a> and requires either:</p>
+<ul>
+<li><strong>Hiring Bett Orrow</strong> — 2 gp, plus she signs out the gear on her own name and is liable for it. She rigs the traverse but does not enter the chapel.</li>
+<li><strong>Rigging it themselves</strong> — Crafting or Athletics DC 16. Success: safe traverse. Failure: the traverse works but the anchor is poor, imposing a &minus;2 circumstance penalty to Athletics checks made on the line. Critical failure: as failure, and the party loses a second day redoing it.</li>
+</ul>
+<div class="note"><strong>Light, and where it stops.</strong> The Throat's major route is lit — <a href="undermarch-gameplay.html#sounding-lanterns">sounding lanterns</a> are installed in the shaft at intervals by the Sounding Line, marking the way up to the surface and sideways to the nearest Mouth. The party descends inside that lit corridor and it costs them nothing.
+<p style="margin:8px 0 0">The chapel is not on that route. <strong>The moment they traverse off the descent line, they leave the light.</strong> From that point on they carry their own, and the draft's DC 20 flat check applies to every open flame. Make the last lantern behind them an explicit image — it is both a good beat and a fair warning.</p></div>
+<p><strong>The traverse itself:</strong> Athletics DC 15 to cross hand-over-hand. On a failure the character slips and is caught by their line, taking no damage but ending prone at the Mouth's edge. The <a href="undermarch-gameplay.html#standing-draft">Standing Draft</a> applies throughout: &minus;2 circumstance penalty to Perception (hearing), and non-magical open flames need a DC 20 flat check each round or go out.</p>
+<div class="enc">
+<p class="eh">Hazard — Throat Squall (Hazard 3, complex, 80 XP)</p>
+<p>The party's first lesson, and the one that should stick: down here the environment is the adversary. Full version at <a href="undermarch-gameplay.html#throat-squall">Gameplay &rarr; Throat Squall</a>; this is the descent-scaled version.</p>
+<p><strong>Stealth</strong> DC 20 (a pressure drop in the ears, a rising howl, a few seconds' warning)<br>
+<strong>Disable</strong> Survival DC 20 to read the warning and brace the party, or Athletics DC 20 to snap-secure a line</p>
+<p><strong>Surge</strong> — fires on rounds <strong>1, 3 and 5</strong> of the traverse, then passes. Each creature on the line attempts a <strong>DC 19 Fortitude save</strong>.</p>
+<p><strong>Success</strong> Pushed 5 feet along the draft (upward).<br>
+<strong>Failure</strong> 1d6+3 bludgeoning and pushed 15 feet upward.<br>
+<strong>Critical Failure</strong> 2d6+6 bludgeoning, pushed 30 feet, and DC 19 Reflex or lose handhold — caught by the safety line, dangling, requiring an Athletics DC 15 to recover position.</p>
+<p><strong>Torn Debris</strong> — on each surge, one random creature also takes 2d6 bludgeoning from grit and slate torn off the shaft wall, DC 19 Reflex basic save.</p>
+<p><em>The Fallwater exhales, so the push is upward. The line is the only reason any of this is survivable — say that out loud before the first pulse. A character who unclips for any reason has made a decision, not a mistake.</em></p>
+<p><strong>Gentler option:</strong> run it as Hazard 2 (60 XP) — DC 17 saves, 1d6 / 2d6 damage, no Torn Debris, two surges instead of three. Use this if the party is genuinely fragile or short-handed.</p>
+</div>
+</div>
+
+<h2 id="act2">Act 2 — The Drowned Chapel</h2>
+<p>The chapel is lying at roughly thirty degrees, wedged into the Mouth. <strong>Throughout: the floor is tilted.</strong> Downhill movement is normal; uphill movement is <a href="#rules">difficult terrain</a>; any creature knocked prone slides 10 feet downhill — toward the water and the dead.</p>
+<div class="note"><strong>Reading the keys.</strong> A1–A5 are the spine and every party will see them. <strong>A9–A12 are optional</strong> — they are there to be found, they cost time, and they are where the <a href="#treasure">exploration XP</a> lives. Areas are listed in the order a party physically encounters them, not in numerical order.
+<p style="margin:8px 0 0"><strong>The tilt sorts them.</strong> Uphill (A9, A10) is dry and preserved. Downhill (A3, A12) is flooded and rotten. Sideways (A11) means crawling through what used to be a wall.</p></div>
+
+<div class="area">
+<h4><span class="code">A1</span>The Breach — entry</h4>
+<p>Where the chapel's roofline broke open against the Mouth. A gap the width of two people, jagged with slate and splintered rafter.</p>
+<div class="readaloud">
+<p>The chapel is lying on its side and it has not noticed. Pews have slid down the tilted floor and stacked against the low wall in a splintered heap. A font has emptied itself in a long dried streak across the flagstones. Somewhere above, a bell you cannot see shifts and does not quite ring.</p>
+<p>Water runs down every wall, constant and warm, and gathers in the low corner where everything else has gathered. That is where the congregation is.</p>
+<p>They are sitting in it. Two months of it.</p>
+</div>
+<p><strong>Perception DC 12:</strong> the smell here is much stronger than at the Lip. Anyone who made the Medicine 15 check in Act 1 connects it immediately.</p>
+<p><strong>Before they go in.</strong> From the ledge at the breach, the whole debris field is visible: the chapel wedged at its angle, and the bell-tower lying separately forty feet off, sheared clean at the base. That tower is <a href="#a11">A11</a>, and reaching it does not require entering the chapel at all.</p>
+</div>
+
+<div class="area opt" id="a11">
+<h4><span class="code">A11</span>The Fallen Belfry<span class="optflag">Optional &middot; sideways &middot; 1 hour</span></h4>
+<p>The tower sheared off at its base on the way down and lies separately in the debris field, jammed against the Mouth wall like a dropped length of pipe.</p>
+<p><strong>Access:</strong> entry at the broken base — Athletics DC 15. Cramped throughout: no room to swing a weapon larger than a dagger, and anyone Large simply cannot enter.</p>
+<div class="readaloud">
+<p>Inside, the louvre slots make bars of grey light down the tower's length, and the air is thick and sour with something that has been living in here.</p>
+<p>At the far end the bell is still on its headstock, resting against the stone at an angle that no longer has anything to do with how a bell is supposed to hang. The rope is coiled beneath it where it fell.</p>
+</div>
+<div class="enc">
+<p class="eh">Encounter — the roost (Low for six, 60 XP)</p>
+<p><strong>1 roost-swarm</strong> — see <a href="#roost-swarm">Creatures</a>. Pale, near-blind, feeding on whatever the Mouth's drafts carry in. They have been here since the fall and they are the reason the tower smells the way it does.</p>
+<p><strong>Why it's nastier than 60 XP suggests:</strong> the tower is a tube. There is no flanking, no retreat past a swarm that fills the whole cross-section, and area damage is the obvious answer in a space where everyone is within 10 feet of everyone else. A party that walks in without a plan will take the hit.</p>
+</div>
+<div class="enc">
+<p class="eh">Hazard — the Bell (Hazard 2, 20 XP)</p>
+<p><strong>Stealth</strong> DC 18 (the headstock is cracked through and the bell is resting on stone, not hanging)<br>
+<strong>Disable</strong> Crafting DC 18 to chock and lash it, 10 minutes</p>
+<p><strong>Trigger</strong> Any creature moves past the bell, strikes it, or fails an Athletics check in the last 15 feet of the tower — and automatically if anyone pulls the rope.</p>
+<p><strong>Effect</strong> The bell comes off the headstock and rolls the length of the tube. Every creature in the tower attempts a <strong>DC 18 Reflex save</strong>. Failure: 2d6 bludgeoning and knocked prone. Critical failure: as failure, and pinned beneath it — Escape or Athletics DC 18 to get clear, 2 more bludgeoning per round pinned.</p>
+<p><strong>And it rings.</strong> Once, enormously, in a stone tube.</p>
+</div>
+<p><strong>If the bell rings</strong> — deliberately, by accident, or as the hazard fires:</p>
+<ul>
+<li>Every shambler still active in the chapel converges on <a href="#a2">the nave</a>, arriving in 1d4 rounds. If A2 is already cleared, nothing comes.</li>
+<li>Roughly thirty seconds after it stops, <strong>something a long way back through the altar-breach answers.</strong> Not a word. Not an echo. Once.</li>
+</ul>
+<div class="note"><strong>Do not explain the answer</strong>, this session or next. It is the same thing that took the three from <a href="#b2">B2</a>. If the party go looking for it immediately, the passage past B3 is simply dark and empty, and that should be more unsettling than a monster would be.</div>
+<p><strong>Loot.</strong> A jackdaw's hoard in a nest in the louvres: 6 gp in loose coin, a silver ring (3 gp), a thimble, and a brass button that does not match anything made locally. The button is nothing. Let a player decide it is something. The bell itself is bronze, worth perhaps 40 gp, and cannot be moved by six level-1 characters; its <strong>clapper</strong> can — 8 gp, 2 Bulk, worth exactly enough to be annoying to carry.</p>
+<p><strong>XP:</strong> 80 as an encounter. No exploration award on top.</p>
+</div>
+
+<div class="area" id="a2">
+<h4><span class="code">A2</span>The Nave</h4>
+<p>The main body of the chapel. Forty-one bodies in the low corner, half-submerged in standing water perhaps a foot deep. Pews stacked against the downhill wall. The font, empty, wedged against a pillar.</p>
+<div class="note"><strong>How they died, stated plainly.</strong> The forty-one died <strong>in the fall</strong>. <strong>Medicine DC 15</strong> confirms it: crushing and blunt trauma consistent with a single violent event, all of it ante-mortem, none of the signs of starvation, drowning, suffocation or anything stranger. The three who survived survived by luck and nothing else — they were standing in the one part of the building that landed well. Give this freely; every party will check, and the answer being ordinary is what makes the rest of the adventure unsettling.</div>
+<div class="enc">
+<p class="eh">Encounter — the congregation (Moderate for six, 80 XP)</p>
+<p><strong>4 <a href="#zombie-shambler">zombie shamblers</a></strong> in the low corner, half-submerged, slow to rise. <strong>2 more</strong> emerge from under the pew-heap on round two.</p>
+<p><strong>Total budget:</strong> 6 shamblers = 120 XP = <strong>Moderate</strong> for six level-1 characters. Award 80 XP.</p>
+<p><strong>Upscale to Severe:</strong> <strong>9 shamblers</strong> = 180 XP. Use this if the party arrives rested, fully equipped and unbloodied, and if you are comfortable with PF2e level 1 being genuinely lethal. Bring the extra three up out of the water on round three rather than adding them to the opening wave.</p>
+<p><strong>Terrain:</strong> the tilt (above). The standing water is difficult terrain. Shamblers in the water start prone and must Stand, which the party can exploit if they think of it.</p>
+<p><strong>Tactics:</strong> shamblers are permanently slowed 1, cannot use reactions, and have no tactics. They move toward the nearest living thing and Grab. That is all. The danger is entirely positional — being dragged downhill into the water with four of them.</p>
+<p><strong>No-undead alternative (Moderate for six, 80 XP):</strong> <strong>2 <a href="#rat-swarm">rat swarms</a></strong> plus <strong>2 <a href="#giant-rat">giant rats</a></strong> = 120 XP, feeding. Mechanically similar, tonally very different — pick based on how supernatural you want session one to feel.</p>
+</div>
+<div class="enc">
+<p class="eh">Hazard — the Slipping Pew Heap (Hazard 1, simple, 15 XP)</p>
+<p>The pew mass against the downhill wall is wedged, not settled. It is holding several tonnes of oak at an angle against nothing in particular.</p>
+<p><strong>Stealth</strong> DC 15 (it creaks under weight before it goes)<br>
+<strong>Trigger</strong> A creature critically fails an Acrobatics or Athletics check on or beside the heap, a shambler emerges from beneath it, or any Large or heavier force strikes it.</p>
+<p><strong>Effect</strong> The heap shifts. Every creature on or adjacent to it attempts a <strong>DC 17 Reflex save</strong>. Failure: slide 20 feet downhill into the standing water, prone. Critical failure: as failure, and take 1d6 bludgeoning from the timber coming with them.</p>
+<p><strong>Disable</strong> Crafting DC 16 to chock it with broken timber, 10 minutes.</p>
+<p><em>This is what turns the nave from a room into terrain. It is also the fairest possible punishment for fighting on top of a woodpile — and note that <a href="#a12">A12</a> is propped on it.</em></p>
+</div>
+<p><strong>Solving the sickness:</strong> the bodies must come out of the standing water, and the crack must be sealed or the pool drained away from the shaft face. That is the fix. It is not heroic, it takes hours, and the Vigil will want it done a specific way. Forty-one bodies, a tilted floor, and a rope hoist.</p>
+<ul>
+<li><strong>The work:</strong> 6 hours with the whole party. Halved with a hoist rigged (Crafting DC 15). Vigil rites add 2 hours and require someone trained in Religion, or Warden Cotter present.</li>
+<li><strong>Sealing the crack:</strong> Crafting DC 16 with materials on hand (pew timber, slate). Failure means it holds for a week and then doesn't — a hook, not a punishment.</li>
+<li><strong>Getting them up is a separate problem</strong> and it is the adventure's last act — see <a href="#ascent">The Ascent</a>.</li>
+</ul>
+</div>
+
+<div class="area opt" id="a12">
+<h4><span class="code">A12</span>The Singers' Gallery<span class="optflag">Optional &middot; downhill &middot; 30 minutes</span></h4>
+<p>The loft tore loose and now lies at a shallower angle than the floor, propped over the pew heap. <strong>Athletics DC 14</strong> to get up onto it.</p>
+<p><strong>Why it's worth keying.</strong> It is <strong>high ground over the nave</strong>, ten feet above the shamblers and out of their reach, reachable before the fight if the party scout. A party that finds it first gets a genuine tactical advantage they earned by looking around. A party that doesn't gets the fight as written. That asymmetry is the whole point — <strong>do not hint at it.</strong></p>
+<p><strong>And it has a price.</strong> The gallery is propped <em>on</em> the pew heap. If <a href="#a2">the heap shifts</a> while anyone is up there, the gallery drops with it: the same DC 17 Reflex save, and anyone on the gallery who fails lands in the water among the shamblers. Standing on the free win is not free.</p>
+<p><strong>Loot.</strong> A bundle, tied with cord, tucked under the front rail: someone's belongings, gathered and knotted for carrying, and never picked up. Spare clothes, a wooden flute, 4 sp, and a letter half-finished to somebody at Xynnar. It goes nowhere. It is just a person.</p>
+<p><strong>XP:</strong> 30 explored.</p>
+</div>
+
+<div class="area">
+<h4><span class="code">A3</span>The Low Corner</h4>
+<p>Where everything has migrated. Hymnals, candlesticks, coins from the collection box, and the dead. The water here is a foot deep and warm and this is where the crack is.</p>
+<p><strong>Perception DC 15:</strong> the crack in the downhill wall, and the fact that water is actively moving through it rather than pooling. <strong>Crafting or Survival DC 14:</strong> the crack is recent — the stone is fresh-broken, not weathered. Something shifted here in the last few weeks.</p>
+<p><strong>Perception DC 16, searching the deepest water:</strong> something is wedged under a fallen beam that reads as a body and is not — the priest's cope, waterlogged and heavy, wrapped around a bundle of candles. Let the party think it is a person first. The moment of relief is the only one this room offers.</p>
+<div class="note"><strong>Exposure:</strong> a character who spends an hour or more in A3 without covering their face must attempt a <a href="#disease">Lip Sickness</a> save. Covering the face with wet cloth gives a +2 circumstance bonus. Mention the wardens' masks in Act 1 so this is fair. <strong>Corvin already has it</strong> — see <a href="#party">the party</a>.</div>
+</div>
+
+<div class="area">
+<h4><span class="code">A4</span>The Sacristy</h4>
+<p>A side door, uphill, jammed. <strong>Athletics DC 18</strong> to force, or <strong>Thievery DC 17</strong> to pick. Either reveals it was not jammed by the fall — it was <strong>barricaded from the inside</strong>, a bench wedged under the handle, still in place.</p>
+<div class="readaloud">
+<p>The room beyond is small and dry and it has been lived in.</p>
+<p>Someone stacked hymnals into a bed. Someone worked through the communion wine — the bottles are lined against the wall, empty, arranged neatly, which is somehow worse than if they had been thrown. Someone scratched marks into the plaster beside the door, a row of them, counting days. The row stops at thirty-one.</p>
+<p>The far wall of the sacristy is gone. Behind it is the cave the chapel is wedged into, and the dark goes back a long way.</p>
+</div>
+<table class="dctable">
+<tr><th>Check</th><th>What it reveals</th></tr>
+<tr><td>Perception 14</td><td>Three distinct sets of bedding. Three people survived the fall, not one.</td></tr>
+<tr><td>Survival 16</td><td>They left through the breach deliberately, not in panic — they took what they could carry, and they took the lamp oil.</td></tr>
+<tr><td>Automatic</td><td>The count stops at thirty-one. It has been sixty-two days since the Weeping. They stopped counting halfway, and then they left.</td></tr>
+</table>
+<div class="note"><strong>If Corvin is present,</strong> he knows the three by name before anyone finds a single piece of evidence, and he will say so. None of them is his sister.</div>
+</div>
+
+<div class="area opt" id="a9">
+<h4><span class="code">A9</span>The Undercroft<span class="optflag">Optional &middot; uphill &middot; 1 hour</span></h4>
+<p>A burial vault under the chancel. The chancel is now the high end, so the water never reached it, and the stair down is now a stair sideways.</p>
+<p><strong>Access:</strong> the door is swollen shut — <strong>Athletics DC 16</strong> to force. The noise carries to <a href="#a2">A2</a> if the nave hasn't been cleared; if there are still shamblers standing, they start moving this way.</p>
+<div class="readaloud">
+<p>This is the only room in the building that smells of dust instead of water.</p>
+<p>Six older burials lie in wall niches, generations of them, undisturbed and still in order. Everything here is exactly where it was meant to be — except for one niche, where somebody came down in a great hurry two months ago and shoved things in on top of the dead without any time to be careful about it.</p>
+</div>
+<p><strong>Loot.</strong></p>
+<ul>
+<li><strong>The church plate</strong>, shoved into that niche when the shaking started — chalice, two patens, a censer chain. <strong>25 gp</strong> of silver.</li>
+<li><strong>The reliquary.</strong> A hinged box holding a fingerbone and a name nobody at the Fallwater recognises. Materially worth <strong>12 gp</strong>, and that is the least interesting thing about it.</li>
+</ul>
+<div class="note"><strong>The reliquary is the strongest bargaining chip in the adventure.</strong> The Vigil wants it returned as a matter of doctrine and Cotter will not ask for it outright. The Compact wants it registered and inventoried, because everything that comes up the shaft is Compact property under the contract. The Sounding Line wants to know why a village founded two generations ago had a relic that old. Placing it deliberately with one faction, rather than selling it, is a <strong>moderate accomplishment, 30 XP</strong>.</div>
+<p><strong>Open question this raises.</strong> Where <em>did</em> a two-generation frontier parish get an old relic? You do not need an answer at the table. Say the name is unfamiliar and let it sit. If Corvin is present, the name means nothing to him either, and that bothers him.</p>
+<p><strong>XP:</strong> 30 explored, plus 30 if the reliquary is placed rather than sold.</p>
+</div>
+
+<div class="area opt" id="a10">
+<h4><span class="code">A10</span>The Charity Store<span class="optflag">Optional &middot; uphill &middot; 30 min to find, 3 hours to haul</span></h4>
+<p>A lean-to store off the chancel, above the waterline.</p>
+<p><strong>Access:</strong> the door opens downhill, so it swings hard once unlatched — <strong>Reflex DC 13</strong> or take 1 bludgeoning and be knocked prone on the tilt. Trivial, and it makes the tilt bite once more.</p>
+<p><strong>What's here.</strong> The parish's winter charity: sacks of grain, a cask of salt pork, folded blankets, a crate of tallow candles, four flasks of lamp oil.</p>
+<div class="note"><strong>Why this matters more than the silver.</strong> The Lip is two months from winter with a ward full of sick people and a garrison rationing. This is not treasure and it is the most useful thing in the chapel.
+<p style="margin:8px 0 0"><strong>And it competes with the dead.</strong> <a href="#ascent">The Ascent</a> establishes the bottleneck: one load at a time, forty minutes per round trip. Hauling the stores costs three hours of line time the bodies need. <strong>The party cannot bring up both the supplies and the forty-one in one descent</strong> — one of them waits, and waiting costs a clock day.</p></div>
+<p><strong>Faction reaction.</strong> Reyne wants it inventoried and issued through the Compact. Cotter wants it given away at the chapter-house door. Ashfeld does not care and will say so at the worst possible moment. This is the first argument the three pairs have that is genuinely about their factions rather than about each other.</p>
+<p><strong>XP:</strong> 30 explored, plus 30 as a moderate accomplishment if the stores actually reach the Lip.</p>
+</div>
+
+<div class="area">
+<h4><span class="code">A5</span>The Altar-Breach</h4>
+<p>Behind the altar, the chapel's back wall has broken open against the cave passage it is wedged into. The passage continues into unmapped dark. This is the exit to <a href="#act3">Act 3</a>, and the only way in — nothing else connects the chapel to the caves behind it.</p>
+</div>
+
+<h2 id="act3">Act 3 — Behind the Altar</h2>
+<div class="area">
+<h4><span class="code">B1</span>The Survivors' Road</h4>
+<p>The passage runs back into the rock for roughly four hundred metres before opening into a chamber. The trail is easy to follow — scuffs, spent lamp wicks, a dropped shoe. <strong>Survival DC 10</strong> to follow; on a critical success, the party also notes that the three sets of tracks are unhurried and evenly spaced. Nobody was running.</p>
+<div class="enc">
+<p class="eh">Hazard — Blackdamp Pocket (Hazard 2, 20 XP)</p>
+<p>Roughly halfway along, the passage dips through a low scrape where the floor drops and the air stops moving. Full entry at <a href="undermarch-gameplay.html#blackdamp-pocket">Gameplay &rarr; Blackdamp Pocket</a>.</p>
+<p><strong>Stealth</strong> DC 18 (flames gutter low and go orange; the first person through feels stupid before they feel short of breath)<br>
+<strong>Disable</strong> Survival DC 18 to recognise it and withdraw, or Crafting DC 20 to rig a draft-line and ventilate it in 20 minutes</p>
+<p><strong>Suffocation</strong> [reaction] DC 18 Fortitude. Success: no effect. Failure: fatigued until 10 minutes in clean air. Critical failure: as failure, and falls unconscious and begins suffocating.</p>
+<p><em>Deals no damage and costs them everything else — light, time, and the nerve they had walking in. This is the right note immediately before B2. If the party carried a bird or a lantern they are watching, reward that generously.</em></p>
+</div>
+</div>
+
+<div class="area opt" id="b1a">
+<h4><span class="code">B1a</span>The Latrine Cut<span class="optflag">Optional &middot; 15 minutes</span></h4>
+<p>A side scrape off B1, obvious to anyone with a light. Place it <em>before</em> the Blackdamp Pocket, so the party have a reason to be paying attention to side passages by the time the air goes bad.</p>
+<p>A pit, dug with a chapel candlestick, and used for weeks. Above it, scratched into the rock, an arrow pointing back toward the chapel.</p>
+<div class="note"><strong>What it tells the party, for free.</strong> Three people lived out here <em>on purpose</em>. They dug a latrine, away from where they slept, and marked the way home. That is not panic. That is somebody who intended to keep living here. It reframes <a href="#b2">B2</a> before they reach it — this was a household, not a hiding place.</div>
+<p><strong>XP:</strong> 30 explored. Fifteen minutes for 30 XP makes this the best-value area in the adventure, which is fine — it is also the smallest and the easiest to walk straight past.</p>
+</div>
+
+<div class="area" id="b2">
+<h4><span class="code">B2</span>The Camp</h4>
+<p>Weeks of habitation. A fire-scar, bedding, fish bones from something pale they had learned to catch in a pool at the chamber's edge. They were <em>managing</em>.</p>
+<p>And then the camp stops.</p>
+<div class="readaloud">
+<p>The fire is cold and has been for a while. The bedding is still laid out. There is a pot beside the ashes with something in it that has long since dried to a crust.</p>
+<p>Nobody packed. Nobody took the lamp oil this time.</p>
+</div>
+<p><strong>Perception DC 13:</strong> the lamp oil — the thing they deliberately carried out of the sacristy — is sitting untouched beside the bedding. Whatever happened, it happened fast enough that nobody reached for the one resource they'd already proven they valued.</p>
+</div>
+
+<div class="area opt" id="b2a">
+<h4><span class="code">B2a</span>The Fishing Pool<span class="optflag">Optional &middot; 1 hour</span></h4>
+<p>At the far edge of the B2 camp; a still pool fed by seepage.</p>
+<div class="readaloud">
+<p>Pale blind fish, hand-length, drift near the surface — entirely unbothered by your light, because nothing down here has ever given them a reason to have an opinion about light.</p>
+<p>A line of woven cord is still tied to a rock at the water's edge. Baited. Set. Never checked.</p>
+</div>
+<p><strong>Loot.</strong> <strong>Perception DC 17</strong>, or any deliberate search of the silt: a <strong>Sounding Line survey marker</strong>, brass, stamped with a depth and a sequence number.</p>
+<div class="note"><strong>Why it matters.</strong> The marker is from a descent that is <em>not in any Sounding Line log</em>. Ashfeld will react to it more strongly than to anything else the party bring her, <em>including</em> the mark at B3. She will write it up immediately. That report will also fail to be logged — and this time she will notice the pattern. It turns her dangling thread into something the party watched happen rather than something they were told about.
+<p style="margin:8px 0 0"><strong>If Nyrel is present,</strong> the sequence number is one the Line never issued to any crew they have worked with, and Nyrel is exactly the character who would know that.</p></div>
+<p><strong>XP:</strong> 30 explored, plus 10 as a minor accomplishment for recovering the marker. Deliberately cheap — it pays off later, not now.</p>
+</div>
+
+<div class="area opt" id="b2b">
+<h4><span class="code">B2b</span>The Buried Cache<span class="optflag">Optional &middot; 30 minutes</span></h4>
+<p><strong>Access:</strong> <strong>Perception DC 18</strong> at the camp, or automatic if the party think to ask where three people would put what they couldn't carry.</p>
+<p>A shallow scrape under a flat stone, packed and covered. Inside: a wrapped bundle of the chapel's remaining lamp oil, a knife, and a page torn from a hymnal with a short note written on the back in a shaky hand.</p>
+<div class="note"><strong>The note.</strong> Keep it practical and incomplete — a direction, a rationing figure, and one unfinished sentence about something they had started hearing. <strong>Do not let it name anything. Do not let it explain B3.</strong> If a player asks whether the writer knew they were about to be taken, the honest answer is that the note doesn't read like it.
+<p style="margin:8px 0 0"><strong>GM warning:</strong> this is the area most likely to over-explain the ending. The note wants to become an answer. Don't let it.</p></div>
+<p><strong>XP:</strong> 30 explored.</p>
+</div>
+
+<div class="area">
+<h4><span class="code">B3</span>The Mark — the First Sign</h4>
+<div class="readaloud">
+<p>On the far wall, at about the height of your chest, someone has cut a mark into the stone. It is about a hand across. It is not writing you recognise, and it is not a scratch or a scrape — the cuts are even, deliberate, made with something narrow and very hard, and they meet each other at angles that were clearly decided in advance.</p>
+<p>The floor in front of it is soft silt, and the silt is covered in tracks, and you have never seen anything like them.</p>
+</div>
+<table class="dctable">
+<tr><th>Check</th><th>What it reveals</th></tr>
+<tr><td>Survival 16</td><td>The tracks are not a beast's. Too regular in spacing, too consistent in depth, and they show a repeated pause-and-return pattern — something moved, stopped, came back. Searching behaviour.</td></tr>
+<tr><td>Nature 18</td><td>Nothing in any bestiary matches. Not a bear, not a lizard, not a spider, not anything the Sounding Line has catalogued in two months.</td></tr>
+<tr><td>Crafting 17</td><td>The mark was made with a tool — hard, narrow, deliberately shaped, used carefully. Whoever cut it was not in a hurry.</td></tr>
+<tr><td>Perception 20</td><td>A second set of tracks, older, going the other way, accompanied by drag-marks consistent with three human bodies.</td></tr>
+</table>
+<div class="note"><strong>Do not resolve this.</strong> No creature appears. Nothing attacks. The party finds a camp, a mark, tracks, and an absence, and then they have to climb back down and tell somebody about it. That is the entire ending, and it is enough.
+<p style="margin:8px 0 0"><strong>Andgar and CE-11 are the trap here.</strong> A tool-cut mark and a construct that predates anyone's guild are the same question, and the players will put them together. Let them. Confirm nothing.</p></div>
+<p><strong>Taking a rubbing</strong> of the mark requires paper and charcoal (Ashfeld's kit includes both). This matters for the <a href="#resolution">resolution</a>.</p>
+</div>
+
+<h2 id="ascent">The Ascent</h2>
+<p>The adventure's last act. Everything the party has done is still forty metres below the Lip, and none of it goes up by itself. Forty-one bodies, whatever they salvaged, and six tired characters, on one winch line, in a shaft that has already tried to kill them once.</p>
+
+<div class="beat">
+<h3>The haul</h3>
+<p class="meta">After Act 2 &middot; the job is only half done</p>
+<p><strong>The line carries one load at a time.</strong> Bodies go up in a net sling, six to a lift, which is seven lifts for the congregation alone. Each lift is roughly forty minutes up and back, and the winch is worked by hand from the Lip — <a href="#npcs">Bett Orrow</a> if she was hired, a Compact detail if not, and either way they are people the party can hear but not see.</p>
+<p>This is the bottleneck that makes <a href="#a10">the charity store</a> a real decision. Supplies and bodies compete for the same line, and so does the lead roofing if anyone got greedy in A1. It is also the payoff of <a href="#one-winch">One Winch</a>: the constraint that made them one party is the constraint that now forces them to choose between their factions' errands.</p>
+<div class="readaloud">
+<p>The net goes up and disappears into the mist about thirty metres above you, and then there is nothing to do for twenty minutes but stand on a tilted floor in the dark and listen to the winch.</p>
+<p>It is the first quiet you have had since you came down here. It is not an improvement.</p>
+</div>
+</div>
+
+<div class="beat">
+<h3>The second squall</h3>
+<p class="meta">Climax &middot; the shaft, loaded</p>
+<p>Fire this on the lift the party are riding, or on the last body-lift if they sent themselves up first. Not on an empty line — the whole point is that it hits when something is hanging from it.</p>
+<div class="enc">
+<p class="eh">Hazard — Ascent Squall (Hazard 3, complex, 80 XP)</p>
+<p>Mechanically the <a href="#descent">descent squall</a>, with the load as the complication. Same Stealth DC 20, same Disable options.</p>
+<p><strong>Surge</strong> — rounds <strong>1, 3 and 5</strong>. <strong>DC 19 Fortitude</strong>. Success: pushed 5 feet. Failure: 1d6+3 bludgeoning, pushed 15 feet. Critical failure: 2d6+6 bludgeoning, pushed 30 feet, DC 19 Reflex or lose handhold.</p>
+<p><strong>Torn Debris</strong> — one random creature, 2d6 bludgeoning, DC 19 Reflex basic.</p>
+<p><strong>The Load</strong> — while the net is on the line, every Athletics check made on that line takes a <strong>&minus;2 circumstance penalty</strong>, and on each surge the sling swings: one creature within 10 feet of it takes <strong>2d6 bludgeoning</strong>, DC 19 Reflex basic, from a quarter-tonne of net arriving sideways.</p>
+<p><strong>Cutting the load</strong> — one action with a blade, no check. The penalty and the swing both end immediately.</p>
+</div>
+<div class="note"><strong>This is the choice the whole adventure has been building toward, and it should be the players' to make, out loud, under a timer.</strong>
+<p style="margin:8px 0 0">Cutting the sling saves whoever is on the line. It also drops six of the forty-one down the shaft, and those six cannot be recovered, and <a href="#npcs">Warden Cotter</a> is standing at the winch-head at the top watching the rope go slack. She will not say anything. That is worse.</p>
+<p style="margin:8px 0 0">Do not signal which answer you want. Do not punish either one. A party that cuts has made the defensible call, and it costs them the rites for six people and a moment they will remember. A party that holds on takes real damage for it and gets to say they did.</p>
+<p style="margin:8px 0 0"><strong>If Corvin is on that line,</strong> he can probably tell you whose six they were. Use that only if the player wants it used.</p></div>
+<p><strong>If the party sent the bodies up first and rode last,</strong> they have already made this decision without noticing, and they get the squall without the load. That is a legitimate outcome earned by good planning — give them the full 80 XP anyway and tell them why.</p>
+</div>
+
+<div class="beat">
+<h3>Coming over the Lip</h3>
+<p class="meta">Closing beat &middot; one scene</p>
+<p>They come up into the fog they now understand, at a winch-head with forty-one bodies laid out in rows under sailcloth, and whichever faction they reported to is already waiting.</p>
+<p>Play this short. The colony's gratitude is exhausted and undemonstrative. Somebody asks what took so long. Somebody else counts the rows and gets a different number than expected, and has to be told.</p>
+<p>Then <a href="#resolution">the resolution</a>.</p>
+</div>
+
+<h2 id="creatures">Creatures</h2>
+<p>Full entries on Archives of Nethys. Key mechanics reproduced here so you don't need to look them up mid-session.</p>
+
+<div class="enc" id="zombie-shambler">
+<p class="eh">Zombie Shambler &middot; Creature &minus;1</p>
+<p><a href="https://2e.aonprd.com/Monsters.aspx?ID=3249">AoN entry</a> &middot; Monster Core p. 356 &middot; Medium Mindless Undead Unholy Zombie</p>
+<p><strong>AC</strong> 12; <strong>Fort</strong> +6, <strong>Ref</strong> +0, <strong>Will</strong> +2<br>
+<strong>HP</strong> 20 (void healing)<br>
+<strong>Immunities</strong> bleed, death effects, disease, mental, paralyzed, poison, unconscious<br>
+<strong>Weaknesses</strong> slashing 5, vitality 5<br>
+<strong>Str</strong> +3, <strong>Dex</strong> &minus;2, <strong>Con</strong> +2, <strong>Int</strong> &minus;5, <strong>Wis</strong> +0, <strong>Cha</strong> &minus;2; Athletics +7</p>
+<p><strong>Slow</strong> — permanently slowed 1 and cannot use reactions.<br>
+<strong>Fist</strong> [one-action] +7 (agile), <strong>Damage</strong> 1d6+3 bludgeoning plus Grab<br>
+<strong>Zombie Bite</strong> [one-action] <em>Requirements</em> the zombie has a creature grabbed or restrained; <em>Effect</em> jaws Strike at +7 for 1d8+3 piercing.</p>
+<p><strong>Running them:</strong> slowed 1 means one action per turn plus whatever they get from Grab. They will Stride, or Strike, not both. Six of them is dangerous through sheer positioning, not damage output.</p>
+</div>
+
+<div class="enc" id="roost-swarm">
+<p class="eh">Roost-swarm &middot; Creature 2 &middot; A11 only</p>
+<p>Reskin the <a href="https://2e.aonprd.com/Monsters.aspx?ID=3254">vampire bat swarm</a>, Creature 2, using the stat block as printed — check the current numbers there rather than trusting a summary. <strong>60 XP.</strong></p>
+<p><strong>Reskin:</strong> pale, near-blind, wrong-limbed things that came up the Mouth after the Weeping and found a dry stone tube nobody was using. They do not drink blood so much as strip. Nothing about them is supernatural and nothing about them is native to the surface.</p>
+<p><strong>Running them in the tower:</strong> the swarm fills the cross-section, so there is no going past it, and the cramped space means no weapon larger than a dagger and no room to spread out. Area damage is the right answer and everyone is inside its radius. Let the party work that out.</p>
+</div>
+
+<div class="enc" id="rat-swarm">
+<p class="eh">Rat Swarm &middot; Creature 1 &middot; alternative encounter</p>
+<p><a href="https://2e.aonprd.com/Monsters.aspx?ID=3163">AoN entry</a> &middot; Monster Core p. 288 &middot; Large Animal Swarm</p>
+<p><strong>AC</strong> 14; <strong>Fort</strong> +2, <strong>Ref</strong> +7, <strong>Will</strong> +4<br>
+<strong>HP</strong> 14<br>
+<strong>Immunities</strong> grabbed, precision, prone, restrained, swarm mind<br>
+<strong>Resistances</strong> physical 6 (except bludgeoning)<br>
+<strong>Weaknesses</strong> area damage 3, splash damage 3</p>
+<p><strong>Note:</strong> rat swarms carry putrid plague. If you use this variant, that disease replaces the <a href="#disease">Lip Sickness</a> exposure risk in A3 for anyone bitten — do not stack both.</p>
+</div>
+
+<div class="enc" id="giant-rat">
+<p class="eh">Giant Rat &middot; Creature &minus;1 &middot; alternative encounter</p>
+<p><a href="https://2e.aonprd.com/Monsters.aspx?ID=3162">AoN entry</a> &middot; Monster Core p. 288 &middot; Small Animal</p>
+<p>Also carries putrid plague. The no-undead nave encounter uses <strong>two swarms and two giant rats</strong> (120 XP, Moderate for six). One swarm and one giant rat is only 60 XP, which is Trivial at this party size — see <a href="#a2">A2</a>.</p>
+</div>
+
+<h2 id="hazards">Hazards</h2>
+<ul>
+<li><strong><a href="#descent">Throat Squall, Hazard 3</a></strong> — the descent set-piece, three surges, 80 XP.</li>
+<li><strong><a href="#ascent">Ascent Squall, Hazard 3</a></strong> — the climax, 80 XP. Same mechanics, plus the loaded sling and the decision that comes with it.</li>
+<li><strong><a href="#a11">The Bell, Hazard 2</a></strong> — 20 XP, in the fallen belfry. Optional, and the loudest mistake available in the adventure.</li>
+<li><strong><a href="#act3">Blackdamp Pocket, Hazard 2</a></strong> — 20 XP, in B1. Costs no hit points and a great deal of confidence.</li>
+<li><strong><a href="#a2">The Slipping Pew Heap, Hazard 1</a></strong> — 15 XP, folded into the nave fight. Turns the pew-heap into live terrain, and drops A12 if anyone is on it.</li>
+<li><strong><a href="undermarch-gameplay.html#standing-draft">The Standing Draft</a></strong> — ambient, applies in the Throat throughout: &minus;2 circumstance to hearing-based Perception, &minus;4 to ranged attacks along the draft axis, DC 20 flat check per round for non-magical open flames once off the lantern-lit route.</li>
+<li><strong>The tilted floor</strong> — see <a href="#act2">Act 2</a> opening. Not a stat block, but the single most impactful mechanic in the adventure.</li>
+</ul>
+<p class="note"><strong>Five of the six are environmental.</strong> That is the design statement of session one: in this campaign the place kills more people than the monsters do.</p>
+
+<h2 id="disease">The Lip Sickness</h2>
+<p>The respiratory illness caused by aerosolized contamination from A3. Mechanized here so you can run a PC catching it. This is the same thing afflicting the ward in Act 1 — and <a href="#party">Corvin</a> already has it when play opens.</p>
+<div class="enc">
+<p class="eh">Lip Sickness &middot; Disease &middot; Level 1</p>
+<p><strong>Saving Throw</strong> DC 16 Fortitude; <strong>Onset</strong> 1 day; <strong>Stage 1</strong> fatigued (1 day); <strong>Stage 2</strong> fatigued and enfeebled 1 (1 day); <strong>Stage 3</strong> fatigued, enfeebled 1, and drained 1 (1 day). Maximum stage 3.</p>
+<p><strong>Exposure:</strong> one hour or more in area A3 (or equivalent proximity to the aerosol source) without face covering. Wet cloth over the face grants a +2 circumstance bonus to the save.</p>
+<p><strong>Recovery:</strong> standard disease rules — a Fortitude save each day to reduce the stage. Removing the source (the bodies) does not cure anyone already infected; it stops new cases.</p>
+<p><strong>Treat Disease:</strong> Medicine DC 16, one hour, grants the patient a +2 circumstance bonus to their next save. Warden Cotter will do this for free, gladly, and it is the only thing she has been able to offer anyone for a fortnight.</p>
+<p><strong>Running Corvin:</strong> start him at stage 1, roll his daily save openly like anyone else's, and let the fix in A2 mean something personal. Do not scale it to be dramatic. The disease is what it is.</p>
+</div>
+
+<h2 id="treasure">Treasure &amp; XP</h2>
+<h3>Coin and goods</h3>
+<table>
+<tr><th>Item</th><th>Where</th><th>Value</th></tr>
+<tr><td>Collection box coins</td><td>A3, low corner, scattered in the water</td><td>11 sp, 4 cp</td></tr>
+<tr><td>Pair of silver candlesticks</td><td>A3, slid down from the altar</td><td>6 gp the pair</td></tr>
+<tr><td>Chapel censer, silver-plated</td><td>A4, sacristy, in a cupboard</td><td>4 gp — a Vigil relic; Cotter will ask for it</td></tr>
+<tr><td>Church plate</td><td>A9, undercroft, shoved into a niche</td><td>25 gp</td></tr>
+<tr><td>The reliquary</td><td>A9, same niche</td><td>12 gp material — worth far more as leverage</td></tr>
+<tr><td>Jackdaw hoard and bell clapper</td><td>A11, fallen belfry</td><td>9 gp, plus 8 gp of bronze at 2 Bulk</td></tr>
+<tr><td>The winter stores</td><td>A10, charity store</td><td>No coin value. The Lip needs them more than anyone needs silver.</td></tr>
+<tr><td>Lamp oil, 3 flasks</td><td>B2, untouched beside the bedding</td><td>Practical, not saleable — genuinely useful below</td></tr>
+<tr><td>Lead roofing</td><td>A1, the broken roofline</td><td>~15 gp of salvage, 8 Bulk, and it competes with the bodies for the line</td></tr>
+<tr><td>Rubbing of the mark</td><td>B3, if taken</td><td>No coin value. Worth more than everything above.</td></tr>
+</table>
+<p>Roughly <strong>80 gp of metal</strong> across the whole adventure, which is deliberately modest for six characters — the level-1 budget is carried by faction payment and by the stores chit. The four items with <em>no</em> gp value are the ones that matter: the reliquary, the stores, the survey marker and the rubbing. Each of the three factions gets exactly one object it wants more than money, and the fourth belongs to the settlement.</p>
+
+<h3>Faction payment</h3>
+<p>Each pair is paid by the faction that hired it. Nobody is paid three times, and the totals below are per character in that pair.</p>
+<ul>
+<li><strong>Compact</strong> (Nyrel and Vesper): 8 gp per character, plus a stores chit worth 10 gp of colony goods at fixed price — which in a shortage is worth considerably more than 10 gp.</li>
+<li><strong>Vigil</strong> (Corvin and Balthor): no coin. Free Treat Wounds and Treat Disease in perpetuity, and one minor item from chapter-house stores — a <em>lesser healing potion</em> or equivalent, GM's choice from what a poor frontier order would plausibly hold.</li>
+<li><strong>Sounding Line</strong> (Andgar and CE-11): 5 gp per character, plus Ashfeld's sample kit (a functional alchemist's toolkit) if the party completes the sequence properly.</li>
+</ul>
+<p class="note">The imbalance is deliberate and the players will notice it. The Vigil pair are paid in standing and the Compact pair in coin, which is exactly the argument the campaign wants them having by session three.</p>
+
+<h3>XP — and the pacing target</h3>
+<p><strong>The target:</strong> a party who explore thoroughly and manage their time well reach <strong>level 2 at the end of this adventure</strong>. A party who run only the critical path finish short and level partway into Adventure 02. PF2e needs <strong>1000 XP</strong> for level 2.</p>
+<p>Awards are on the standard four-character scale. PF2e normalises XP for larger parties, so <strong>award these as printed</strong> even though the encounter budgets above are built for six.</p>
+
+<p><strong>The spine</strong> — every party earns most of this.</p>
+<table>
+<tr><th>Award</th><th>XP</th></tr>
+<tr><td>Nave encounter (Moderate for six)</td><td>80</td></tr>
+<tr><td>Throat Squall, the descent (Hazard 3)</td><td>80</td></tr>
+<tr><td>Ascent Squall, the climax (Hazard 3)</td><td>80</td></tr>
+<tr><td>Blackdamp Pocket, B1 (Hazard 2)</td><td>20</td></tr>
+<tr><td>Slipping Pew Heap, A2 (Hazard 1)</td><td>15</td></tr>
+<tr><td><strong>Identifying the true mechanism</strong> — major</td><td><strong>80</strong></td></tr>
+<tr><td><strong>Stopping the sickness at the source</strong> — major</td><td><strong>80</strong></td></tr>
+<tr><td><strong>Finding the First Sign</strong> — major</td><td><strong>80</strong></td></tr>
+<tr><td><strong>The job finished and everyone back up the shaft</strong> — major</td><td><strong>80</strong>, or <strong>100</strong> if all forty-one came up</td></tr>
+<tr><td>Vigil rites performed, if undertaken — moderate</td><td>30</td></tr>
+<tr><td>Establishing the three left the sacristy alive — moderate</td><td>30</td></tr>
+<tr><td><strong>Spine total</strong></td><td><strong>655–675</strong></td></tr>
+</table>
+
+<p><strong>The optional areas</strong> — this is where the level-up lives.</p>
+<div class="note"><strong>The exploration award: 30 XP per optional area found and engaged with.</strong> Not for walking past it. Not for a Perception check in the corridor. The award lands when the party <em>go in and do something with it</em>. Six areas qualify — A9, A10, A12, B1a, B2a, B2b. <strong>A11 does not</strong>, because it pays 80 as an encounter instead. Apply the same rule to anything you add later.</div>
+<table>
+<tr><th>Award</th><th>XP</th></tr>
+<tr><td>Exploration awards — six areas at 30</td><td>180</td></tr>
+<tr><td>A11 — the roost (60) and the bell (20)</td><td>80</td></tr>
+<tr><td>A9 — the reliquary placed rather than sold, moderate</td><td>30</td></tr>
+<tr><td>A10 — the winter stores brought up, moderate</td><td>30</td></tr>
+<tr><td>B2a — the unlogged survey marker, minor</td><td>10</td></tr>
+<tr><td><strong>Optional total</strong></td><td><strong>330</strong></td></tr>
+</table>
+
+<table>
+<tr><th>Path</th><th>Total</th><th>Where they land</th></tr>
+<tr><td>Critical path only — no optional areas, no rites</td><td>~595</td><td>60%. Levels midway through Adventure 02.</td></tr>
+<tr><td>Spine done properly, rites performed, all forty-one up</td><td>675</td><td>Two thirds. Levels early in Adventure 02.</td></tr>
+<tr><td>Spine plus three or four optional areas</td><td>~800</td><td>Four fifths.</td></tr>
+<tr><td><strong>Thorough — spine plus everything optional</strong></td><td><strong>~1005</strong></td><td><strong>Level 2 on the last scene of Adventure 01.</strong></td></tr>
+</table>
+<div class="note"><strong>Pacing warning, worth reading before session one.</strong> The target is two sessions. Six players at level 1 make the nave fight alone a long hour, the seven optional areas are 7.75 in-fiction hours, and the haul is nearly five. Two sessions realistically covers the spine plus three or four optional areas — around 800, which is short of the level. If you want the level-up to land reliably at the end of session two, be willing to run a third, or cut the Vigil rites' two-hour cost so more of the clock goes to exploring. <strong>Padding the XP instead would break the thing you are trying to reward.</strong>
+<p style="margin:8px 0 0">Note also that <a href="#party">the three-pair opening</a> costs real table time — budget 45 minutes to an hour for the three scenes and One Winch before Act 1 proper begins.</p></div>
+
+<h2 id="tables">Random Tables</h2>
+
+<h3>d8 — The Ward (Act 1 atmosphere)</h3>
+<table class="rt">
+<tr><td>1</td><td>A winch-hand, no older than twenty, apologising between coughs for taking up a bed.</td></tr>
+<tr><td>2</td><td>Two wardens arguing quietly about whether to move patients out of the fog or keep them warm inside.</td></tr>
+<tr><td>3</td><td>Someone's child, not sick, sitting on the floor beside a parent who is, refusing to be moved.</td></tr>
+<tr><td>4</td><td>A Compact soldier out of surcoat, feverish, insisting he's fit for the quarantine line.</td></tr>
+<tr><td>5</td><td>An empty bed being stripped. Nobody says where its occupant went.</td></tr>
+<tr><td>6</td><td>A warden re-wetting cloth masks in a bucket, one after another, methodically, knowing it doesn't help.</td></tr>
+<tr><td>7</td><td>An old man who has been here since the first day and is somehow not getting worse. Nobody knows why. Neither does he.</td></tr>
+<tr><td>8</td><td>Someone asking the party, directly, whether they're going to fix it. Not rhetorically. Waiting for an answer.</td></tr>
+</table>
+
+<h3>d6 — Descent complications</h3>
+<table class="rt">
+<tr><td>1</td><td>The line fouls on an outcrop. Athletics DC 13 to clear it, or lose ten minutes.</td></tr>
+<tr><td>2</td><td>Condensation makes the rope slick. &minus;1 circumstance penalty to Athletics on the line until it dries.</td></tr>
+<tr><td>3</td><td>A Mouth passes at arm's length, exhaling colder air than the shaft. Empty dark. Nothing comes out.</td></tr>
+<tr><td>4</td><td>Something small and pale falls past from above — a bird, disoriented by the fog, already dead.</td></tr>
+<tr><td>5</td><td>The last sounding lantern on the marked route is behind them now, and the draft slackens for a full minute, and the silence is worse than the noise.</td></tr>
+<tr><td>6</td><td>Trigger the <a href="#descent">Throat Squall</a> here if it hasn't fired yet.</td></tr>
+</table>
+
+<h3>d6 — Between lifts (the Ascent)</h3>
+<table class="rt">
+<tr><td>1</td><td>The winch stops for four minutes with no explanation, then starts again. Nobody at the top mentions it afterward.</td></tr>
+<tr><td>2</td><td>The sling comes back down with a hymnal in it that nobody put there. Someone at the top is going through the bodies.</td></tr>
+<tr><td>3</td><td>A shout from far above, carried on the draft, entirely unintelligible.</td></tr>
+<tr><td>4</td><td>Somebody notices the chapel is settling — a low grinding from the Mouth, once, and then nothing.</td></tr>
+<tr><td>5</td><td>The fog thickens enough that the ascending sling disappears at fifteen metres instead of thirty.</td></tr>
+<tr><td>6</td><td>Trigger the <a href="#ascent">Ascent Squall</a> here if it hasn't fired yet.</td></tr>
+</table>
+
+<h3>d8 — Searching the chapel</h3>
+<table class="rt">
+<tr><td>1</td><td>A hymnal, swollen with water, its owner's name inked inside the cover.</td></tr>
+<tr><td>2</td><td>A child's shoe. Only one. It does not match the one found later in B1.</td></tr>
+<tr><td>3</td><td>The collection box, split open, coins scattered through the standing water.</td></tr>
+<tr><td>4</td><td>A wax candle stub, teeth-marked. Someone was chewing it.</td></tr>
+<tr><td>5</td><td>A prayer written on a scrap and pinned to a pew — dated the morning of the Weeping.</td></tr>
+<tr><td>6</td><td>Splintered oak from the pews, worked and varnished. There is no oak anywhere in the Undermarch.</td></tr>
+<tr><td>7</td><td>A wedding ring, still on a hand. Roll Will save DC 10 for any character who insists on taking it, or take the moment seriously.</td></tr>
+<tr><td>8</td><td>The bell rope, running from the nave up through the broken tower stub toward where the belfry used to be. It now goes nowhere, and nobody realises that until they pull it.</td></tr>
+</table>
+
+<h2 id="rules">Rules Reference</h2>
+<p>Everything needed is reproduced here. Full rules at <a href="https://2e.aonprd.com/">Archives of Nethys</a>.</p>
+<table class="dctable">
+<tr><th>Rule</th><th>How it works here</th></tr>
+<tr><td>Difficult terrain</td><td>Each 5 feet of movement costs 10 feet. Applies to uphill movement in the chapel and to the standing water in A2/A3.</td></tr>
+<tr><td>Prone</td><td>&minus;2 circumstance to attacks, flat-footed. In the chapel, a prone creature also slides 10 feet downhill.</td></tr>
+<tr><td>Grab</td><td>The target becomes grabbed until it escapes. Escaping: Escape action vs. the zombie's Athletics DC (17).</td></tr>
+<tr><td>Climb</td><td>Athletics; move 5 feet up on success, 10 on critical success. Falling while roped is caught by the line.</td></tr>
+<tr><td>Force Open</td><td>Athletics. The sacristy door is DC 18; the undercroft door is DC 16.</td></tr>
+<tr><td>Pick a Lock</td><td>Thievery, requires thieves' tools. The sacristy door is DC 17.</td></tr>
+<tr><td>Treat Wounds</td><td>Medicine, 10 minutes, DC 15 for 2d8 healing. Immunity for 1 hour afterward.</td></tr>
+<tr><td>Treat Disease</td><td>Medicine DC 16, 1 hour. +2 circumstance to the patient's next save.</td></tr>
+<tr><td>Flat checks for light</td><td>Non-magical open flame in the Throat, off the lantern-lit route: DC 20 flat check each round or extinguished.</td></tr>
+<tr><td>Party size and XP</td><td>Budgets here are built for six. XP is awarded on the four-character scale regardless — that is how PF2e keeps advancement consistent across party sizes.</td></tr>
+<tr><td>Exploration awards</td><td>30 XP per optional area found and engaged with. See <a href="#treasure">XP</a>.</td></tr>
+</table>
+
+<h2 id="resolution">Resolution — and why it matters</h2>
+<p>The sickness stops spreading within days of the bodies coming out, and the fog thins back to something people stop noticing again. The colony is grateful in an exhausted, undemonstrative way that suits the tone.</p>
+<p>The First Sign is where the adventure actually lands, and each faction fails to hear it differently — which is also where the three pairs discover their employers are not interchangeable:</p>
+<ul>
+<li><strong>The Compact</strong> files it as a beast, or — per their <a href="undermarch-canon-established.html#the-undertear-compact">institutional frame</a> — as evidence of a rival nation's covert sappers. Patrols double. Nobody investigates the mark. If the party pushes, they are asked which nation they think it is, and the question is not rhetorical.</li>
+<li><strong>The Sounding Line</strong> — Ashfeld is genuinely thrilled and takes the rubbing. Two weeks later she mentions, puzzled, that her report has not been logged and nobody at the chapter-house will say why. If she also has the <a href="#b2a">survey marker</a>, that report vanishes too, and this time she stops being puzzled and starts being careful. First brush with the <a href="undermarch-canon-proposed.html#species-basis">Line's cautious circle</a>.</li>
+<li><strong>The Vigil</strong> records it faithfully, interprets it as an omen of the Weeping's continuing wound, and is believed by nobody outside their own order.</li>
+</ul>
+<div class="note"><strong>Where this goes.</strong> The party has reached <strong>Rung 1</strong> — an anomaly, deniable, easy to explain away. Rung 2 is cultivation in the Shallows (<a href="undermarch-adventure-02.html">Adventure 02</a>). Rung 3 is <a href="undermarch-poi.html#regular-passage">the Regular Passage</a> — ancient tunnel, recent repair — and that one cannot be explained away at all.
+<p style="margin:8px 0 0">The character threads all stay open: Corvin's sister, Vesper's origin, what Andgar's report sets moving at home, and what CE-11 was counting.</p></div>
+
+<h2>Design notes</h2>
+<ul>
+<li><strong>The three missing people are the hook that keeps working.</strong> They were alive, they were managing, and something took them and left the lamp oil. That is a rescue the party can still attempt, and the answer is not down here — it is deeper.</li>
+<li><strong>Open on pairs, not on a tavern.</strong> Three short scenes and a convergence gives every character a reason to be there that isn't "you are adventurers", and it puts the factions in tension before the party has a party. <a href="#one-winch">One Winch</a> is the load-bearing scene — the constraint that forces them together is the same one that forces the choice on <a href="#ascent">the Ascent</a>.</li>
+<li><strong>Run the pressure clock visibly.</strong> Say what each optional room costs before they commit to it. A clock the players can't see isn't pressure, it's a penalty you apply later.</li>
+<li><strong>The bodies are the puzzle, not the monster.</strong> The undead in the nave are an obstacle; the actual solution is forty-one corpses and a rope hoist. Let the players realise the heroic part of this job is the mortuary work.</li>
+<li><strong>The adventure ends on a choice, not a fight.</strong> The Ascent Squall exists so the last thing that happens is the party deciding what the dead are worth when the rope is the only thing holding anyone up. Everything before it is setup for that thirty seconds.</li>
+<li><strong>The environment is the campaign's real antagonist, and session one is where that gets established.</strong> Five of the six hazards here are the party losing to a place rather than a creature.</li>
+<li><strong>No backstory resolves in session one.</strong> Corvin's sister, Vesper's origin, CE-11's age — all of it stays open. Session one is where the players learn these threads exist and that the world will not hand them over quickly.</li>
+<li><strong>Don't gate on rolls.</strong> Every critical clue has a fallback: Bett Orrow names the chapel, the smell in A1 confirms the source, the count on the plaster is automatic, the cause of death is a DC 15 anyone can hit. Failed checks should cost time, not the plot.</li>
+</ul>
+
+</main>
+<footer>The Undermarch &middot; Adventure 01: What the Water Carried &middot; levels 1–2 &middot; balanced for six &middot; spine 675 XP, thorough ~1005 XP &middot; <a href="undermarch-poi.html">&larr; Points of Interest</a> &middot; <a href="undermarch-adventure-02.html">Adventure 02 &rarr;</a></footer>
+</body>
+</html>

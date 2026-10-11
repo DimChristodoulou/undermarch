@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adventure 02: The Withering Undersong — The Undermarch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="undermarch-style.css">
+<style>
+.flow{background:var(--stone);border:1px solid var(--edge);border-radius:3px;padding:20px;margin:20px 0}
+.flow svg{display:block;width:100%;height:auto}
+.beat{border-left:3px solid var(--daylight);padding:0 0 0 18px;margin:0 0 26px}
+.beat h3{font-family:var(--disp);font-weight:600;font-size:20px;margin:0 0 3px}
+.beat .meta{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust);margin:0 0 12px}
+.readaloud{background:var(--shale);border:1px solid var(--edge);border-left:3px solid var(--lichen);padding:14px 18px;margin:14px 0;font-style:italic;color:#EDE7DC;font-size:14.5px}
+.readaloud p{margin:0 0 10px}
+.readaloud p:last-child{margin:0}
+.enc{border:1px solid var(--edge);background:var(--shale);padding:12px 16px;margin:12px 0;font-size:13.5px}
+.enc .eh{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);margin:0 0 6px}
+.enc p{margin:0 0 6px}
+.enc p:last-child{margin:0}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand">The Undermarch</span>
+  <a href="undermarch-index.html">Overview</a>
+  <a href="undermarch-atlas.html">Atlas</a>
+  <a href="undermarch-canon-established.html">Established Canon</a>
+  <a href="undermarch-canon-proposed.html">Proposed Canon</a>
+  <a href="undermarch-gameplay.html">Gameplay</a>
+  <a href="undermarch-poi.html">Points of Interest</a>
+  <a href="undermarch-adventure-01.html">Adventure 01</a>
+  <a href="undermarch-adventure-02.html" class="active">Adventure 02</a>
+  <a href="undermarch-glossary.html">Glossary</a>
+  <a href="undermarch-map-program.html">Map Program</a>
+  <a href="undermarch-work-chunks.html">Work Chunks</a>
+  <a href="undermarch-open-questions.html">Open Questions</a>
+  <a href="undermarch-history.html">History</a>
+</nav>
+<main>
+<header class="masthead">
+  <p class="eyebrow">Adventure 02 &middot; Levels 3–4 &middot; 2 sessions</p>
+  <h1>The Withering Undersong<em>The colony's food supply is dying at the edges, and the trail leads to a graveyard someone is still tending.</em></h1>
+  <p class="lede">Uses <a href="undermarch-poi.html#cinderspore-reach-poi">the Cinderspore Reach</a> and <a href="undermarch-poi.html#undersong-cairns">the Undersong Cairns</a>. Ends at first contact with <a href="undermarch-gameplay.html#the-hushed-denizens">the Hushed</a> — not full parley, a held breath. Sets up <a href="undermarch-gameplay.html#hushed-undersong-site">the Hushed of the Undersong</a> as the next chapter.</p>
+</header>
+
+<h2>The Situation</h2>
+<p>The Cinderspore Reach feeds the Fallwater. That was always going to make its failure everyone's problem, and eleven days ago its outer fringe started dying — not to blight anyone recognises, not to squall damage, not to any hazard already catalogued. Patches of grey spreading inward, slow but steady, through growth that has never failed before.</p>
+<p>Nobody has found a cause. The Sounding Line's chapter has ruled out disease, infestation, and drought — there is water, there is light, there is nothing visibly wrong except that the fungus is dying anyway. Whatever this is, it did not start at the Reach. The dying is worse the further from the cultivated core you go, which means somewhere out past the Verge, something is already much further along.</p>
+<p>Winter is close, and the Reach is the difference between a hard season and a fatal one.</p>
+<div class="note">Nobody has connected this to a person yet. The dying reads as a natural failure — a blight, a change in the air, bad luck. The party is being sent to find a cause, not expecting to find someone already fighting the same fight, alone, for much longer than anyone realised.</div>
+
+<h2>Hooks — pick one, or run all three</h2>
+
+<div class="beat">
+<h3>The Compact's Contract</h3>
+<p class="meta">Best for pragmatic parties &middot; characters who think in terms of supply and survival</p>
+<p>A quartermaster hires the party directly: find the cause, stop it if possible, and if it can't be stopped, find out how fast it's spreading so rationing can be planned around it. This is framed entirely as a supply problem, because to the Compact it is one.</p>
+<p><strong>What they want:</strong> a number. How many weeks until the Reach can't feed the colony.</p>
+<p><strong>The catch:</strong> if the party reports back that something is deliberately tending a graveyard out past the Verge, the Compact's first instinct — consistent with everything already established about their institutional frame — is to treat it as a rival power's presence, not a person's.</p>
+</div>
+
+<div class="beat">
+<h3>The Sounding Line's Commission</h3>
+<p class="meta">Best for investigative parties &middot; characters who want the actual cause, not just a fix</p>
+<p>The Reach's survey chapter is unnerved rather than merely concerned — this is the second unexplained biological anomaly near the Fallwater in two months, and their cautious circle has gone quiet in a way one particular junior researcher finds suspicious. She commissions the party herself, again unofficially, to trace the dying to its source rather than just its edge.</p>
+<p><strong>What they want:</strong> a full account. Where it starts, what's causing it, and whether it connects to anything else.</p>
+<p><strong>The catch:</strong> "whether it connects to anything else" is doing a lot of work in that sentence, and she won't quite say what she's afraid it connects to.</p>
+</div>
+
+<div class="beat">
+<h3>The Vigil's Petition</h3>
+<p class="meta">Best for divine classes &middot; characters who take death and its rites seriously</p>
+<p>A Vigil warden asks the party to check something specific: old records — fragmentary, pre-dating the chapter-house's own founding — describing burial grounds in this region tended by "the quiet ones." Nobody has taken the reference literally before. If the dying is spreading from somewhere with graves in it, the Vigil wants to know before anyone else gets there with a shovel.</p>
+<p><strong>What they want:</strong> the site found, and any dead treated with the respect the Vigil insists on for anyone's dead, not just their own.</p>
+<p><strong>The catch:</strong> if the graves turn out to be actively tended — not abandoned — the warden's instruction is immediate and non-negotiable: nothing is disturbed, nothing is taken, and the party leaves an offering rather than a search party.</p>
+</div>
+
+<h2>Flowchart</h2>
+<div class="flow">
+<svg viewBox="0 0 900 560" role="img" aria-label="Adventure flowchart: three faction hooks converge on the Cinderspore Reach fringe, trace the dying outward past the Verge to the Undersong Cairns, move from old to tended graves, and end at first contact with a grave-tender.">
+<defs>
+<marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M1 1 L9 5 L1 9" fill="none" stroke="#9A9086" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<g font-family="Archivo, sans-serif" font-size="12">
+
+<rect x="20" y="20" width="180" height="42" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="110" y="38" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Compact contract</text>
+<text x="110" y="53" fill="#9A9086" text-anchor="middle" font-size="10">get us a number</text>
+
+<rect x="215" y="20" width="180" height="42" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="305" y="38" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Sounding Line</text>
+<text x="305" y="53" fill="#9A9086" text-anchor="middle" font-size="10">find the actual source</text>
+
+<rect x="410" y="20" width="180" height="42" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="500" y="38" fill="#E4DDD1" text-anchor="middle" font-size="11.5">Vigil petition</text>
+<text x="500" y="53" fill="#9A9086" text-anchor="middle" font-size="10">"the quiet ones" — old records</text>
+
+<line x1="110" y1="62" x2="290" y2="106" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+<line x1="305" y1="62" x2="305" y2="106" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+<line x1="500" y1="62" x2="322" y2="106" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<rect x="185" y="112" width="240" height="52" rx="3" fill="#2A2620" stroke="#E3B23C" stroke-width="1.5"/>
+<text x="305" y="132" fill="#E3B23C" text-anchor="middle" font-size="12.5" font-weight="600">ACT 1 — The Fringe</text>
+<text x="305" y="150" fill="#9A9086" text-anchor="middle" font-size="10">worse further from the Reach</text>
+
+<line x1="305" y1="164" x2="305" y2="206" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+<text x="318" y="188" fill="#7A8B6F" font-size="10">follow the dying outward, past the Verge</text>
+
+<rect x="185" y="212" width="240" height="52" rx="3" fill="#2A2620" stroke="#E3B23C" stroke-width="1.5"/>
+<text x="305" y="232" fill="#E3B23C" text-anchor="middle" font-size="12.5" font-weight="600">ACT 2 — The Old Cairns</text>
+<text x="305" y="250" fill="#9A9086" text-anchor="middle" font-size="10">dead beds, sunken mounds</text>
+
+<line x1="305" y1="264" x2="305" y2="306" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+<text x="330" y="288" fill="#7A8B6F" font-size="10">deeper in, the beds get brighter</text>
+
+<rect x="185" y="312" width="240" height="52" rx="3" fill="#2A2620" stroke="#E3B23C" stroke-width="1.5"/>
+<text x="305" y="332" fill="#E3B23C" text-anchor="middle" font-size="12.5" font-weight="600">ACT 3 — The Tended Rows</text>
+<text x="305" y="350" fill="#9A9086" text-anchor="middle" font-size="10">someone was here days ago</text>
+
+<line x1="305" y1="364" x2="305" y2="406" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<rect x="150" y="412" width="310" height="58" rx="3" fill="#2E1E1A" stroke="#A63D2F" stroke-width="1.5"/>
+<text x="305" y="434" fill="#C4705E" text-anchor="middle" font-size="12.5" font-weight="600">FIRST CONTACT</text>
+<text x="305" y="452" fill="#9A9086" text-anchor="middle" font-size="10">a grave-tender arrives — not a fight,</text>
+<text x="305" y="465" fill="#9A9086" text-anchor="middle" font-size="10">a decision made in the first ten seconds</text>
+
+<line x1="235" y1="470" x2="150" y2="510" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+<line x1="375" y1="470" x2="460" y2="510" stroke="#9A9086" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<rect x="20" y="516" width="220" height="44" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="130" y="534" fill="#E4DDD1" text-anchor="middle" font-size="11">Stillness &amp; distance</text>
+<text x="130" y="550" fill="#9A9086" text-anchor="middle" font-size="10">the tender flees — a trail left behind</text>
+
+<rect x="380" y="516" width="220" height="44" rx="3" fill="#26221D" stroke="#3A342B"/>
+<text x="490" y="534" fill="#E4DDD1" text-anchor="middle" font-size="11">A gesture held out</text>
+<text x="490" y="550" fill="#9A9086" text-anchor="middle" font-size="10">no words shared, but not fled from</text>
+
+<rect x="670" y="112" width="210" height="180" rx="3" fill="#1B1815" stroke="#3A342B" stroke-dasharray="3 3"/>
+<text x="775" y="134" fill="#E3B23C" text-anchor="middle" font-size="10.5" font-family="JetBrains Mono, monospace">PRESSURE</text>
+<text x="775" y="156" fill="#9A9086" text-anchor="middle" font-size="10">Day 1 — fringe dying, unexplained</text>
+<text x="775" y="176" fill="#9A9086" text-anchor="middle" font-size="10">Day 5 — dieback nears cultivated core</text>
+<text x="775" y="196" fill="#9A9086" text-anchor="middle" font-size="10">Day 8 — Compact begins rationing plans</text>
+<text x="775" y="216" fill="#9A9086" text-anchor="middle" font-size="10">Day 11 — party is sent</text>
+<text x="775" y="240" fill="#C4705E" text-anchor="middle" font-size="10">the cairns are further along</text>
+<text x="775" y="256" fill="#C4705E" text-anchor="middle" font-size="10">than the Reach — the Hushed</text>
+<text x="775" y="272" fill="#C4705E" text-anchor="middle" font-size="10">have been losing this longer</text>
+</g>
+</svg>
+</div>
+
+<h2>Act 1 — The Fringe</h2>
+<div class="beat">
+<h3>Reading the Damage</h3>
+<p class="meta">Cinderspore Reach, outer edge &middot; one scene &middot; investigation</p>
+<div class="readaloud">
+<p>The cultivated heart of the Reach still glows the way it's supposed to — banked colour, warm light, the low constant hum of something alive and thriving. Out here at the edge it's different. The fungus has gone the grey of wet ash, collapsed in on itself, and the light it used to throw is just gone, like someone snuffed it stem by stem working outward from somewhere past the treeline of glow.</p>
+<p>A Sounding Line surveyor crouches over a dead patch with a specimen kit and no answers. "It's not rot," she says, before you ask. "Rot smells like something. This doesn't smell like anything at all."</p>
+</div>
+<p><strong>What's findable here:</strong></p>
+<ul>
+<li><strong>Nature (DC 15):</strong> the dying isn't spreading outward from the Reach — it's spreading <em>inward</em> toward it, worse the further out you go. The Reach is catching something, not causing it.</li>
+<li><strong>Survival (DC 16):</strong> a direction. The gradient of decay points toward a specific bearing, out past the Verge, into unmapped ground.</li>
+<li><strong>Medicine or Nature (DC 18):</strong> whatever this is, it isn't random. The dead patches share a growth stage — this didn't happen all at once, it's been advancing steadily for longer than eleven days. Weeks, at least.</li>
+</ul>
+<div class="note">The direction is the whole of Act 1's payoff. There is nothing more to solve here — the party now has a bearing that leads past the edge of anything surveyed.</div>
+</div>
+
+<h2>Act 2 — The Old Cairns</h2>
+<div class="beat">
+<h3>Arrival</h3>
+<p class="meta">The Undersong Cairns, entrance &middot; discovery</p>
+<div class="readaloud">
+<p>The passage opens into a chamber that shouldn't have any light in it and does anyway — a low blue-green glow coming off long terraced mounds that run the length of the floor like furrows in a field. It takes a moment to understand what the furrows are.</p>
+<p>The nearest ones are dead. Grey, sunken, collapsed the way the Reach's fringe was collapsed — except these were never a crop. Beneath the failed fungus, half-exposed where the mound has settled, is bone.</p>
+</div>
+<p><strong>What's findable here:</strong></p>
+<ul>
+<li><strong>Religion or Society (DC 15):</strong> this is a burial custom, not a garden that happened to grow over graves. The fungus was planted deliberately, on top of, and because of, the dead beneath it.</li>
+<li><strong>Medicine or Nature (DC 16):</strong> the near cairns have been dead for some time — longer than the Reach's fringe. Whatever is killing the fungus started here, or somewhere very like here, and reached the Reach later.</li>
+<li><strong>Perception (DC 14):</strong> the light gets stronger further into the chamber. The dying is not uniform — it thins the deeper in you go.</li>
+</ul>
+</div>
+
+<h2>Act 3 — The Tended Rows</h2>
+<div class="beat">
+<h3>Going Deeper</h3>
+<p class="meta">The Undersong Cairns, interior &middot; escalating discovery</p>
+<div class="readaloud">
+<p>The further you walk, the more the chamber comes alive. The grey gives way to actual colour — deep blue, a green so bright it looks wet — and the mounds themselves change character. These aren't collapsed. They're kept: trimmed at the edges, the fungus growing in deliberate patterns rather than wild sprawl, small channels cut into the stone to carry water to beds that would otherwise dry out.</p>
+<p>Near the back, one mound is barely a mound at all yet. The fungus on it is young, pale, freshly seeded. Someone knelt here recently enough that the disturbed silt hasn't settled.</p>
+</div>
+<p><strong>What's findable here:</strong></p>
+<ul>
+<li><strong>Survival (DC 17):</strong> a single set of tracks, narrow-footed, moving between the mounds with the ease of long familiarity. Whoever this is has walked this chamber more times than can be counted.</li>
+<li><strong>Crafting (DC 16):</strong> the water channels are recent work, cut in response to the same wilting problem the Reach has — someone here noticed the crisis and is actively fighting it, on graves, by hand.</li>
+<li><strong>Perception (DC 20), in the oldest section:</strong> a marker unlike anything else in the chamber — not a grave, a ward, ancient work, with something embedded beneath it that has not decayed at all. Everything else here rots. This hasn't, in the wrong direction.</li>
+</ul>
+<div class="enc">
+<p class="eh">Optional — the ward</p>
+<p>This is a hook for later, not a puzzle to solve now. It doesn't connect to the adventure's main thread and shouldn't be forced. If the party investigates, Religion or Occultism (DC 20) confirms only that it's old, deliberate, and unrelated to anything Sunfled or Aftermath the Sounding Line has catalogued. Leave it there.</p>
+</div>
+</div>
+
+<div class="beat">
+<h3>First Contact</h3>
+<p class="meta">The climax &middot; social, not combat</p>
+<div class="readaloud">
+<p>You hear footsteps before you see anything — light, unhurried, coming from a side passage you hadn't noticed. Then a figure, pale, thin, carrying a bundle of fungal cuttings wrapped in wet cloth against their chest. They stop the instant they see you. Their eyes are wrong for this light — too wide, too sensitive, pupils blown huge by darkness they've never had to leave.</p>
+<p>Neither of you moves.</p>
+</div>
+<div class="enc">
+<p class="eh">Running the encounter</p>
+<p>This should never become combat by default. The tender is alone, unarmed but for a small bone tool, and reacts to threat with flight, not violence.</p>
+<p><strong>The party's first action decides the scene.</strong> Weapons drawn, sudden movement, or a loud voice: the tender bolts immediately, dropping the cuttings, gone into passages the party doesn't know. <strong>Stillness, open hands, or a slow approach:</strong> allow a Diplomacy check, DC 18, made without any shared language — this is about posture and intent, not words.</p>
+<p><strong>Success:</strong> the tender doesn't flee. No conversation happens — there's no shared tongue for it yet — but they don't leave either. If the party sets down something of their own (food, a light source, anything offered rather than taken) the tender eventually sets down one of the cuttings in turn before withdrawing, slowly, watching over their shoulder the whole way.</p>
+<p><strong>Failure:</strong> the tender withdraws immediately but doesn't run outright — backing away rather than fleeing, watching the party the entire time, gone within a few rounds. Nothing is exchanged, but nothing goes wrong either.</p>
+<p><strong>Critical failure or violence:</strong> the tender is gone in an instant, dropping everything, and doesn't return to this chamber for the rest of the adventure. The party can follow the tracks, but tracking a frightened person who knows this terrain and they don't is a losing proposition at this level, and should be played as one.</p>
+</div>
+</div>
+
+<h2>Resolution — and what it costs</h2>
+<p>The dieback itself has a findable cause, if the party pushes for one: the same shift in air circulation that's driving every other anomaly this campaign is built on has begun reaching this deep, disturbing an ecology that depended on conditions that no longer hold. There is no villain here. There is a changing world, and people caught in it on both sides of the discovery.</p>
+<p>What the party brings back matters more than what they found:</p>
+<ul>
+<li><strong>Proof of a living people</strong> — tracks, a cutting, an account of contact — changes the shape of everything that follows. This is no longer an abstract mystery; it's a specific, encounterable culture, fighting the same crisis the colony is fighting, alone and much further along in losing it.</li>
+<li><strong>The Compact</strong> hears "someone is living out there, unaffiliated, on territory nobody's claimed" and reaches immediately for the wrong conclusion, consistent with their established institutional frame. This is a seed for future friction, not something to resolve here.</li>
+<li><strong>The Sounding Line</strong> is electrified and instantly proposes a formal expedition — which puts the party in the position of deciding whether more attention helps the Hushed or endangers them.</li>
+<li><strong>The Vigil</strong> treats the discovery with the gravity they promised. If the party honoured the instruction to leave an offering rather than search the graves, expect this to matter later, in ways that aren't obvious yet.</li>
+</ul>
+<div class="note"><strong>Where this goes.</strong> This adventure ends at contact, not conversation. <a href="undermarch-gameplay.html#hushed-undersong-site">The Hushed of the Undersong</a> is the next chapter — the settlement itself, the elder, the dying food supply, and the choice of whether the party can actually help.</div>
+
+<h2>Design notes</h2>
+<ul>
+<li><strong>Resist making this combat.</strong> There is no monster in this adventure. The tension comes entirely from the party not knowing that, and from the genuine stakes of a first encounter with a person rather than a threat. If your table wants a fight, put one in Act 1 or Act 2 as a wandering hazard — not near the tender.</li>
+<li><strong>The reversed reveal direction is deliberate.</strong> The Lantern Warren gets worse with depth; the Cairns get better. Use that contrast out loud if your players have run both — it should feel like relief, which makes what's actually happening (a dying culture fighting for its dead) land harder, not softer.</li>
+<li><strong>The ward is bait for later, not now.</strong> Don't let this session become about it. A single strange detail the party can't resolve is worth more sitting unresolved than explained.</li>
+<li><strong>If the first contact goes badly,</strong> don't punish the table for it mechanically — let it cost story instead. A fled, un-contacted Hushed just means the next chapter opens with more caution on their side, not a locked door.</li>
+</ul>
+
+</main>
+<footer>The Undermarch &middot; Adventure 02: The Withering Undersong &middot; levels 3–4 &middot; <a href="undermarch-adventure-01.html">&larr; Adventure 01</a> &middot; <a href="undermarch-poi.html">Points of Interest</a></footer>
+</body>
+</html>

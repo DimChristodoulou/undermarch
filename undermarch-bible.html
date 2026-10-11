@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Undermarch — Campaign Bible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#12100E;
+  --stone:#1B1815;
+  --shale:#26221D;
+  --edge:#3A342B;
+  --bone:#E4DDD1;
+  --dust:#9A9086;
+  --daylight:#E3B23C;
+  --iron:#A63D2F;
+  --lichen:#7A8B6F;
+  --sans:'Archivo',system-ui,sans-serif;
+  --disp:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--void);color:var(--bone);
+  font-family:var(--sans);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:0;max-width:1240px;margin:0 auto}
+
+/* ---------- SIGNATURE: the depth column ---------- */
+nav.core{
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  padding:34px 0 34px 22px;border-right:1px solid var(--edge);
+  scrollbar-width:thin;
+}
+.core-label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dust);margin-bottom:20px;
+}
+.core-label b{color:var(--daylight);font-weight:500}
+.strata{list-style:none;margin:0;padding:0;position:relative}
+.strata::before{
+  content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,#4A4236,#3A342B 30%,#2A2420 62%,#3A2018 100%);
+}
+.strata li{position:relative;padding:0 0 0 24px;margin-bottom:2px}
+.strata a{
+  display:block;padding:6px 8px 6px 0;color:var(--dust);text-decoration:none;
+  font-size:13.5px;line-height:1.3;border-radius:2px;
+  transition:color .18s ease;
+}
+.strata a:hover{color:var(--bone)}
+.strata a:focus-visible{outline:2px solid var(--daylight);outline-offset:2px}
+.strata li::before{
+  content:"";position:absolute;left:2px;top:13px;width:8px;height:8px;
+  border-radius:50%;background:var(--void);border:2px solid #4A4236;
+  transition:background .18s ease,border-color .18s ease;
+}
+.strata li.here::before{background:var(--daylight);border-color:var(--daylight)}
+.strata li.here a{color:var(--bone);font-weight:600}
+.depth-tick{
+  font-family:var(--mono);font-size:9px;color:#5C5449;letter-spacing:.08em;
+  display:block;margin-top:1px;
+}
+
+/* ---------- main ---------- */
+main{padding:34px 44px 120px 44px;min-width:0}
+header.masthead{border-bottom:1px solid var(--edge);padding-bottom:26px;margin-bottom:34px}
+.eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--daylight);margin:0 0 14px;
+}
+h1{
+  font-family:var(--disp);font-weight:900;font-size:clamp(40px,7vw,74px);
+  line-height:.94;margin:0 0 16px;letter-spacing:-.02em;
+  font-variation-settings:'opsz' 144,'SOFT' 0,'WONK' 1;
+}
+h1 em{font-style:normal;color:var(--dust);display:block;font-size:.42em;font-weight:400;letter-spacing:0;margin-top:14px;line-height:1.4}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:11px;color:var(--dust)}
+.meta span b{color:var(--bone);font-weight:500}
+
+/* hero cross-section */
+figure.section-view{margin:0 0 44px;border:1px solid var(--edge);background:var(--stone)}
+figure.section-view svg{display:block;width:100%;height:auto}
+figcaption{
+  font-family:var(--mono);font-size:10.5px;color:var(--dust);
+  padding:11px 14px;border-top:1px solid var(--edge);letter-spacing:.04em;
+}
+
+/* sections */
+section{margin-bottom:56px;scroll-margin-top:26px}
+h2{
+  font-family:var(--disp);font-weight:600;font-size:29px;line-height:1.15;
+  margin:0 0 6px;letter-spacing:-.01em;font-variation-settings:'opsz' 60,'WONK' 1;
+}
+h2 .num{font-family:var(--mono);font-size:12px;color:var(--daylight);display:block;margin-bottom:8px;letter-spacing:.16em;font-weight:400}
+h3{font-family:var(--sans);font-weight:600;font-size:16px;margin:30px 0 8px;color:var(--bone)}
+p{margin:0 0 15px;max-width:70ch}
+ul,ol{max-width:70ch;padding-left:20px;margin:0 0 15px}
+li{margin-bottom:7px}
+a{color:var(--daylight)}
+a:focus-visible{outline:2px solid var(--daylight);outline-offset:2px}
+strong{color:#F2ECE2;font-weight:600}
+em{color:var(--bone)}
+
+/* status pills */
+.pill{
+  display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;
+  border:1px solid currentColor;border-radius:2px;vertical-align:2px;margin-left:8px;
+}
+.p-lock{color:var(--lichen)}
+.p-prop{color:var(--daylight)}
+.p-open{color:var(--dust)}
+.p-block{color:var(--iron);background:rgba(166,61,47,.1)}
+
+/* callouts */
+.crit{
+  border-left:3px solid var(--iron);background:rgba(166,61,47,.07);
+  padding:16px 20px;margin:0 0 20px;max-width:74ch;
+}
+.crit .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:8px}
+.rec{
+  border-left:3px solid var(--daylight);background:rgba(227,178,60,.06);
+  padding:16px 20px;margin:0 0 20px;max-width:74ch;
+}
+.rec .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--daylight);display:block;margin-bottom:8px}
+.crit p:last-child,.rec p:last-child,.crit ul:last-child,.rec ul:last-child{margin-bottom:0}
+
+/* tables */
+table{border-collapse:collapse;width:100%;max-width:74ch;margin:0 0 20px;font-size:14px}
+th{
+  text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dust);font-weight:400;
+  padding:0 14px 8px 0;border-bottom:1px solid var(--edge);
+}
+td{padding:11px 14px 11px 0;border-bottom:1px solid #221E1A;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td:first-child{color:#F2ECE2;font-weight:500;white-space:nowrap}
+.band-t td:first-child{border-left:3px solid #6B6250;padding-left:11px}
+.band-s td:first-child{border-left:3px solid #5A5A48;padding-left:11px}
+.band-m td:first-child{border-left:3px solid #4A4038;padding-left:11px}
+.band-u td:first-child{border-left:3px solid #3A2C28;padding-left:11px}
+.band-r td:first-child{border-left:3px solid var(--iron);padding-left:11px}
+
+/* question list */
+ol.qs{counter-reset:q;list-style:none;padding:0;max-width:74ch}
+ol.qs li{
+  counter-increment:q;position:relative;padding:12px 0 12px 44px;
+  border-bottom:1px solid #221E1A;margin:0;
+}
+ol.qs li::before{
+  content:counter(q,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:var(--mono);font-size:11px;color:var(--daylight);
+}
+ol.qs li.blocker::before{color:var(--iron)}
+
+/* chunk cards */
+.chunks{display:grid;gap:1px;background:var(--edge);border:1px solid var(--edge);max-width:74ch}
+.chunk{background:var(--stone);padding:16px 20px}
+.chunk h4{margin:0 0 5px;font-size:14.5px;font-family:var(--sans);font-weight:600}
+.chunk h4 .cn{font-family:var(--mono);color:var(--daylight);font-size:11px;margin-right:10px;font-weight:400}
+.chunk p{font-size:13.5px;color:var(--dust);margin:0}
+.chunk.now{background:#221E18;border-left:3px solid var(--daylight)}
+
+.sb{border:1px solid var(--edge);background:var(--stone);padding:20px 22px;margin:0 0 22px;max-width:74ch}
+.sb .name{font-family:var(--disp);font-weight:600;font-size:19px;margin:0 0 2px;letter-spacing:.01em}
+.sb .lvl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--iron)}
+.sb .traits{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust);margin:8px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--edge)}
+.sb p{font-size:14px;margin:0 0 9px}
+.sb .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--daylight)}
+.sb .act{border-top:1px solid #221E1A;margin-top:14px;padding-top:12px}
+.sb ul{font-size:14px;margin:6px 0 0;padding-left:18px}
+.note{font-size:13.5px;color:var(--dust);border-left:2px solid var(--lichen);padding:2px 0 2px 14px;margin:14px 0 0;max-width:70ch}
+.note b{color:var(--lichen);font-weight:500}
+footer{border-top:1px solid var(--edge);padding-top:22px;font-family:var(--mono);font-size:11px;color:#5C5449}
+
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr}
+  nav.core{position:static;height:auto;border-right:none;border-bottom:1px solid var(--edge);padding:24px 22px}
+  main{padding:28px 22px 80px}
+  .strata{columns:2;column-gap:18px}
+  .strata li{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="core" aria-label="Sections">
+  <div class="core-label">Core sample <b>&mdash; 16 strata</b></div>
+  <ul class="strata">
+    <li><a href="#premise">Core premise<span class="depth-tick">0 m &mdash; surface</span></a></li>
+    <li><a href="#naming">Naming</a></li>
+    <li><a href="#structure">Structure of the deep<span class="depth-tick">the archipelago</span></a></li>
+    <li><a href="#undertears">The Undertears</a></li>
+    <li><a href="#antagonists">The antagonists<span class="depth-tick">civilization, locked</span></a></li>
+    <li><a href="#dead">The dead civilizations</a></li>
+    <li><a href="#clock">The clock</a></li>
+    <li><a href="#pf2e">PF2e mechanical layer</a></li>
+    <li><a href="#maps">The map program<span class="depth-tick">draw order</span></a></li>
+    <li><a href="#catalog">Topic catalog</a></li>
+    <li><a href="#home">The Fallwater<span class="depth-tick">home Undertear</span></a></li>
+    <li><a href="#dungeons">Early dungeon sites<span class="depth-tick">3 proposed</span></a></li>
+    <li><a href="#homebrew">Homebrew rules &amp; hazards<span class="depth-tick">stat blocks</span></a></li>
+    <li><a href="#chunks">Work chunks</a></li>
+    <li><a href="#questions">Open questions<span class="depth-tick">12 outstanding</span></a></li>
+    <li><a href="#glossary">Glossary<span class="depth-tick">every name, one place</span></a></li>
+  </ul>
+</nav>
+
+<main>
+<header class="masthead">
+  <p class="eyebrow">Homebrew campaign bible &middot; Draft 0.6</p>
+  <h1>The Undermarch<em>Twenty holes in the world, and a dark continent underneath it.</em></h1>
+  <div class="meta">
+    <span>System <b>Pathfinder 2e (Remaster)</b></span>
+    <span>Setting <b>Homebrew</b></span>
+    <span>Sections <b>16</b></span>
+    <span>Tone <b>Grim survival</b></span>
+  </div>
+</header>
+
+<figure class="section-view">
+<svg viewBox="0 0 900 540" role="img" aria-label="Cross-section of an Undertear: a shaft descending from the surface through five depth bands, with a river falling in and an insectoid tunnel crossing at depth.">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2E3138"/><stop offset="100%" stop-color="#4A4438"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E3B23C" stop-opacity=".38"/>
+      <stop offset="55%" stop-color="#E3B23C" stop-opacity=".10"/>
+      <stop offset="100%" stop-color="#E3B23C" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="hot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A1A16"/><stop offset="100%" stop-color="#3D1C14"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect x="0" y="0" width="900" height="66" fill="url(#sky)"/>
+  <!-- strata -->
+  <rect x="0" y="66"  width="900" height="86"  fill="#3A342B"/>
+  <rect x="0" y="152" width="900" height="90"  fill="#332E27"/>
+  <rect x="0" y="242" width="900" height="92"  fill="#2B2723"/>
+  <rect x="0" y="334" width="900" height="98"  fill="#231F1C"/>
+  <rect x="0" y="432" width="900" height="108" fill="url(#hot)"/>
+  <g stroke="#4A4236" stroke-width="1" opacity=".55">
+    <line x1="0" y1="152" x2="900" y2="152"/><line x1="0" y1="242" x2="900" y2="242"/>
+    <line x1="0" y1="334" x2="900" y2="334"/><line x1="0" y1="432" x2="900" y2="432"/>
+  </g>
+
+  <!-- the void of the tear: shaft -->
+  <path d="M348,66 L364,150 L372,244 L376,336 L380,432 L380,540 L520,540 L516,432 L512,336 L508,244 L516,150 L540,66 Z" fill="#0E0C0A"/>
+  <!-- light beam -->
+  <path d="M352,66 L536,66 L508,300 L378,300 Z" fill="url(#beam)"/>
+
+  <!-- surface crust line + rubble -->
+  <path d="M0,66 L348,66 M540,66 L900,66" stroke="#6B6250" stroke-width="2.5" fill="none"/>
+  <g fill="#6B6250">
+    <path d="M330,66 l10,-7 l8,7 z"/><path d="M540,66 l9,-6 l10,6 z"/><path d="M566,66 l6,-4 l7,4 z"/>
+  </g>
+
+  <!-- boomtown on the lip -->
+  <g stroke="#8A8070" stroke-width="1.6" fill="none">
+    <path d="M596,66 v-16 h20 v16 M600,50 l10,-9 l10,9"/>
+    <path d="M630,66 v-11 h14 v11"/>
+    <path d="M660,66 v-20 h16 v20 M664,46 l8,-7 l8,7"/>
+    <path d="M282,66 v-14 h18 v14"/><path d="M254,66 v-9 h13 v9"/>
+  </g>
+  <!-- winch tower over the shaft -->
+  <g stroke="#B99A54" stroke-width="1.6" fill="none">
+    <path d="M556,66 v-40 l-22,40 M556,26 l20,40"/>
+    <path d="M556,30 h-92" stroke-dasharray="3 4"/>
+    <path d="M464,30 v58"/><rect x="456" y="88" width="17" height="13"/>
+  </g>
+
+  <!-- river falling in -->
+  <g stroke="#7A8B6F" fill="none" opacity=".82">
+    <path d="M120,60 C200,58 268,62 340,64" stroke-width="4"/>
+    <path d="M348,66 C352,150 356,250 358,330" stroke-width="3"/>
+    <path d="M354,66 C358,160 362,260 364,340" stroke-width="1.4" opacity=".5"/>
+  </g>
+  <ellipse cx="362" cy="344" rx="30" ry="6" fill="#7A8B6F" opacity=".26"/>
+
+  <!-- doline grove: sunlit vegetation on ledges -->
+  <g fill="#7A8B6F" opacity=".9">
+    <circle cx="404" cy="140" r="6"/><circle cx="416" cy="134" r="4.5"/><circle cx="392" cy="136" r="4"/>
+    <circle cx="470" cy="152" r="5.5"/><circle cx="482" cy="147" r="4"/>
+  </g>
+  <path d="M386,146 h46 M458,158 h40" stroke="#5C5449" stroke-width="3"/>
+
+  <!-- ruined city silhouette in the shallows, off-shaft -->
+  <g stroke="#5C5449" stroke-width="1.5" fill="none">
+    <path d="M660,242 v-30 h12 v30 M676,242 v-44 h14 v44 M694,242 v-22 h10 v22"/>
+    <path d="M652,242 h60" stroke-width="2"/>
+    <path d="M676,198 l7,-10 l7,10"/>
+  </g>
+  <!-- fungal forest, mid -->
+  <g stroke="#9A9086" stroke-width="1.4" fill="none">
+    <path d="M120,334 v-16 M112,318 q8,-11 16,0"/>
+    <path d="M148,334 v-11 M142,323 q6,-8 12,0"/>
+    <path d="M176,334 v-19 M167,315 q9,-12 18,0"/>
+  </g>
+
+  <!-- weftway: insectoid tunnel crossing at depth -->
+  <path d="M0,392 C110,376 180,410 262,394 C330,381 348,398 380,396 M520,396 C580,392 620,378 690,392 C760,406 830,382 900,392"
+        stroke="#A63D2F" stroke-width="2.4" fill="none" stroke-dasharray="9 5"/>
+  <g fill="#A63D2F">
+    <circle cx="262" cy="394" r="4.5"/><circle cx="690" cy="392" r="4.5"/>
+  </g>
+
+  <!-- root: something -->
+  <path d="M0,502 C140,486 260,514 400,498 C540,482 700,512 900,494" stroke="#A63D2F" stroke-width="1.2" fill="none" opacity=".45"/>
+
+  <!-- labels -->
+  <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="#9A9086" letter-spacing="1.2">
+    <text x="14" y="26" fill="#B9B0A2">SURFACE</text>
+    <text x="14" y="42" font-size="9" fill="#6B6250">river drains into the tear &mdash; farmland fails downstream</text>
+
+    <text x="756" y="104" fill="#B99A54">THE THRESHOLD</text>
+    <text x="756" y="118" font-size="9">0&ndash;1 km &middot; lv 1&ndash;4</text>
+
+    <text x="756" y="190" fill="#B9B0A2">THE SHALLOWS</text>
+    <text x="756" y="204" font-size="9">1&ndash;4 km &middot; lv 5&ndash;8</text>
+
+    <text x="756" y="284" fill="#B9B0A2">THE MID REACHES</text>
+    <text x="756" y="298" font-size="9">4&ndash;12 km &middot; lv 9&ndash;12</text>
+
+    <text x="756" y="366" fill="#B9B0A2">THE UNDER DEEPS</text>
+    <text x="756" y="380" font-size="9">12&ndash;40 km &middot; lv 13&ndash;16</text>
+
+    <text x="756" y="470" fill="#C4705E">THE ROOT</text>
+    <text x="756" y="484" font-size="9">40 km+ &middot; lv 17&ndash;20</text>
+
+    <text x="392" y="88" font-size="9" fill="#B99A54">THE THROAT</text>
+    <text x="404" y="172" font-size="9" fill="#7A8B6F">doline grove</text>
+    <text x="640" y="262" font-size="9">ruined city</text>
+    <text x="112" y="352" font-size="9">fungal forest</text>
+    <text x="96" y="374" font-size="9" fill="#C4705E">WEFTWAY &mdash; insectoid tunnel</text>
+  </g>
+</svg>
+<figcaption>Fig. 1 &mdash; Undertear in section. The one drawing this setting cannot be designed without. Draw this first.</figcaption>
+</figure>
+
+<!-- ============ 1 ============ -->
+<section id="premise">
+  <h2><span class="num">01</span>Core premise</h2>
+  <p><span class="pill p-lock">Locked</span></p>
+  <p>Something tore twenty holes in the world. They opened onto a labyrinth beneath the crust so vast that no one has mapped a hundredth of it &mdash; a dark continent under everyone's feet, full of dead cities, unfamiliar ecologies, and things that have never seen a sky. The surface powers have descended, planted flags around each opening, and begun a gold rush into the dark.</p>
+  <p>None of them know the holes were <em>made</em>, deliberately, by something down there that wants up. An insectoid civilization of mages engineered them for access to the surface. If nobody stops them, they assemble an army and invade &mdash; within roughly one year.</p>
+
+  <div class="crit">
+    <span class="tag">Resolved &mdash; session 2</span>
+    <p><strong>The insectoids made the Undertears themselves. There is no separate external entity</strong> &mdash; "external force" was shorthand for the fact that the world doesn't know they exist. The GM-side secret is simply <em>who did this, and why</em>. Original options archived below.</p>
+    <ul>
+      <li><strong>The insectoids are the agents; the external force is the fuel.</strong> They found, bargained with, or drilled into something and spent it. Cleanest &mdash; and it makes that force a resource players can contest. <strong>My recommendation.</strong></li>
+      <li><strong>The insectoids are the tools.</strong> Something used them; they believe they authored the Tears. Great rug-pull, but risks demoting your villain right when players finally care.</li>
+      <li><strong>Two coincidental events.</strong> Weakest. Coincidence at this scale reads as mess, not mystery.</li>
+    </ul>
+    <p><strong>Resolved:</strong> the insectoids are the sole agents.</p>
+  </div>
+
+  <h3>But there is something at the Root <span class="pill p-lock">Locked</span></h3>
+  <p>A mysterious entity is <strong>drawing heat out of the world from below</strong>. It did not make the Undertears and has no interest in the surface. It is the reason the deep is cooling, the reason the Stillness is failing, and therefore the ultimate reason the insectoids must migrate upward. It is the level 17&ndash;20 endgame.</p>
+  <p><strong>One cause, two symptoms.</strong> The entity drains deep heat. Deep heat powers the Stillness. So it simultaneously freezes the insectoid homeland and dissolves its only protection &mdash; which is why the enchantment cannot simply be renewed. The fuel is being stolen faster than it can be gathered.</p>
+  <p><em>Open:</em> what it is, whether it is awake, whether it is why the ways were sealed, and whether it can be reasoned with, fought, or only fled.</p>
+
+  <h3>Elapsed time <span class="pill p-lock">Locked</span></h3>
+  <p><strong>The Weeping was roughly two months ago. Ten months remain on the clock.</strong> This is a hard constraint and it rules out a great deal: no established colonies, no cable-cars or winch-towers, no surveyed routes, no deep-born population, no functioning trade, no completed dams.</p>
+  <div class="crit">
+    <span class="tag">Unresolved tension</span>
+    <p>Your brief said surface factions have "claimed their territories" and offer "relatively safe haven." At two months those havens are canvas, rope and mud.</p>
+    <ul>
+      <li><strong>(a) Keep two months and lean in.</strong> The colonies are <em>camps</em>. Descent is rope and improvised scaffold. Nobody has expertise; nobody has been below the Shallows. Dams are half-built and uneven, and only the wealthiest nations got one up &mdash; which splits the surface into nations that were saved and nations that were ruined, handing you a political map for free. Players get to be among the first to do almost anything, which quietly solves the "why hasn't someone stronger fixed this" problem. <strong>Recommended.</strong></li>
+      <li><strong>(b) Stretch to ~18 months.</strong> Real infrastructure, an established frontier economy, havens that feel safe. Costs the rawness, and you must explain why nobody noticed the thermal anomaly.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="naming">
+  <h2><span class="num">02</span>Naming</h2>
+  <h3>The event <span class="pill p-open">Open</span></h3>
+  <p><strong>Undertears</strong> carries a useful ambiguity &mdash; <em>tear</em> as rip, <em>tear</em> as weeping. Folk etymology will drift to the second. Lean in: the common name and the scholarly name should disagree, because that disagreement is free worldbuilding.</p>
+  <table>
+    <tr><th>Name</th><th>Register</th><th>Notes</th></tr>
+    <tr><td>The Weeping</td><td>Folk</td><td>Best fit. Commoners say the world wept; priests preach it as grief or punishment.</td></tr>
+    <tr><td>The Unroofing</td><td>Blunt</td><td>Named from <em>below</em>. Use as the deep-dweller term.</td></tr>
+    <tr><td>The Opening</td><td>Bureaucratic</td><td>What a charter company calls it. Good in tension with a folk name.</td></tr>
+    <tr><td>The Long Groan</td><td>Sensory</td><td>If it was heard globally for hours before anything was seen.</td></tr>
+    <tr><td>Thirdnight</td><td>Calendrical</td><td>If dust blotted the sun three days. Becomes a date, not a description.</td></tr>
+  </table>
+  <div class="rec">
+    <span class="tag">Proposed</span>
+    <p>Use three names at once. <strong>The Weeping</strong> (folk), <strong>The Opening</strong> (charters and states), <strong>The Unroofing</strong> (deep-dwellers). Which name an NPC uses instantly tells the players who they are. Costs nothing, pays out every session.</p>
+  </div>
+
+  <h3>The megadungeon <span class="pill p-open">Open</span></h3>
+  <p>Naming logic first: the name in common use is an <em>exonym</em>. Surface people named it, while afraid of it and greedy for it. It should sound descriptive, proprietary, and a little wrong &mdash; the way "the New World" was wrong.</p>
+  <table>
+    <tr><th>Name</th><th>Why it works</th><th>Risk</th></tr>
+    <tr><td>The Undermarch</td><td><em>March</em> = contested frontier borderland. Encodes the colonial truth in one syllable, and puns on marching armies.</td><td>Slightly academic.</td></tr>
+    <tr><td>The Great Hollow</td><td>Plain, ominous, easy at the table.</td><td>Several settings use it.</td></tr>
+    <tr><td>The Wormward</td><td>Implies something bored these tunnels. Memorable.</td><td>Commits you to a boring-origin.</td></tr>
+    <tr><td>The Undersky</td><td>Beautiful inversion; fits your sunlit groves.</td><td>Too poetic for a boomtown to say.</td></tr>
+    <tr><td>The Sill</td><td>A geological sill is an intrusion between strata. Cold and technical.</td><td>Obscure without explanation.</td></tr>
+  </table>
+  <div class="rec">
+    <span class="tag">Proposed</span>
+    <p><strong>The Undermarch</strong> in common use, with <strong>The Undersky</strong> as the poetic term used by people who've lived down there long enough to love it. Newcomers say Undermarch; the deep-born say Undersky. That split <em>is</em> characterization.</p>
+  </div>
+
+  <h3>The insectoids <span class="pill p-block">Blocked</span></h3>
+  <p>Don't name them yet &mdash; their name depends on <a href="#antagonists">&sect;05</a>, specifically hive versus polity. Holding term: <em>the Deep Choir</em>.</p>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="structure">
+  <h2><span class="num">03</span>Structure of the deep</h2>
+
+  <div class="crit">
+    <span class="tag">Critique &mdash; the scale trap</span>
+    <p>"A megadungeon spanning the entire planet" sounds enormous, and enormity is the enemy of prep, tone and stakes. If everything connects to everything, no journey means anything, no region feels distinct, and you owe your players a coherent geography the size of a planet. You will not build that. Nobody has.</p>
+  </div>
+
+  <h3>The archipelago model <span class="pill p-prop">Proposed</span></h3>
+  <p>The Undermarch is not an ocean of tunnel. It's an <strong>archipelago</strong> &mdash; discrete deep regions, each with its own ecology and its own dead, separated by genuinely impassable gaps: flooded sumps, magma sheets, crushed dead zones, sheer voids, a hundred miles of unbroken rock.</p>
+  <ul>
+    <li><strong>Prep discipline.</strong> One region at a time, each self-contained. No obligation to connect them.</li>
+    <li><strong>Tonal variety without incoherence.</strong> A fungal wetland and a frozen crystal vault aren't inconsistent &mdash; they're Iceland and Java.</li>
+    <li><strong>It explains why the twenty Tears aren't linked below.</strong> Travel between them is <em>easier on the surface</em>. Delicious inversion.</li>
+  </ul>
+
+  <h3>The antagonist's real capability <span class="pill p-prop">Proposed</span></h3>
+  <div class="crit">
+    <span class="tag">Critique &mdash; power scaling</span>
+    <p>A faction that can tear a planet's crust in twenty places does not need infantry. If they can do the big thing, the small thing is beneath them, and your central threat collapses.</p>
+  </div>
+  <p>The fix, which also solves the archipelago: their defining capability isn't destruction, it's <strong>connection</strong>. They are the only power that can bore through the impassable gaps, and they have spent centuries stitching the archipelago into one navigable whole. Nobody else has this. Nobody else knows it exists.</p>
+  <ul>
+    <li><strong>The Undertears aren't their weapon &mdash; they're off-ramps.</strong> Twenty simultaneous breaches only matter if you can move an army between them.</li>
+    <li><strong>The invasion becomes legible.</strong> You can draw the route. Players can cut it.</li>
+    <li><strong>The ritual's cost is explicable.</strong> Boring twenty shafts at once bankrupted them. That's <em>why</em> they need soldiers now &mdash; they spent their magic on the doors.</li>
+    <li><strong>It hands your players a transit system.</strong> Captured tunnels are the only fast route between distant Tears. The antagonist's greatest asset becomes your campaign's map.</li>
+    <li><strong>It gives an escalating objective</strong> that isn't "kill the queen": find the network, map it, seize or collapse nodes.</li>
+  </ul>
+  <p>Working names for the network: <em>the Weftways</em> / <em>the Sutures</em> / <em>the Stitch</em>.</p>
+
+  <h3>Depth bands <span class="pill p-prop">Proposed</span></h3>
+  <p>PF2e's math is tight enough that you need a legible link between <em>where you are</em> and <em>how hard it is</em>. Depth is the cleanest axis: intuitive, physical, and players self-regulate against it.</p>
+  <table>
+    <tr><th>Band</th><th>Depth</th><th>Level</th><th>Character</th></tr>
+    <tr class="band-t"><td>The Threshold</td><td>0&ndash;1 km</td><td>1&ndash;4</td><td>Rope-and-ladder country. Colony infrastructure, surveyed routes, sunlight still reaches. Doline groves live here.</td></tr>
+    <tr class="band-s"><td>The Shallows</td><td>1&ndash;4 km</td><td>5&ndash;8</td><td>Last of the surveyed world. Fungal forests, first ruined cities, competing charter expeditions.</td></tr>
+    <tr class="band-m"><td>The Mid Reaches</td><td>4&ndash;12 km</td><td>9&ndash;12</td><td>Beyond any map. The great dead civilizations. First Weftway nodes.</td></tr>
+    <tr class="band-u"><td>The Under Deeps</td><td>12&ndash;40 km</td><td>13&ndash;16</td><td>Below the crust as anyone understands it. Physics gets negotiable. Insectoid heartland.</td></tr>
+    <tr class="band-r"><td>The Root</td><td>40 km+</td><td>17&ndash;20</td><td>Whatever is actually down there. Ties to the external force.</td></tr>
+  </table>
+  <h3>The inverted gradient <span class="pill p-lock">Locked</span></h3>
+  <p><strong>The Undermarch warms with depth exactly as it should &mdash; until somewhere in the Mid Reaches, where the gradient reverses. Below that it gets colder the deeper you go. The Root is the coldest place in the world.</strong> Cause: the entity at the Root is drawing the heat out.</p>
+  <table>
+    <tr><th>Real-world anchor</th><th>Figure</th></tr>
+    <tr><td>Normal geothermal gradient</td><td>~25&ndash;30&deg;C per km</td></tr>
+    <tr><td>Deepest mine (Mponeng)</td><td>4 km; rock face ~66&deg;C; cooled with pumped slurry ice</td></tr>
+    <tr><td>Deepest borehole (Kola)</td><td>12.2 km; abandoned at ~180&deg;C, rock gone plastic</td></tr>
+    <tr><td>Continental crust</td><td>~30&ndash;50 km thick</td></tr>
+  </table>
+  <ul>
+    <li><strong>Heat becomes the scarce resource, not the hazard.</strong> Civilizations huddle around thermal vents like campfires. When mapping you stop asking "where are the caves" and start asking <strong>"where is the heat"</strong> &mdash; which generates your settlement pattern for you. Dead cities are found where the heat went out.</li>
+    <li><strong>It is a measurable anomaly.</strong> A party with a thermometer and a rope can discover the world is wrong. Falsifiable, physical, found rather than told.</li>
+    <li><strong>It gives the antagonists a thermodynamic motive.</strong> They are not conquering, they are evacuating toward the only remaining heat source &mdash; a star.</li>
+    <li><strong>It fills the Root.</strong> Endgame, sealing mystery and insectoid motive become one invention.</li>
+  </ul>
+  <p><em>Rejected:</em> conventional heat-as-hazard. Cleaner mechanically, but a hazard rather than an idea, and it generates nothing else.</p>
+
+  <h3>Light by band <span class="pill p-lock">Locked</span></h3>
+  <p><strong>Design principle: light must have a source you can lose.</strong> Ambient glow everywhere means darkness stops meaning anything.</p>
+  <table>
+    <tr><th>Band</th><th>Light</th></tr>
+    <tr class="band-t"><td>Threshold</td><td>Real sunlight. Shafts, doline groves, the sun crossing a cave wall over a day.</td></tr>
+    <tr class="band-s"><td>Shallows</td><td>Bioluminescence. Living light: it moves, it can be farmed and eaten, and it goes out when frightened.</td></tr>
+    <tr class="band-m"><td>Mid Reaches</td><td>Engineered light. The dead built lamps and some still work &mdash; you read by something's grave goods.</td></tr>
+    <tr class="band-u"><td>Under Deeps</td><td>Mineral, anomalous, wrong-coloured. Light with no obvious source.</td></tr>
+    <tr class="band-r"><td>Root</td><td>Nothing.</td></tr>
+  </table>
+  <p><strong>Darkvision:</strong> ordinary darkness in the Threshold and Shallows, where darkvision works normally and confers a real colonial advantage. But the <strong>Under Deeps are qualitatively dark</strong> &mdash; dark that behaves like a substance rather than an absence, which darkvision does not penetrate. This re-levels the party at depth without nerfing anyone's ancestry choice, it's a session-zero fact rather than a gotcha, and by that level everyone has magical answers.</p>
+
+  <h3>Air and the standing drafts <span class="pill p-lock">Locked</span></h3>
+  <p>Before the Weeping most of the deep was unbreathable &mdash; sealed caves accumulate carbon dioxide, hydrogen sulfide, methane and radon. Miners have real vocabulary for this worth stealing wholesale: <em>blackdamp, firedamp, stinkdamp, whitedamp</em>. <strong>Then twenty chimneys were punched through the crust, and the planet started breathing.</strong></p>
+  <p>With a cold deep the circulation is more interesting than a simple chimney. The <strong>Mid Reaches are the engine</strong> &mdash; the hot band heats air, which rises and vents upward. Cold surface air is drawn down other Undertears to replace it. Root air is dense, pools, and doesn't circulate at all, which is why the deepest band stays stagnant and lethal even though everything above now ventilates.</p>
+  <ul>
+    <li><strong>Some Undertears breathe in, some breathe out.</strong> An exhaling Tear vents warm, wet, foul air &mdash; permanent fog over the Lip, nothing growing, the smell of the deep over the boomtown. An inhaling one pulls debris, birds and careless people down.</li>
+    <li><strong>Direction flips seasonally.</strong> A colony venting its forges up an exhaling shaft is in trouble the month it reverses.</li>
+    <li><strong>A breathable frontier is advancing.</strong> A moving boundary between air you can breathe and air you can't, pushing deeper monthly. A depth gate that isn't arbitrary.</li>
+    <li><strong>Weather underground.</strong> Pressure fronts, fog banks, storms in the larger voids.</li>
+    <li><strong>The worst squalls cluster at the edge of the Stillness</strong> &mdash; moving air meeting motionless air shears violently. <strong>Wind data is intelligence data:</strong> players can triangulate insectoid borders before ever meeting one.</li>
+  </ul>
+
+  <h3>Time underground <span class="pill p-lock">Locked</span></h3>
+  <p>Michel Siffre spent months alone in caves in the 1960s and 70s and lost roughly twenty-five days of count. Without light cues, circadian rhythm free-runs long.</p>
+  <ul>
+    <li><strong>Expedition drift.</strong> Parties return from long delves having lost days and arguing about the date. Colony bells keep surface time at the Shelf; below the Verge, nobody knows.</li>
+    <li><strong>No generational drift</strong> &mdash; there hasn't been time. No deep-born colonists exist yet.</li>
+    <li><strong>The fungal calendar is native, not colonial.</strong> Certain fungi bloom on a cycle and pulse light; the peoples who actually live down there time their lives by when the light comes on. Not a colonist custom &mdash; a <em>discovery</em> players earn by learning to read it.</li>
+  </ul>
+
+  <h3>Why hasn't a level 18 person fixed this? <span class="pill p-open">Open</span></h3>
+  <p>Every setting with a ticking doom owes this answer. Combinable:</p>
+  <ul>
+    <li><strong>They're competing with each other.</strong> Every surface power has a champion, and all of them are pointed at each other rather than at the dark.</li>
+    <li><strong>Scale defeats power.</strong> A level 20 archmage is one person in a labyrinth the size of a planet. Power doesn't solve <em>search</em>.</li>
+    <li><strong>They went down and didn't come back.</strong> The first wave of legendary heroes descended in Year One. Their bodies are set-dressing and their gear is treasure &mdash; loot with names.</li>
+    <li><strong>The threat isn't legible.</strong> You can't send a hero at a rumour.</li>
+  </ul>
+  <div class="rec">
+    <span class="tag">Proposed</span>
+    <p>Use all four, weighted to the first. The strongest version of this campaign is one where the surface's <em>inability to cooperate</em> is the real antagonist, and the insectoids are merely the deadline.</p>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="undertears">
+  <h2><span class="num">04</span>The Undertears</h2>
+  <h3>Anatomy &mdash; a reusable skeleton <span class="pill p-prop">Proposed</span></h3>
+  <p>Give every Tear the same five parts so you can improvise new ones instantly, then vary one thing each.</p>
+  <ol>
+    <li><strong>The Lip</strong> &mdash; the surface rim. Cracked farmland, collapsed villages, now a boomtown. Whoever holds it taxes everything.</li>
+    <li><strong>The Throat</strong> &mdash; the vertical shaft. The engineering problem that defines the colony: winch-towers, stairs cut into rock, cable-cars, levitation platforms, a bridge spiralling down.</li>
+    <li><strong>The Shelf</strong> &mdash; where the shaft meets the first horizontal space. The actual town, built on scaffold.</li>
+    <li><strong>The Verge</strong> &mdash; the edge of surveyed territory. Where the map ends and the campaign starts.</li>
+    <li><strong>The Mouths</strong> &mdash; the tunnels onward. Usually several. Usually contested.</li>
+  </ol>
+
+  <h3>The consequence nobody thought about <span class="pill p-prop">Proposed</span></h3>
+  <p>You tore twenty holes kilometres deep into a planet. <strong>The rivers found them.</strong></p>
+  <p>Where a Tear opened near a watershed, the river now pours into the ground. Downstream: dead farmland, abandoned cities, refugees, war over what water remains. Underground: permanent enormous waterfalls, new flooded regions, deep ecosystems drowned or born.</p>
+  <ul>
+    <li>It makes descent <strong>non-optional</strong>. Nobody's going down for treasure alone &mdash; the world above is failing. That moralises your gold rush.</li>
+    <li>It gives you your best single image: <strong>a river falling into the earth, forever, lit by a shaft of daylight.</strong> That's your cover art and your first sketch.</li>
+    <li>Free political conflict: upstream and downstream nations now hate each other.</li>
+    <li>A second, ecological clock running alongside the invasion.</li>
+  </ul>
+  <h3>The dams <span class="pill p-lock">Locked</span></h3>
+  <p>The surface has responded by damming what it can. Not saved &mdash; but not collapsing either. <strong>Tone: managed crisis.</strong></p>
+  <ul>
+    <li><strong>Uneven by design.</strong> Only the wealthiest or most magically capable nations managed a dam in two months, and even those are half-built. Some will fail.</li>
+    <li><strong>This is your political map.</strong> Nations that were saved and nations that were ruined, and everyone knows which is which.</li>
+    <li><strong>Dams consumed the money that could have funded descent.</strong> A nation with a dam came late to the Undermarch.</li>
+    <li><strong>A dam is a chokepoint someone can sabotage.</strong> Breaking one is an act of war &mdash; or an insectoid acceleration of the clock.</li>
+    <li><em>Open:</em> how were they built so fast? Earth-moving ritual magic is the plausible answer, and it implies a class of caster whose price just went up enormously.</li>
+  </ul>
+
+  <h3>Prep discipline for the twenty <span class="pill p-prop">Proposed</span></h3>
+  <p>You do not build twenty Undertears. You build:</p>
+  <ul>
+    <li><strong>One in full</strong> &mdash; the home base. NPCs, factions, economy, maps.</li>
+    <li><strong>Two in sketch</strong> &mdash; a paragraph, a defining feature, one hook.</li>
+    <li><strong>Seventeen as one-line rumours</strong> &mdash; a name and a single strange fact. <em>"The Ninth is frozen solid and something is singing in it."</em> That's the whole entry. Nine words doing 90% of the work.</li>
+  </ul>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="antagonists">
+  <h2><span class="num">05</span>The antagonists</h2>
+  <div class="crit">
+    <span class="tag">Resolved &mdash; civilization, non-negotiable</span>
+    <p>The single most consequential decision in the project. <strong>Hive-mind:</strong> one will, no negotiation, pure external threat. Clean, scary, and <em>thin</em> &mdash; you get a good final battle and nothing else. Players never meet a person, only a weather system. <strong>Civilization with castes:</strong> individuals, dissent, art, grief, internal politics, factions who disagree about the invasion. Everything gets better.</p>
+    <p><strong>My recommendation: civilization, strongly.</strong> Keep the alien physiology &mdash; castes, chemical language, radial architecture, incomprehensible aesthetics &mdash; but give them politics. The uncanny should come from <em>how they think</em>, not <em>whether</em> they think.</p>
+  </div>
+
+  <h3>Species basis <span class="pill p-lock">Locked</span></h3>
+  <table>
+    <tr><th>Option</th><th>Fit</th><th>Notes</th></tr>
+    <tr><td>Formians</td><td>Closest insectoid civilization</td><td>Real castes &mdash; worker, warrior, taskmaster, myrmarch, queen &mdash; statted across a level range. Canon leans hive-mind, but upper castes are individually intelligent. Small adaptation, not a rewrite.</td></tr>
+    <tr><td>Thriae</td><td>Best fit for the <em>mage</em> half</td><td>Bee-folk with prophetic queens and genuine spellcasting traditions. Society built on oracular authority.</td></tr>
+    <tr><td>Anadi</td><td>Playable ancestry</td><td>Spider-folk with a real civilization and craft tradition. Useful for a PC or major NPC of related lineage.</td></tr>
+    <tr><td>Mi-go</td><td>Hold in reserve</td><td>Too alien and too competent for your main antagonist. Excellent candidate for <strong>the Builders</strong>.</td></tr>
+    <tr><td>Xulgath</td><td>Precedent, not species</td><td>Not insectoid, but PF2e's canonical ancient subterranean empire. Model for how a deep civilization rises and falls.</td></tr>
+  </table>
+  <div class="rec">
+    <span class="tag">Proposed</span>
+    <p>Homebrew the species on <strong>Formian caste architecture with Thriae magical culture</strong> layered on top. Statblocks to reskin at every level, plus a society where spellcasting is an <em>institution</em> rather than a talent &mdash; which is what gives "we spent a generation of mages on the ritual" its weight.</p>
+  </div>
+  <div class="rec">
+    <span class="tag">Proposed &mdash; the fungus-farming hook</span>
+    <p>Real ants and termites farm fungus. If yours do too, the deep mushroom forests <strong>are their agriculture</strong> &mdash; some cultivated, some abandoned centuries ago and gone feral. Your ecology and your antagonist become the same fact, and a party that learns to read fungal patterns can tell <em>how long ago the insectoids were somewhere</em>. A tracking skill, a dating method and a source of dread at once.</p>
+  </div>
+  <p><strong>Reference worth mining:</strong> Golarion's Darklands run in three descending layers, and the deepest holds the <strong>Vaults of Orv</strong> &mdash; enormous engineered caverns, some with artificial suns, built by a vanished civilization. Your sunlit groves and forgotten cities, serial numbers already filed off.</p>
+
+  <h3>The motive problem <span class="pill p-prop">Proposed</span></h3>
+  <p>"They want the surface" isn't a motive, it's a direction. Why the surface, and why now? The strongest answer makes them sympathetic without making them safe: <strong>their world is dying and the surface is the only exit.</strong></p>
+  <table>
+    <tr><th>Cause</th><th>Flavour</th></tr>
+    <tr><td>The Root is cooling</td><td>Their whole ecology depends on deep heat, and it's going out.</td></tr>
+    <tr><td>Something eats the deep</td><td>Horror. Not invaders &mdash; refugees, running from a thing you meet at level 18.</td></tr>
+    <tr><td>Their own ritual poisoned home</td><td>The Tears cost them their world. Tragic and self-inflicted.</td></tr>
+    <tr><td>The floodwaters are drowning them</td><td>Direct causal link to the rivers. <strong>Elegant.</strong></td></tr>
+  </table>
+  <div class="rec">
+    <span class="tag">Resolved &mdash; session 3</span>
+    <p><strong>Answer: heat loss</strong>, via the fourth option's logic redirected at the Root entity rather than the floodwaters. The surface accidentally drowns the deep; the deep deliberately invades the surface; both think they're the wronged party. That's a campaign about a misunderstanding neither side can afford to have &mdash; and it gives your players something to <em>do</em> other than kill.</p>
+  </div>
+
+  <h3>The Stillness <span class="pill p-lock">Locked</span></h3>
+  <p><strong>A powerful enchantment holds the insectoid heartland untouched by the Weeping's side effects.</strong> Inside it there is no wind, no current, no draft, no intruding surface air or water &mdash; while the entire rest of the Undermarch howls. Their ecology is unfazed. Their homeland is not drowning and not yet freezing. <strong>It is fading, and it cannot be renewed.</strong></p>
+  <div class="rec">
+    <span class="tag">Why it can't be renewed</span>
+    <p>The Stillness runs on <strong>deep heat</strong> &mdash; it always did, because that was the only abundant energy source down there. The entity at the Root is draining that heat. One cause, two symptoms: the homeland freezes <em>and</em> its only protection dissolves, faster than it can be re-gathered.</p>
+    <p><strong>This is the entire motive.</strong> Their real enemy is beneath them, not above. The invasion is what a competent civilization does when it is losing a war it cannot win against something it may not be able to perceive. When the players understand this, <em>"help us fight the thing at the Root"</em> becomes a genuinely available move.</p>
+  </div>
+  <div class="crit">
+    <span class="tag">Their actual flaw</span>
+    <p>They were right about physics and wrong about <strong>people</strong>. They modelled the air, the water and the thermal load correctly. What they did not model was how fast the surface would come down the holes &mdash; they expected fearful primitives to shun the wounds in the earth for a generation. Instead: twenty colonies in two months.</p>
+    <p><strong>Contempt for other minds, not incompetence at engineering.</strong> That flaw generates diplomacy, defectors, and an internal faction arguing the surface has been catastrophically misjudged.</p>
+  </div>
+  <ul>
+    <li><strong>Crossing the boundary is a sensory event.</strong> The roar simply stops. Nothing moves. One of the strangest moments available to you.</li>
+    <li><strong>The boundary is receding, and it can be measured.</strong> Abandoned outposts sit just outside the current line; old markers stand in howling wind they were built to exclude. A party that maps the line twice, months apart, has quantified the enemy's timeline better than any prophecy.</li>
+    <li><strong>Shear turbulence at the edge</strong> makes wind data into intelligence data.</li>
+  </ul>
+  <p><em>Open:</em> one enchantment or many? Who maintains it? Is there a caste whose entire existence is tending it &mdash; and what happens to them when it dies?</p>
+
+  <h3>Structural questions <span class="pill p-open">Open</span></h3>
+  <ul>
+    <li>What do they call themselves? What do surface people call them &mdash; probably something crude ("chitters," "the crawl")?</li>
+    <li>How do they communicate &mdash; chemical, vibrational, sung? <strong>Can it be learned?</strong> If yes, that's a skill investment that pays off in a campaign-defining scene.</li>
+    <li>Do they have a religion? What do they believe the surface <em>is</em> &mdash; a ceiling, a heaven, a lie?</li>
+    <li>Caste structure: how many, how rigid, any mobility? Is there a caste that wasn't built for war and doesn't want one?</li>
+    <li><strong>Is there a defector? There should be a defector.</strong> Your single most valuable NPC.</li>
+    <li>What did the ritual cost them, specifically and namably?</li>
+  </ul>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="dead">
+  <h2><span class="num">06</span>The dead civilizations</h2>
+  <p>Your instinct &mdash; sun-averse peoples migrating down while the ways were open &mdash; is good and load-bearing. But it needs a <em>why did it close</em>, and that's one of your biggest lore levers.</p>
+  <h3>The era stack <span class="pill p-prop">Proposed</span></h3>
+  <p>Build the dead as <strong>stratigraphy</strong>: distinct eras, physically layered, deepest = oldest. Then the megadungeon teaches history through architecture, and a player who learns to read building styles can date a ruin at a glance. That's a real skill your players will develop and enjoy.</p>
+  <table>
+    <tr><th>Era</th><th>Depth</th><th>Character</th></tr>
+    <tr><td>The Builders</td><td>Root / Under Deeps</td><td>Pre-human, non-humanoid. Scale wrong, doorways wrong, no stairs. Nobody knows what they were.</td></tr>
+    <tr><td>The Sunfled</td><td>Under Deeps / Mid</td><td>Your migration. Recognisably civilised &mdash; plazas, temples, drainage &mdash; which makes them the most haunting ruins, because they look like home.</td></tr>
+    <tr><td>The Sealing Era</td><td>Mid / Shallows</td><td>Whatever closed the ways. Fortifications, mass graves, enormous doors barred <em>from above</em>. Your central historical mystery.</td></tr>
+    <tr><td>The Aftermath</td><td>Shallows</td><td>Isolated survivors. Small, degenerate or transformed, some still alive and <em>very</em> surprised to see you.</td></tr>
+  </table>
+  <div class="crit">
+    <span class="tag">Blocker &mdash; why did the ways close?</span>
+    <p>A war? A plague? A deliberate quarantine by surface powers? Did the insectoids seal it? Did something get out once and it was never allowed to happen again? <strong>This determines whether the Undertears are a tragedy, an escape, or a repetition</strong> &mdash; probably your most important lore decision after the agency question.</p>
+  </div>
+
+  <h3>The living deep <span class="pill p-open">Open</span></h3>
+  <p>You said no classic-underground-trope monoculture &mdash; good. Seeds worth developing, most of them real:</p>
+  <ul>
+    <li><strong>Chemosynthetic zones.</strong> Movile Cave in Romania has been sealed 5.5 million years and runs on sulfur, not sunlight. Alien food web, everything pale. Free weirdness, zero handwaving.</li>
+    <li><strong>Doline forests.</strong> Hang Son Doong has collapsed ceilings admitting sunlight, and there is <em>jungle inside the cave</em>. Your sunlit groves are geologically legitimate.</li>
+    <li><strong>Fungal succession</strong> &mdash; not one mushroom forest but several, ecologically distinct: rot-fed, corpse-fed, one that's farmed and one that farms <em>you</em>.</li>
+    <li><strong>Thermal zones</strong> &mdash; hot springs, mineral terraces, civilizations built around heat like a hearth.</li>
+    <li><strong>The drowned</strong> &mdash; flooded regions still filling. A region actively becoming a sea <em>during</em> the campaign.</li>
+    <li><strong>Aphotic megafauna</strong> &mdash; what's the apex predator, what do locals think it is, and are they wrong?</li>
+  </ul>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="clock">
+  <h2><span class="num">07</span>The clock</h2>
+  <div class="crit">
+    <span class="tag">Critique &mdash; your two goals are fighting</span>
+    <p>Megadungeon play is <em>exploratory</em>: non-linear, slow, digressive, curiosity-driven. A one-year invasion clock is <em>urgent</em>: focused, directed, punishing of digression. Run them naively together and either the players ignore the clock (and the invasion feels like a GM ambush) or they chase it and never explore (wasting the megadungeon you built).</p>
+  </div>
+  <div class="rec">
+    <span class="tag">The resolution</span>
+    <p><strong>Make exploration the method of fighting the clock.</strong> The counter-invasion isn't found on the surface &mdash; it's down there: in the Weftway network they must map, in Sealing Era records of how the ways were closed before, in dead civilizations' weapons, in a defector's testimony, in the politics of a deep city nobody knew was inhabited. Every delve is both treasure hunt <em>and</em> a move against the clock. Then digression isn't failure &mdash; it's a different route.</p>
+  </div>
+
+  <h3>Clock design <span class="pill p-prop">Proposed</span></h3>
+  <p>An eight-segment Front clock, advancing on <em>triggers</em>, not the calendar &mdash; calendar-doom punishes careful play and rewards nothing. Triggers: ignoring a known Weftway node; a surface faction doing something shortsighted (this should be most of them); a failed major objective; plus slow fixed advancement at downtime milestones so it never fully stalls.</p>
+  <p>Make it legible. One escalating sign per segment:</p>
+  <ol class="qs">
+    <li>Tremors at the Verge.</li>
+    <li>Livestock and pack animals refuse the Mouths.</li>
+    <li>Insectoid scouts appear two depth bands shallower than they should.</li>
+    <li>An outlying survey camp goes silent.</li>
+    <li>A Weftway node opens <em>inside</em> surveyed territory.</li>
+    <li>A minor Undertear colony falls. Refugees arrive at yours.</li>
+    <li>The Throat of a major Undertear is contested.</li>
+    <li>Invasion.</li>
+  </ol>
+  <div class="rec">
+    <span class="tag">Open &mdash; this is where level range stops being deferrable</span>
+    <p>One in-world year is compressed for 1&rarr;20. Either <strong>(a)</strong> the campaign covers the year and ends around 12&ndash;14 with the invasion as climax; <strong>(b)</strong> players successfully stall the clock and it continues into a longer war, reaching 20; or <strong>(c)</strong> the year is arc one of three. The depth bands in <a href="#structure">&sect;03</a> depend on this answer.</p>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="pf2e">
+  <h2><span class="num">08</span>PF2e mechanical layer</h2>
+  <div class="crit">
+    <span class="tag">Critique &mdash; the attrition problem</span>
+    <p>This will bite you, and most homebrew megadungeon GMs don't see it coming. Classic megadungeon play runs on <em>attrition</em> &mdash; torches burn, rations dwindle, spells don't come back. PF2e is built to defeat exactly that. Focus Points return in 10 minutes. Treat Wounds restores the party out of combat for free. Its encounter math <em>assumes</em> you start near full.</p>
+    <p>Do nothing and your vast dangerous labyrinth becomes a series of unrelated corridor fights with a picnic between each one.</p>
+  </div>
+  <p>Fixes, in the order I'd recommend them:</p>
+  <ol>
+    <li><strong>Make pressure environmental, not resource-based.</strong> Heat, air quality, darkness, unstable terrain, corruption and afflictions that persist past rests. Afflictions <em>do</em> survive downtime &mdash; that's your attrition mechanism, already in the rules.</li>
+    <li><strong>Adapt Hexploration into Delve-ploration.</strong> Kingmaker's subsystem maps almost directly: activities per travel period, discovery rolls, supply expenditure. Reskin the hex as a "reach."</li>
+    <li><strong>Supply as hard currency, not bookkeeping.</strong> Don't track rations. Track <em>Supply</em> as an abstract pool; spend it to rest safely. Out of Supply means no Treat Wounds, no Refocus, no full rest. Now the depth you can reach is a function of what you carried &mdash; a real decision.</li>
+    <li><strong>Use Victory Point / Influence subsystems</strong> for colony and faction politics. They're in GM Core, they're good, and this campaign is 40% politics whether you plan it or not.</li>
+    <li><strong>Do not nerf Treat Wounds by fiat.</strong> Players hate it and it just makes combat swingier. Constrain <em>where</em> they can rest, not <em>whether</em> healing works.</li>
+  </ol>
+
+  <h3>Light and darkvision <span class="pill p-prop">Proposed</span></h3>
+  <p>Most PF2e ancestries have low-light vision; true darkvision is rarer. In a campaign set entirely underground that's not a footnote &mdash; it's one of your strongest atmospheric tools and a live balance question.</p>
+  <ul>
+    <li><strong>Ancestry becomes a setting statement.</strong> Dwarves, orcs and similar have a colonial advantage. That has political consequences: who gets hired as guides, who runs the deep trade, who resents whom.</li>
+    <li><strong>Light attracts things.</strong> A party with lanterns is a moving beacon in a world where everything else navigates without light. Tie encounter frequency to light discipline and your players will make interesting choices unprompted.</li>
+    <li><strong>Open:</strong> is light scarce? If yes, magical light becomes premier treasure and the whole deep economy runs on it.</li>
+  </ul>
+
+  <h3>Statblock sourcing <span class="pill p-prop">Proposed</span></h3>
+  <p>Don't build from scratch. Reskin and re-level: <strong>Formians</strong> (existing hive-society lineage, closest fit for castes), <strong>Ankhravs</strong> (mid-level bruisers), <strong>Mukradi</strong> and assorted vermin from Monster Core for the bestiary spine. Build three or four <em>signature</em> insectoids yourself at different levels and reskin everything else &mdash; players remember silhouettes, not stat blocks.</p>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="maps">
+  <h2><span class="num">09</span>The map program</h2>
+  <div class="crit">
+    <span class="tag">Do not start with the world map</span>
+    <p>The most common worldbuilding mistake and the one that wastes the most effort. The world map is the <em>least</em> useful thing you can draw right now, because you don't yet know what needs to be on it.</p>
+  </div>
+
+  <h3>Draw these, in this order</h3>
+  <table>
+    <tr><th>#</th><th>Map</th><th>Why now</th></tr>
+    <tr><td>01</td><td>Cross-section of the Fallwater</td><td>Your setting's defining property is <em>verticality</em>, and you can't design vertically until you've drawn vertically. Forces you to answer the physical questions you're deferring: how deep, how wide, how does anyone descend, where does light stop, where does the river fall. Best table prop you'll ever make.</td></tr>
+    <tr><td>02</td><td>The colony at the Shelf</td><td>Vertical, built on scaffold and rope, clinging to a shaft wall. Draw it <em>isometric or sectional</em>, not top-down. Players spend every non-delving hour here.</td></tr>
+    <tr><td>03</td><td>The local reach &mdash; as a node map</td><td>Circles for locations, lines for routes, annotations for hazards and travel time. Precise cave cartography is a trap: it takes forever and nobody navigates a real cave map at the table, they navigate a route.</td></tr>
+    <tr><td>04</td><td>One dungeon site, in full</td><td>A single Sunfled ruin or Sealing fortification. Gridded, ready to run. Just one &mdash; prove the pipeline before scaling it.</td></tr>
+    <tr><td>05</td><td>The world schematic. Last.</td><td>Continents in rough mass, twenty Tears marked, watersheds indicated, surface powers blocked in. Resist detail. Nobody will ever be there.</td></tr>
+  </table>
+
+  <h3>Map 1 brief &mdash; pulled straight from locked canon</h3>
+  <table>
+    <tr><th>Element</th><th>What's already decided</th></tr>
+    <tr><td>The river</td><td>Falls from the surface through the Throat &mdash; your central visual</td></tr>
+    <tr><td>The Drowned Chapel</td><td>Wedged in the Throat wall, ~40m below the Lip &mdash; mark it</td></tr>
+    <tr><td>The winch-tower</td><td>Concord's, at the Lip, controlling descent</td></tr>
+    <tr><td>Draft direction</td><td>Decide: is the Fallwater inhaling or exhaling? Changes where fog/mist sits on the drawing</td></tr>
+    <tr><td>Light</td><td>Real sun down to the Threshold floor, doline-style pockets of green wherever a ledge catches it</td></tr>
+    <tr><td>The Shelf</td><td>Where the shaft meets the first horizontal space &mdash; this is where Map 2 picks up</td></tr>
+    <tr><td>The Verge</td><td>The edge of anything surveyed &mdash; mark it, and mark that everything below is blank</td></tr>
+  </table>
+  <p><em>Real-world reference:</em> mine shaft diagrams, karst cross-sections, cenote profiles, oil rig cutaways. In cave-survey vocabulary, what you're drawing is a <strong>projected elevation</strong> or <strong>profile</strong> &mdash; the vertical companion to a plan (top-down) view. Searching that exact term surfaces real cave-survey examples to steal composition from.</p>
+
+  <h3>Analog kit</h3>
+  <ul>
+    <li><strong>Isometric grid paper</strong> &mdash; the unlock for cross-sections and scaffold-towns. Square grid fights you on verticality.</li>
+    <li><strong>Dot grid</strong> for dungeon interiors; far less visually noisy than square grid.</li>
+    <li><strong>Fineliners in three weights</strong> (005 / 01 / 03) &mdash; hairlines for hatching, medium for walls, heavy for the frame. Consistent line weight is what makes hand-drawn maps look professional.</li>
+    <li><strong>Tracing / layout paper</strong> &mdash; draw the rock once, overlay different states (flooded, insectoid-held, ruined). Enormously useful for a campaign where places change.</li>
+    <li><strong>Hachure marks</strong> &mdash; the standard cartographic convention for pit edges and drop-offs. Learn these; they make vertical maps instantly readable.</li>
+  </ul>
+
+  <h3>Tutorials &amp; communities <span class="pill p-lock">Verified &mdash; session 6</span></h3>
+
+  <p style="margin-bottom:6px"><strong>For Map 1 &mdash; cross-sections and cutaway technique</strong></p>
+  <ul>
+    <li><strong>Dyson Logos</strong> (<a href="https://dysonlogos.blog" target="_blank" rel="noopener">dysonlogos.blog</a>) &mdash; the reference for hand-drawn dungeon cartography. His "Dyson Mapping 1-2-3 Tutorial" covers side-view/cutaway stairs and the cross-hatching that reads as "this is a cutaway" rather than "this is a wall" &mdash; exactly the language Map 1 needs. Over a thousand free maps to study alongside it.</li>
+    <li><strong>Fantastic Maps</strong> (<a href="https://www.fantasticmaps.com" target="_blank" rel="noopener">fantasticmaps.com</a>), Jonathan Roberts &mdash; "How to Draw a Cave" recommends pairing a plan (top-down) view with a <strong>profile/elevation</strong> (cross-section) for multi-level caves, and shows how to indicate level changes.</li>
+    <li><strong>2-Minute Tabletop</strong>, "Let's Draw Caves" (YouTube) &mdash; a real-time walkthrough of a cave-wall cross-section, stalagmites and rubble detail.</li>
+  </ul>
+
+  <p style="margin-bottom:6px"><strong>For Map 2 &mdash; the isometric Shelf colony</strong></p>
+  <ul>
+    <li><strong>Paths Peculiar</strong>, "Tutorial: How to Draw an Isometric Dungeon Map" (<a href="https://www.wistedt.net/tutorials/tutorial-isometric-dungeon-map/" target="_blank" rel="noopener">wistedt.net</a>) &mdash; a full worked example, closest in spirit to a vertical scaffold-town.</li>
+    <li><strong>Map Effects</strong> (<a href="https://www.mapeffects.co" target="_blank" rel="noopener">mapeffects.co</a>) &mdash; isometric fortress tutorial plus a free printable isometric grid.</li>
+    <li><strong>grid.chuhlomin.com</strong> &mdash; free browser tool, generates a printable or exportable isometric grid at any size, no signup.</li>
+  </ul>
+
+  <p style="margin-bottom:6px"><strong>Communities</strong></p>
+  <ul>
+    <li><strong>Cartographers' Guild</strong> (<a href="https://www.cartographersguild.com" target="_blank" rel="noopener">cartographersguild.com</a>) &mdash; the long-running hub for fantasy cartography. Post work-in-progress threads for critique; browse the "Cartographer's Choice" showcase.</li>
+    <li><strong>r/mapmaking</strong> and <strong>r/dndmaps</strong> &mdash; faster-moving, good for quick feedback.</li>
+  </ul>
+
+  <p style="margin-bottom:6px"><strong>Real cave-survey references &mdash; vocabulary and conventions</strong></p>
+  <ul>
+    <li><strong>UIS Basic Cave Mapping Symbols</strong> (<a href="https://www.uisic.uis-speleo.org/wgsurmap.html" target="_blank" rel="noopener">uisic.uis-speleo.org</a>) &mdash; the international standard symbol set.</li>
+    <li><strong>NSS Standard Cave Map Symbols</strong> (PDF via <a href="https://sacs.caves.org/resources/symbols-full.pdf" target="_blank" rel="noopener">sacs.caves.org</a>) &mdash; a one-page reference to keep open while you draw.</li>
+    <li>Real surveys distinguish <strong>plan</strong> (top-down), <strong>profile/elevation</strong> (the cross-section you're drawing), and <strong>projected</strong> vs <strong>extended</strong> profile. Knowing the vocabulary makes further searches much more productive.</li>
+  </ul>
+
+  <h3>Digital tools</h3>
+  <table>
+    <tr><th>Tool</th><th>Use</th><th>Cost</th></tr>
+    <tr><td>Dungeon Scrawl</td><td>Fast gridded dungeon maps, browser, clean export</td><td>Free</td></tr>
+    <tr><td>Watabou's Procgen Arcana</td><td>A whole suite &mdash; One Page Dungeon, <strong>Cave/Glade Generator</strong>, Perilous Shores, Medieval Fantasy City Generator</td><td>Free</td></tr>
+    <tr><td>Azgaar's Map Generator</td><td>Fast surface schematic with rivers, biomes and borders</td><td>Free</td></tr>
+    <tr><td>Donjon</td><td>Broad generator toolkit &mdash; dungeons, NPCs, encounter tables</td><td>Free</td></tr>
+    <tr><td>Inkarnate</td><td>Region and world maps, easy</td><td>Freemium</td></tr>
+    <tr><td>Wonderdraft</td><td>World/region with more control</td><td>One-time</td></tr>
+    <tr><td>Dungeondraft</td><td>High-detail battlemaps</td><td>One-time</td></tr>
+    <tr><td>Krita</td><td>Painting and cleanup of scans</td><td>Free</td></tr>
+    <tr><td>Procreate</td><td>Best bridge from hand-sketching, if you have an iPad</td><td>Paid</td></tr>
+    <tr><td>Excalidraw / Obsidian Canvas</td><td>Node maps for map 03</td><td>Free</td></tr>
+  </table>
+  <p><strong>Workflow:</strong> sketch by hand &rarr; scan or photograph &rarr; clean levels in Krita &rarr; annotate digitally. Keeps the hand-drawn character, gains editability.</p>
+
+  <h3>Real places to look at</h3>
+  <ul>
+    <li><strong>Hang Son Doong, Vietnam</strong> &mdash; collapsed ceilings, sunlight, jungle inside a cave. Your doline groves, real.</li>
+    <li><strong>Movile Cave, Romania</strong> &mdash; sealed 5.5M years, chemosynthetic, no light at all.</li>
+    <li><strong>Naica, Mexico</strong> &mdash; crystal caves. Enormous selenite beams, lethal heat. A whole depth band's aesthetic in one photo.</li>
+    <li><strong>Krubera / Veryovkina, Georgia</strong> &mdash; deepest caves on Earth. Look at the <em>survey diagrams</em>, not just photos.</li>
+    <li><strong>Derinkuyu, Turkey</strong> &mdash; multi-level underground city, real, inhabited. Your Sunfled.</li>
+    <li><strong>Mammoth Cave, USA</strong> &mdash; scale, and survey mapping conventions.</li>
+  </ul>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="catalog">
+  <h2><span class="num">10</span>Topic catalog</h2>
+  <p>The map of remaining work. Nothing here is urgent.</p>
+  <h3>Physical</h3>
+  <p>Depth and heat &middot; air circulation and bad air &middot; the new hydrology &middot; light sources and scarcity &middot; <strong>how people underground track time</strong> (small detail, big flavour payoff) &middot; how far sound carries and what hears it.</p>
+  <h3>Ecological</h3>
+  <p>Food webs (chemosynthetic, fungal, thermal) &middot; domesticated deep species &middot; apex predators per band &middot; what the insectoids eat and whether it competes with anything.</p>
+  <h3>Cultural &mdash; surface</h3>
+  <p>The powers (cap at four or five that matter) &middot; charter companies vs. states vs. religious orders &middot; the refugee crisis &middot; how faiths interpreted the Weeping, and the schisms &middot; <strong>what comes up</strong> &mdash; the export economy that justifies everything.</p>
+  <h3>Cultural &mdash; deep</h3>
+  <p>Surviving Sunfled &middot; Aftermath remnants &middot; <strong>second-generation colonists, people born down there</strong> &mdash; they don't consider it a frontier, they consider it home, and they resent everyone above &middot; deep-born creole.</p>
+  <h3>Historical</h3>
+  <p>The Sealing &middot; the Builders &middot; the first year after the Weeping and the heroes who descended and died.</p>
+  <h3>Mechanical</h3>
+  <p>Supply and attrition &middot; delve-ploration &middot; downtime and colony-building &middot; deep-born heritage? &middot; custom items: light, heat gear, Weftway navigation tools.</p>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="home">
+  <h2><span class="num">11</span>The Fallwater &mdash; home Undertear</h2>
+  <p><span class="pill p-lock">Locked</span> The Undertear pictured in Fig. 1. Tone: <strong>grim survival.</strong></p>
+
+  <h3>Identity</h3>
+  <p>Two names, same device as the event itself. <strong>Concord's Reach</strong> on every charter document and toll receipt. <strong>The Fallwater</strong> to everyone who actually lives there.</p>
+  <p>The watershed answers to no single crown &mdash; a half-dozen minor lords and a bankrupt duchy share it, none capable of a full dam alone. No strong state means no single authority controlled the Undertear when it opened, which is what makes the triangle possible. Layout follows the anatomy template in &sect;04: the Lip is scaffolding and Concord's toll tower, the Throat is the shaft with the river falling through, the Shelf is the settlement proper, the Verge is the edge of the surveyed, the Mouths lead into the unknown.</p>
+
+  <h3>The triangle</h3>
+  <table>
+    <tr><th>Faction</th><th>Holds</th><th>Leader &amp; complication</th></tr>
+    <tr><td>The Concord Company</td><td>Winch-towers, tolls, exclusive descent rights bought with the dam</td><td><strong>Factor Ilsabet Vane.</strong> Cold, pragmatic, one bad quarter from being pulled &mdash; already hiding casualties. Someone at Concord is leaking to the Commons; undecided who.</td></tr>
+    <tr><td>The Commons of the Fallwater</td><td>Smuggled rope-routes, communal rationing, numbers</td><td><strong>Sella Marrow, "the Boatwright."</strong> Not monolithic &mdash; a hardline splinter, <strong>the Undertow</strong>, wants to burn the toll tower rather than negotiate.</td></tr>
+    <tr><td>The Vigil of the Weeping</td><td>Medicine, burial rites, the only real data on the deep</td><td><strong>Warden Cael Ashgrove.</strong> Declared heretical back home, isolated, willing to cut uncomfortable deals. Their scholars catalogue anomalies without understanding them &mdash; the delivery mechanism for the inverted-gradient discovery.</td></tr>
+  </table>
+
+  <h3>NPCs outside the triangle</h3>
+  <ul>
+    <li><strong>"Ninefinger" Sarn</strong> &mdash; independent guide, unaffiliated. Lost fingers to frostbite somewhere that should have been getting hotter. A walking clue to the inverted gradient. Trusts no faction.</li>
+    <li><strong>Toll-keeper Ordo Vance</strong> &mdash; missing, with a strongbox. Concord blames the Commons. The truth: marks at the scene matching nothing in any bestiary. The First Sign, delivered as a mystery object rather than a monster.</li>
+  </ul>
+
+  <h3>Session one hooks <span class="pill p-open">Deferred</span></h3>
+  <p><em>"We will figure it out later."</em> Not choosing yet &mdash; revisit once the Fallwater has more texture, or right before session zero.</p>
+  <table>
+    <tr><th>Hook</th><th>Pulls in</th><th>Note</th></tr>
+    <tr><td><strong>A &mdash; The Toll Line.</strong> Concord raises tolls as winter stores run low; Marrow needs a shipment smuggled past the checkpoint.</td><td>Concord vs Commons</td><td>Fast political heat. Uses Supply from session one.</td></tr>
+    <tr><td><strong>B &mdash; Ninefinger's Debt.</strong> Sarn's last guided expedition hasn't returned from a cache at the breathable frontier.</td><td>Sarn, environmental hazards</td><td>Better as session 2&ndash;3, once the party knows Sarn.</td></tr>
+    <tr><td><strong>C &mdash; The Vigil's Excavation.</strong> A cave-in traps acolytes in a Sunfled ruin; something hints at the Sealing Era.</td><td>Vigil, the dead civilizations</td><td>Mid-game payoff; needs the mystery to already matter.</td></tr>
+    <tr><td><strong>D &mdash; Winter Is Two Months Away.</strong> A hard resource run to a contested foraging site.</td><td>All three factions</td><td><strong>Critique: not really a fifth hook</strong> &mdash; this is the season, not a session. Fold in as ambient pressure.</td></tr>
+    <tr><td><strong>E &mdash; The Missing Toll-Keeper.</strong> Vance is gone; Concord blames the Commons; the true tracks match nothing known.</td><td>Concord, Commons, the clock</td><td><strong>Recommended opener.</strong> Forces both factions into the same room day one; quietly starts clock segment 1.</td></tr>
+  </table>
+  <div class="rec">
+    <span class="tag">GM recommendation</span>
+    <p>Open with <strong>E</strong>. Use <strong>D</strong> as the permanent backdrop rather than a hook. Hold <strong>B</strong> and <strong>C</strong> for once the party has relationships worth spending.</p>
+  </div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="dungeons">
+  <h2><span class="num">12</span>Early dungeon sites near the Fallwater</h2>
+  <p><span class="pill p-prop">Proposed</span> Three sites, all reachable from the Fallwater without a long expedition, spanning levels 1&ndash;5 and three different modes of play: vertical/environmental, social/tragic, hazard/negotiation. None require the antagonists to be resolved. Small, deliberate seeds of the deeper mystery sit in each &mdash; nothing that commits you to an answer yet.</p>
+
+  <h3>The Drowned Chapel <span class="pill p-open">Levels 1&ndash;2</span></h3>
+  <p><strong>Location.</strong> Wedged into the Throat wall of the Fallwater itself, roughly 40 metres below the Lip. Visible from the winch-tower on a still day, swaying slightly in the draft.</p>
+  <p><strong>Premise.</strong> The village chapel, caught on a ledge the Throat carved as it tore open. It didn't fall &mdash; it's held. The congregation was mid-service. Most didn't get out.</p>
+  <p><strong>Shape of the site.</strong> Not a corridor crawl &mdash; a climb through a tilted building. Load-bearing pews, a bell that still hangs and will ring if disturbed (a Throat Squall gust could set it off unprompted). Bodies remain; some recoverable for the Vigil's rites, some showing signs looters have already been through.</p>
+  <div class="rec">
+    <span class="tag">The twist</span>
+    <p>A survivor is still alive, sealed into the sacristy for two months, rationing communion wine and altar bread. How the party handles this &mdash; rescue, loot around them, report to a faction &mdash; is a strong character-defining choice, and exactly the kind of hard, human-scale decision the grim-survival tone should run on.</p>
+  </div>
+  <p><strong>Faction pull.</strong> The Vigil wants the bodies and relics and will pay or grant standing for retrieval. Concord may want the lead roofing and the bell salvaged. A contained, low-stakes introduction to the triangle's competing claims.</p>
+
+  <h3>The Hushed of the Undersong <span class="pill p-open">Levels 3&ndash;4</span></h3>
+  <p><strong>Location.</strong> A day or two past the Verge, in a side-passage newly ventilated by the Weeping &mdash; sealed with bad air until the Undertears started the world breathing.</p>
+  <p><strong>Premise.</strong> A pocket of survivors called <strong>the Hushed</strong> &mdash; not fresh refugees, but descendants of something older, cut off since the Sealing Era, who believed they were the last people in the world. Pale, sensitive-eyed, sustained for generations on cultivated fungus and mineral light.</p>
+  <div class="crit">
+    <span class="tag">The cruelty of the timing</span>
+    <p><strong>The new air currents are killing their food supply</strong> &mdash; their fungus depended on the old, sealed air chemistry. The same event that let the party find them is quietly destroying them.</p>
+  </div>
+  <p><strong>Shape of the site.</strong> A small settlement, not a combat gauntlet &mdash; narrow galleries, fungus terraces going brown, defensive traps built generations ago against something the Hushed call only <em>"the old fear."</em> An elder willing to trade lore for aid, if aid can even be offered.</p>
+  <p><strong>Why it matters.</strong> Rich roleplay and moral weight rather than loot. A live thread toward the parked "why did the ways close" question &mdash; the Hushed may hold oral history nobody living has heard. "The old fear" is a controlled, deniable hint you can develop later without committing to what it means yet.</p>
+  <p><strong>Faction pull.</strong> The Vigil would be desperate for contact &mdash; proof of doctrine, or a crisis of faith. Concord would want to catalogue or exploit them. The Commons would see kindred desperate people worth aiding. One site, three different reasons to care.</p>
+
+  <h3>The Cinderspore Reach <span class="pill p-open">Levels 2&ndash;5, scalable</span></h3>
+  <p><strong>Location.</strong> Near the Verge, along an exhaling Mouth thick with bioluminescence.</p>
+  <p><strong>Premise.</strong> A vast, richly productive bioluminescent fungal grove &mdash; the first significant renewable food and medicine source found near the Fallwater. Exactly what "Winter Is Two Months Away" needs, and all three factions want it: Concord to toll it, the Commons to survive on it, the Vigil to read it as an omen &mdash; light where there should be none.</p>
+  <p><strong>Shape of the site.</strong> Environmental-hazard-forward rather than monster-forward. Standing drafts move spore clouds through the galleries. A Blackdamp Pocket sits in the grove's lowest hollow. Unstable footing on fungal terraces. Beneath the growth, old cultivation terraces from someone much older &mdash; and half-buried in one terrace, a tool that matches no known culture.</p>
+  <div class="rec">
+    <span class="tag">A second First Sign</span>
+    <p>Delivered as a detail in a location rather than a single object &mdash; for a table that already found the first one at the toll post and wants confirmation rather than a fresh mystery.</p>
+  </div>
+  <p><strong>Faction pull.</strong> A natural site to be hired as guard, scout or negotiator by any of the three factions &mdash; or to broker a three-way deal between them. Where the Victory Point / Influence subsystem would actually earn its keep, if you want mechanics under the negotiation.</p>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="homebrew">
+  <h2><span class="num">13</span>Homebrew rules &amp; hazards</h2>
+  <p>Running catalogue. PF2e Remaster format, tuned to the depth bands.</p>
+
+  <h3>The Standing Draft</h3>
+  <p>Every Throat and most major tunnels carry a permanent wind. Ambient, not a hazard &mdash; it applies constantly and shapes how players plan.</p>
+  <table>
+    <tr><th>Situation</th><th>Effect</th></tr>
+    <tr><td>Moving against the draft</td><td>Difficult terrain. In a Throat, <strong>greater</strong> difficult terrain.</td></tr>
+    <tr><td>Ranged attacks along the draft</td><td>&minus;2 circumstance penalty (&minus;4 in a Throat)</td></tr>
+    <tr><td>Perception by hearing</td><td>&minus;2 circumstance penalty; the draft is loud</td></tr>
+    <tr><td>Non-magical open flame</td><td>DC 15 flat check each round or it goes out. DC 20 in a Throat.</td></tr>
+    <tr><td>Flying, Medium or smaller</td><td>Acrobatics vs the draft DC to hold position, or pushed 10 feet per round</td></tr>
+    <tr><td>Scent tracking</td><td>Doubled range downwind, impossible upwind</td></tr>
+  </table>
+  <p><strong>Direction matters.</strong> Each Undertear is either inhaling or exhaling, and can flip seasonally. Note it on every map.</p>
+
+  <h3>Bad air</h3>
+  <table>
+    <tr><th>Term</th><th>What it is</th><th>Effect</th></tr>
+    <tr><td>Blackdamp</td><td>Oxygen-depleted air</td><td>Suffocation and fatigue &mdash; see below</td></tr>
+    <tr><td>Firedamp</td><td>Methane</td><td>Explosive. An open flame is a mistake.</td></tr>
+    <tr><td>Stinkdamp</td><td>Hydrogen sulfide</td><td>Poison; deadens the sense of smell before it kills</td></tr>
+    <tr><td>Whitedamp</td><td>Carbon monoxide</td><td>Poison; no warning signs at all</td></tr>
+  </table>
+
+  <div class="sb">
+    <p class="name">Throat Squall <span class="lvl">Hazard 5</span></p>
+    <p class="traits">Complex &middot; Environmental</p>
+    <p><span class="k">Stealth</span> DC 20 (expert) &mdash; a pressure drop in the ears and a rising howl precede it by a few seconds</p>
+    <p><span class="k">Description</span> The air column surges as thermal fronts collide kilometres below, or as the draft scrapes past the edge of something that will not let it in.</p>
+    <p><span class="k">Disable</span> Survival DC 22 (read the signs and brace the party) or Athletics DC 24 (fix and secure a line before it hits)</p>
+    <p><span class="k">AC</span> 22; <span class="k">Fort</span> +14, <span class="k">Ref</span> +8</p>
+    <p><span class="k">Immunities</span> object immunities; can't be attacked or damaged</p>
+    <div class="act">
+      <p><strong>Squall</strong> [reaction] <span class="k">Trigger</span> A creature enters the Throat, or the squall begins. <span class="k">Effect</span> The hazard rolls initiative.</p>
+      <p><span class="k">Routine</span> (2 actions) Both actions each round for 3 rounds, then it subsides.</p>
+      <p><strong>Surge</strong> &mdash; each creature in the Throat attempts a DC 22 Fortitude save.</p>
+      <ul>
+        <li><strong>Success</strong> Pushed 5 feet along the draft.</li>
+        <li><strong>Failure</strong> 2d6 bludgeoning and pushed 15 feet along the draft.</li>
+        <li><strong>Critical failure</strong> 4d6 bludgeoning, pushed 30 feet, and DC 22 Reflex or lose its handhold.</li>
+      </ul>
+      <p style="margin-top:9px"><strong>Torn debris</strong> &mdash; rope ends, cargo, scaffold boards, loose stone. One random creature in the Throat takes 3d6 bludgeoning, DC 22 Reflex basic save.</p>
+      <p><span class="k">Reset</span> Squalls unpredictably, roughly once per hour. <strong>Near the edge of the Stillness, roughly once per ten minutes.</strong></p>
+    </div>
+    <p class="note"><b>Design note.</b> In a horizontal tunnel this is a nasty but survivable buffeting. In a vertical Throat the push is a <em>fall</em>. Same hazard, radically different threat depending on geography &mdash; which teaches players to respect terrain rather than numbers. Scale to other bands by adjusting DCs and dice; the shape holds.</p>
+  </div>
+
+  <div class="sb">
+    <p class="name">Blackdamp Pocket <span class="lvl">Hazard 2</span></p>
+    <p class="traits">Environmental</p>
+    <p><span class="k">Stealth</span> DC 18 (trained) &mdash; flames gutter and burn low; a carried bird sickens first</p>
+    <p><span class="k">Description</span> A hollow where oxygen-depleted air has settled and stayed. Odourless, invisible, heavier than good air, so it pools in dips, sumps and dead-end chambers.</p>
+    <p><span class="k">Disable</span> Survival DC 18 (recognise the signs and withdraw) or Crafting DC 20 (rig a draft-line to ventilate)</p>
+    <div class="act">
+      <p><strong>Suffocation</strong> [reaction] <span class="k">Trigger</span> A creature enters the pocket or begins its turn there. <span class="k">Effect</span> DC 18 Fortitude save.</p>
+      <ul>
+        <li><strong>Success</strong> No effect, but the creature knows something is wrong.</li>
+        <li><strong>Failure</strong> Fatigued, and can't recover until it spends 10 minutes in clean air.</li>
+        <li><strong>Critical failure</strong> As failure, and the creature falls unconscious and begins suffocating.</li>
+      </ul>
+      <p style="margin-top:9px"><span class="k">Reset</span> Refills within an hour unless the chamber is permanently ventilated.</p>
+    </div>
+    <p class="note"><b>Design note.</b> Your quiet attrition hazard &mdash; it doesn't deal damage, it <em>spends</em> the party. Fatigued characters make worse decisions three rooms later. Makes air a planning problem rather than a damage problem.</p>
+  </div>
+
+  <h3>To build</h3>
+  <ul>
+    <li><strong>Coldbite</strong> &mdash; deep cold as a persistent affliction below the reversal, staged rather than flat damage</li>
+    <li><strong>The Unlit</strong> &mdash; rules for dark that darkvision doesn't penetrate</li>
+    <li><strong>Stillness Shear</strong> &mdash; a Hazard 9&ndash;11 upscale of Throat Squall for the enchantment boundary</li>
+    <li><strong>Supply</strong> &mdash; the abstract resource pool</li>
+    <li><strong>Delve-ploration</strong> &mdash; hexploration adapted to reaches</li>
+    <li><strong>Signature insectoid stat blocks</strong> &mdash; three or four across the level range, everything else reskinned</li>
+    <li><strong>Doline grove</strong> &mdash; a <em>beneficial</em> environmental feature, for contrast: safe rest, real light, growing food</li>
+  </ul>
+</section>
+
+<!-- ============ 14 ============ -->
+<section id="chunks">
+  <h2><span class="num">14</span>Work chunks</h2>
+  <p>Ordered by dependency. Later chunks need earlier answers.</p>
+  <div class="chunks">
+    <div class="chunk now"><h4><span class="cn">00</span>Premise lock &mdash; next session</h4><p>Resolve the three blockers: agency, hive-vs-civilization, why the ways closed. Settle naming. Everything else waits on these.</p></div>
+    <div class="chunk"><h4><span class="cn">01</span>Physics &amp; cosmology of the deep</h4><p>Depth model, heat, light, water, air, time. Locks the depth bands and therefore the level structure.</p></div>
+    <div class="chunk"><h4><span class="cn">02</span>The antagonists</h4><p>Biology, castes, motive, politics, the ritual's cost, the defector, the Weftway network. Your campaign's spine.</p></div>
+    <div class="chunk"><h4><span class="cn">03</span>The surface &amp; the frontier</h4><p>Powers, charter companies, export economy, refugees, the Undertear template, the political map.</p></div>
+    <div class="chunk"><h4><span class="cn">04</span>The home Undertear</h4><p>One location in full. NPCs, factions, the Shelf town, the Verge, three delve sites. This is what you need to start playing.</p></div>
+    <div class="chunk"><h4><span class="cn">05</span>The dead civilizations</h4><p>Era stack, architecture per era, three sample ruins.</p></div>
+    <div class="chunk"><h4><span class="cn">06</span>Campaign structure</h4><p>The clock, the fronts, faction goals, first arc, session zero, level plan.</p></div>
+    <div class="chunk"><h4><span class="cn">07</span>Mechanical layer</h4><p>Supply, delve-ploration, downtime, custom items, statblock plan.</p></div>
+  </div>
+  <p style="margin-top:18px"><em>Maps run parallel to chunks, not after them. Map 01 as soon as chunk 01 is done; maps 02 and 04 after chunk 04.</em></p>
+</section>
+
+<!-- ============ 15 ============ -->
+<section id="questions">
+  <h2><span class="num">15</span>Open questions</h2>
+  <ol class="qs">
+    <li><s>The agency contradiction</s> &mdash; <strong>resolved:</strong> the insectoids, no separate entity.</li>
+    <li><s>Hive-mind or civilization?</s> &mdash; <strong>resolved:</strong> civilization, non-negotiable.</li>
+    <li class="blocker"><strong>Why did the ways close originally?</strong> &mdash; parked by decision, to explore later.</li>
+    <li><s>Is the surface in slow crisis, or basically fine?</s> &mdash; <strong>managed crisis;</strong> dams hold the worst.</li>
+    <li>What level does the campaign end at?</li>
+    <li><s>How literal is depth?</s> &mdash; <strong>inverted gradient, cold deep.</strong></li>
+    <li>Name of the event.</li>
+    <li>Name of the megadungeon.</li>
+    <li>Name of the tunnel network.</li>
+    <li><s>Do you want the river-drainage consequence?</s> &mdash; <strong>yes, with dams.</strong></li>
+    <li><s>Is light scarce?</s> &mdash; <strong>zoned by band; deep bands qualitatively dark.</strong></li>
+    <li>How many surface powers actually matter?</li>
+    <li>Are any Sunfled still alive?</li>
+    <li>Tone: pulp adventure, grim survival, or political frontier drama?</li>
+    <li>What's the party's reason to descend in session one?</li>
+    <li class="blocker"><strong>Two months or eighteen?</strong> The elapsed-time tension &mdash; recommended: two.</li>
+    <li><strong>What is the entity at the Root?</strong></li>
+  </ol>
+</section>
+
+<footer>The Undermarch &middot; Draft 0.6 &middot; map program expanded with a Fallwater-specific brief and verified resources &middot; next: draw Map 1</footer>
+<!-- ============ 16 ============ -->
+<section id="glossary">
+  <h2><span class="num">16</span>Glossary</h2>
+  <p>Every named thing in the setting so far, in one place. <span class="pill p-open">Open</span> marks a name that hasn't been locked yet.</p>
+
+  <h3>Events &amp; cosmology</h3>
+  <table>
+    <tr><td>The Weeping</td><td>Folk name for the cataclysm</td></tr>
+    <tr><td>The Opening</td><td>Official / charter name for the same event</td></tr>
+    <tr><td>The Unroofing</td><td>Deep-dweller name for the same event</td></tr>
+    <tr><td>Undertears</td><td>The ~20 openings connecting the surface to the deep</td></tr>
+    <tr><td>The Undermarch</td><td>Common name for the megadungeon</td></tr>
+    <tr><td>The Undersky</td><td>Poetic / native name for the megadungeon</td></tr>
+    <tr><td>The Weftways <span class="pill p-open">Open</span></td><td>The ancient horizontal insectoid tunnel network connecting deep regions</td></tr>
+    <tr><td>The Archipelago Model</td><td>The Undermarch is discrete regions, not one connected cave system</td></tr>
+    <tr><td>The Stillness</td><td>The fading enchantment protecting the insectoid homeland; runs on deep heat</td></tr>
+    <tr><td>The Root</td><td>The deepest depth band; home to the unidentified heat-draining entity</td></tr>
+    <tr><td>Threshold / Shallows / Mid Reaches / Under Deeps / Root</td><td>The five depth bands</td></tr>
+    <tr><td>The Inverted Gradient</td><td>The Undermarch cools with depth past the Mid Reaches</td></tr>
+    <tr><td>Builders / Sunfled / Sealing Era / Aftermath</td><td>The four eras of the dead civilizations, deepest to shallowest</td></tr>
+  </table>
+
+  <h3>Places</h3>
+  <table>
+    <tr><td>The Fallwater <span style="color:var(--dust);font-weight:400">(official: Concord's Reach)</span></td><td>The home Undertear</td></tr>
+    <tr><td>Lip / Throat / Shelf / Verge / Mouths</td><td>The five-part anatomy shared by every Undertear</td></tr>
+    <tr><td>The Drowned Chapel</td><td>Dungeon site &mdash; a collapsed chapel wedged in the Fallwater's Throat</td></tr>
+    <tr><td>The Hushed of the Undersong</td><td>Dungeon site &mdash; an isolated survivor enclave in the Shallows</td></tr>
+    <tr><td>The Cinderspore Reach</td><td>Dungeon site &mdash; a contested bioluminescent fungal grove</td></tr>
+  </table>
+
+  <h3>Factions &amp; peoples</h3>
+  <table>
+    <tr><td>The Concord Company</td><td>Merchant charter controlling descent rights at the Fallwater</td></tr>
+    <tr><td>The Commons of the Fallwater</td><td>Refugee and local coalition</td></tr>
+    <tr><td>The Undertow</td><td>Militant splinter of the Commons</td></tr>
+    <tr><td>The Vigil of the Weeping</td><td>Schismatic religious order</td></tr>
+    <tr><td>The Deep Choir <span class="pill p-open">Open</span></td><td>Working name for the insectoid civilization</td></tr>
+    <tr><td>The Hushed</td><td>Isolated Aftermath-descended survivor people</td></tr>
+  </table>
+
+  <h3>People</h3>
+  <table>
+    <tr><td>Factor Ilsabet Vane</td><td>Concord's Field Director at the Fallwater</td></tr>
+    <tr><td>Sella Marrow, "the Boatwright"</td><td>Informal leader of the Commons</td></tr>
+    <tr><td>Warden Cael Ashgrove</td><td>Leader of the Vigil of the Weeping</td></tr>
+    <tr><td>"Ninefinger" Sarn</td><td>Independent guide, unaffiliated with any faction</td></tr>
+    <tr><td>Toll-keeper Ordo Vance</td><td>Missing Concord toll-collector &mdash; the First Sign</td></tr>
+  </table>
+
+  <h3>Hazards &amp; phenomena</h3>
+  <table>
+    <tr><td>Blackdamp / Firedamp / Stinkdamp / Whitedamp</td><td>The four "damps" &mdash; real mining terms, adopted for bad-air hazards</td></tr>
+    <tr><td>The Standing Draft</td><td>The permanent wind through every Throat and major tunnel</td></tr>
+    <tr><td>Throat Squall <span style="color:var(--dust);font-weight:400">(Hazard 5)</span></td><td>Environmental hazard stat block</td></tr>
+    <tr><td>Blackdamp Pocket <span style="color:var(--dust);font-weight:400">(Hazard 2)</span></td><td>Environmental hazard stat block</td></tr>
+    <tr><td>The First Sign</td><td>The unexplained evidence at Vance's disappearance; the invasion clock's opening tremor</td></tr>
+  </table>
+
+  <h3>Session one hooks <span style="color:var(--dust);font-weight:400;font-size:13px">(deferred, not yet chosen)</span></h3>
+  <p>The Toll Line &middot; Ninefinger's Debt &middot; The Vigil's Excavation &middot; Winter Is Two Months Away &middot; The Missing Toll-Keeper</p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.strata a'));
+  var map = {};
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var sec = document.getElementById(id);
+    if(sec) map[id] = a.parentElement;
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var li = map[e.target.id];
+      if(!li) return;
+      if(e.isIntersecting){
+        Object.keys(map).forEach(function(k){ map[k].classList.remove('here'); });
+        li.classList.add('here');
+      }
+    });
+  },{rootMargin:'-10% 0px -70% 0px',threshold:0});
+  Object.keys(map).forEach(function(k){ io.observe(document.getElementById(k)); });
+})();
+</script>
+</body>
+</html>

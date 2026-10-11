@@ -1,0 +1,123 @@
+:root{
+  --void:#12100E; --stone:#1B1815; --shale:#26221D; --edge:#3A342B;
+  --bone:#E4DDD1; --dust:#9A9086; --daylight:#E3B23C; --iron:#A63D2F; --lichen:#7A8B6F;
+  --sans:'Archivo',system-ui,sans-serif; --disp:'Fraunces',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--void);color:var(--bone);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--daylight);text-decoration:none;border-bottom:1px solid rgba(227,178,60,.35)}
+a:hover{border-bottom-color:var(--daylight)}
+a:focus-visible{outline:2px solid var(--daylight);outline-offset:2px}
+strong{color:#F2ECE2;font-weight:600}
+
+/* top nav, shared across pages */
+nav.topnav{
+  position:sticky;top:0;z-index:10;background:rgba(18,16,14,.96);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--edge);padding:14px 28px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+}
+nav.topnav .brand{font-family:var(--disp);font-weight:600;font-size:17px;color:var(--bone);border:none;margin-right:8px}
+nav.topnav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dust);border:none;padding:4px 0;border-bottom:2px solid transparent}
+nav.topnav a:hover{color:var(--bone)}
+nav.topnav a.active{color:var(--daylight);border-bottom-color:var(--daylight)}
+
+main{max-width:880px;margin:0 auto;padding:44px 28px 120px}
+
+header.masthead{border-bottom:1px solid var(--edge);padding-bottom:24px;margin-bottom:32px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--daylight);margin:0 0 12px}
+h1{font-family:var(--disp);font-weight:900;font-size:clamp(32px,5.5vw,52px);line-height:1.02;margin:0 0 12px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--dust);display:block;font-size:.44em;font-weight:400;margin-top:10px;line-height:1.4}
+p.lede{font-size:16.5px;color:var(--dust);max-width:68ch;margin:0}
+
+h2{font-family:var(--disp);font-weight:600;font-size:26px;margin:44px 0 6px;letter-spacing:-.005em;scroll-margin-top:70px}
+h2 .n{font-family:var(--mono);font-size:11px;color:var(--daylight);display:block;margin-bottom:6px;letter-spacing:.16em;font-weight:400}
+h3{font-family:var(--sans);font-weight:600;font-size:16px;margin:8px 0 4px;color:var(--bone)}
+p{margin:0 0 14px;max-width:70ch}
+ul,ol{max-width:70ch;padding-left:20px;margin:0 0 14px}
+li{margin-bottom:6px}
+
+/* entry cards - used on canon and gameplay pages */
+.entry{border:1px solid var(--edge);background:var(--stone);border-radius:3px;padding:20px 22px;margin:0 0 16px;scroll-margin-top:70px}
+.entry-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.entry h3{margin:0;font-family:var(--disp);font-weight:600;font-size:19px}
+.entry p:last-child{margin-bottom:0}
+.entry .seealso{margin-top:12px;padding-top:10px;border-top:1px solid #221E1A;font-size:13px;color:var(--dust)}
+.entry .seealso b{color:var(--dust);font-weight:500}
+
+/* origin & status badges */
+.tag{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1px solid currentColor;white-space:nowrap}
+.tag-dim{color:var(--lichen)}
+.tag-claude{color:var(--daylight)}
+.tag-locked{color:var(--lichen);background:rgba(122,139,111,.08)}
+.tag-open{color:var(--dust)}
+.tag-endorsed{color:var(--daylight);background:rgba(227,178,60,.08)}
+.tag-parked{color:var(--iron);background:rgba(166,61,47,.08)}
+.tag-npc{color:#8FAAD1}
+.tag-hazard{color:var(--iron)}
+.tag-dungeon{color:#C08FD1}
+.tag-habitat{color:var(--lichen)}
+.tag-phenomenon{color:#6FB8C9}
+.tagrow{display:flex;gap:6px;flex-wrap:wrap}
+
+/* stat block */
+.sb{border:1px solid var(--edge);background:var(--shale);padding:18px 20px;margin:0 0 16px}
+.sb .name{font-family:var(--disp);font-weight:600;font-size:18px;margin:0 0 2px}
+.sb .lvl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--iron)}
+.sb .traits{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust);margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--edge)}
+.sb p{font-size:13.5px;margin:0 0 8px}
+.sb .k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--daylight)}
+.sb .act{border-top:1px solid #221E1A;margin-top:12px;padding-top:10px}
+
+/* glossary */
+.gterm{border-bottom:1px solid #221E1A;padding:12px 0}
+.gterm:last-child{border-bottom:none}
+.gterm .gname{font-family:var(--disp);font-weight:600;font-size:16px;color:#F2ECE2}
+.gterm .gdef{font-size:14px;color:var(--dust);margin-top:2px}
+.gterm .glink{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em}
+
+table{border-collapse:collapse;width:100%;max-width:74ch;margin:0 0 18px;font-size:13.5px}
+th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust);font-weight:400;padding:0 12px 8px 0;border-bottom:1px solid var(--edge)}
+td{padding:9px 12px 9px 0;border-bottom:1px solid #221E1A;vertical-align:top}
+tr:last-child td{border-bottom:none}
+
+.note{font-size:13.5px;color:var(--dust);border-left:2px solid var(--edge);padding:2px 0 2px 14px;margin:14px 0}
+
+/* POI running-guidance box */
+.run{border:1px solid var(--edge);background:var(--shale);border-radius:3px;padding:16px 18px;margin:14px 0 0}
+.run .rh{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--daylight);margin:0 0 10px}
+.run dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px}
+.run dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dust);padding-top:3px;white-space:nowrap}
+.run dd{margin:0;color:var(--bone)}
+.run .turn{margin:12px 0 0;padding-top:10px;border-top:1px solid #221E1A;font-size:13.5px}
+.run .turn b{color:var(--daylight);font-weight:500;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+.poi{margin:0 0 34px;scroll-margin-top:70px}
+.poi h3{font-family:var(--disp);font-weight:600;font-size:21px;margin:0 0 3px}
+.poi .depth{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--dust);margin:0 0 12px}
+.cluster{border-top:1px solid var(--edge);margin:44px 0 26px;padding-top:14px}
+.cluster h2{margin:0 0 4px}
+.cluster p{font-size:14px;color:var(--dust);margin:0}
+
+.section-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 32px}
+.section-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.04em;border:1px solid var(--edge);padding:5px 11px;border-radius:20px;color:var(--dust)}
+.section-nav a:hover{color:var(--bone);border-color:var(--dust)}
+
+.stat-strip{display:flex;gap:0;border:1px solid var(--edge);margin:20px 0 8px;flex-wrap:wrap}
+.stat{flex:1;min-width:120px;padding:14px 16px;border-right:1px solid var(--edge)}
+.stat:last-child{border-right:none}
+.stat .num{font-family:var(--disp);font-size:26px;font-weight:600;color:var(--daylight);display:block;line-height:1}
+.stat .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dust);margin-top:4px;display:block}
+
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:20px 0 8px}
+.card{border:1px solid var(--edge);background:var(--stone);padding:18px;border-radius:3px}
+.card a{border:none;display:block}
+.card h3{font-family:var(--disp);font-size:18px;margin:0 0 6px}
+.card p{font-size:13.5px;color:var(--dust);margin:0}
+
+footer{border-top:1px solid var(--edge);padding-top:20px;margin-top:50px;font-family:var(--mono);font-size:11px;color:#5C5449;max-width:880px;margin-left:auto;margin-right:auto;padding-left:28px;padding-right:28px}
+
+@media (max-width:640px){
+  nav.topnav{padding:12px 16px;gap:16px}
+  main{padding:32px 16px 90px}
+}

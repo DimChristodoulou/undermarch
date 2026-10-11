@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas — The Undermarch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- undermarch-site · atlas engine · updated 2026-09-12 · data lives in undermarch-atlas-data.js + undermarch-atlas-data-sky.js -->
+<link rel="stylesheet" href="undermarch-style.css">
+<style>
+/* ---- page-local: the atlas needs more width than the reading pages ---- */
+main.atlas{max-width:1360px}
+
+#frame{position:relative;border:1px solid var(--edge);background:var(--stone);
+  height:min(76vh,780px);min-height:460px;display:flex;flex-direction:column;margin:0 0 34px}
+#frame.expanded{position:fixed;inset:0;z-index:100;height:100vh;max-height:none;margin:0;border:none}
+
+#bar{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--edge);
+  flex-wrap:wrap;flex:none;background:var(--shale)}
+.abtn{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;color:var(--dust);cursor:pointer;
+  border:1px solid var(--edge);border-radius:2px;padding:6px 10px;background:var(--stone);white-space:nowrap}
+.abtn:hover{color:var(--bone);border-color:#4E4638}
+.abtn.on{color:var(--daylight);border-color:rgba(227,178,60,.5);background:rgba(227,178,60,.07)}
+.searchwrap{position:relative;margin-left:auto}
+#search{background:var(--stone);border:1px solid var(--edge);border-radius:2px;color:var(--bone);
+  font-family:var(--sans);font-size:13px;padding:6px 10px;width:210px}
+#search::placeholder{color:#6E665E}
+#results{position:absolute;top:100%;right:0;margin-top:5px;background:var(--shale);border:1px solid var(--edge);
+  border-radius:2px;width:270px;max-height:290px;overflow-y:auto;display:none;z-index:9}
+#results.show{display:block}
+#results button{display:block;width:100%;text-align:left;padding:8px 11px;font-size:13px;color:#CFC7BB;
+  border:none;border-bottom:1px solid #221E1A;background:none;cursor:pointer;font-family:var(--sans)}
+#results button:hover{background:var(--stone);color:var(--bone)}
+#results .rt{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:#6E665E;display:block}
+
+#legend{display:flex;gap:5px;padding:7px 12px;border-bottom:1px solid var(--edge);
+  overflow-x:auto;align-items:center;flex:none;scrollbar-width:thin}
+.chip{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  color:var(--dust);border:1px solid transparent;border-radius:2px;padding:4px 8px;white-space:nowrap;
+  opacity:.45;background:none;cursor:pointer}
+.chip.on{opacity:1;border-color:var(--edge);background:var(--shale)}
+.chip .sw{width:9px;height:9px;border-radius:50%;flex:none}
+.chip .ct{color:#5E574F}
+.rail-sep{width:1px;height:18px;background:var(--edge);flex:none;margin:0 5px}
+
+#stage{flex:1;position:relative;min-height:0;overflow:hidden}
+canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:none}
+canvas.grabbing{cursor:grabbing}
+#hint{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:10px;color:#5A534B;
+  letter-spacing:.06em;pointer-events:none}
+
+#panel{position:absolute;top:0;right:0;width:388px;max-width:100%;height:100%;background:var(--stone);
+  border-left:1px solid var(--edge);transform:translateX(101%);transition:transform .22s ease;
+  display:flex;flex-direction:column;z-index:4}
+#panel.open{transform:none}
+@media (prefers-reduced-motion:reduce){#panel{transition:none}}
+.p-head{padding:18px 20px 14px;border-bottom:1px solid var(--edge);position:relative;flex:none}
+.p-close{position:absolute;top:11px;right:11px;font-size:19px;line-height:1;color:var(--dust);
+  padding:3px 8px;background:none;border:none;cursor:pointer}
+.p-close:hover{color:var(--bone)}
+.p-kind{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  margin:0 0 8px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;color:var(--dust)}
+.p-kind .dot{width:8px;height:8px;border-radius:50%}
+.p-title{font-family:var(--disp);font-weight:600;font-size:22px;line-height:1.15;margin:0 30px 7px 0}
+.p-src{font-family:var(--mono);font-size:10px;color:#6E665E;letter-spacing:.04em}
+.p-src a{font-size:10px}
+.p-body{overflow-y:auto;padding:17px 20px 36px;flex:1;scrollbar-width:thin}
+.p-body p{margin:0 0 15px;font-size:14.5px;color:#CFC7BB;max-width:none}
+.p-sec{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--daylight);
+  margin:20px 0 9px;padding-bottom:6px;border-bottom:1px solid #221E1A}
+.p-sec:first-child{margin-top:0}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 13px;font-size:13px;margin:0}
+.facts dt{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--dust);padding-top:2px;text-align:right}
+.facts dd{margin:0;color:#DCD4C8}
+.links{display:flex;flex-direction:column;gap:1px}
+.lnk{display:flex;gap:9px;align-items:baseline;text-align:left;width:100%;padding:7px 8px;border-radius:2px;
+  font-size:13.5px;background:none;border:none;cursor:pointer;font-family:var(--sans);color:inherit}
+.lnk:hover{background:var(--shale)}
+.lnk .dot{width:7px;height:7px;border-radius:50%;flex:none;transform:translateY(-1px)}
+.lnk .nm{color:var(--bone);border-bottom:1px solid rgba(227,178,60,.28)}
+.lnk:hover .nm{border-bottom-color:var(--daylight)}
+.lnk .rel{color:#786F66;font-size:11.5px;font-style:italic}
+
+.abadge{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;
+  padding:2px 7px;border-radius:2px;border:1px solid currentColor}
+.b-locked{color:var(--lichen)}.b-proposed{color:var(--daylight)}.b-open{color:var(--dust)}
+.b-parked{color:var(--iron)}.b-retired{color:#6A625A}.b-planned{color:#6FB8C9}.b-rework{color:#D9683A}
+
+.keyrow{display:flex;gap:26px;flex-wrap:wrap;font-size:13.5px;color:var(--dust);margin:0 0 10px}
+.keyrow b{color:var(--bone);font-weight:500}
+
+@media(max-width:760px){
+  main.atlas{padding-left:14px;padding-right:14px}
+  #frame{height:74vh}
+  #search{width:130px}
+  #panel{width:100%;height:68%;top:auto;bottom:0;border-left:none;border-top:1px solid var(--edge);
+    transform:translateY(101%)}
+  #panel.open{transform:none}
+  #hint{display:none}
+}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand">The Undermarch</span>
+  <a href="undermarch-index.html">Overview</a>
+  <a href="undermarch-atlas.html" class="active">Atlas</a>
+  <a href="undermarch-canon-established.html">Established Canon</a>
+  <a href="undermarch-canon-proposed.html">Proposed Canon</a>
+  <a href="undermarch-gameplay.html">Gameplay</a>
+  <a href="undermarch-poi.html">Points of Interest</a>
+  <a href="undermarch-adventure-01.html">Adventure 01</a>
+  <a href="undermarch-adventure-02.html">Adventure 02</a>
+  <a href="undermarch-glossary.html">Glossary</a>
+  <a href="undermarch-map-program.html">Map Program</a>
+  <a href="undermarch-work-chunks.html">Work Chunks</a>
+  <a href="undermarch-open-questions.html">Open Questions</a>
+  <a href="undermarch-history.html">History</a>
+</nav>
+<main class="atlas">
+<header class="masthead">
+  <p class="eyebrow" id="atlasCount">Reference &middot; counting entries&hellip;</p>
+  <h1>Atlas<em>Every named thing in the campaign as one connected graph. Click a node to open it; each entry links back to the page it actually lives on.</em></h1>
+</header>
+
+<div id="frame">
+  <div id="bar">
+    <button class="abtn" id="layoutBtn">Depth layout</button>
+    <button class="abtn" id="resetBtn">Reset view</button>
+    <button class="abtn" id="expandBtn">Expand</button>
+    <div class="searchwrap">
+      <input id="search" type="text" placeholder="Search the atlas" autocomplete="off" spellcheck="false">
+      <div id="results"></div>
+    </div>
+  </div>
+  <div id="legend"></div>
+  <div id="stage">
+    <canvas id="cv"></canvas>
+    <div id="hint">Drag to pan &middot; scroll to zoom &middot; click a node to open it</div>
+    <aside id="panel" aria-label="Entry detail">
+      <div class="p-head">
+        <button class="p-close" id="closeBtn" aria-label="Close">&times;</button>
+        <div class="p-kind" id="pKind"></div>
+        <h2 class="p-title" id="pTitle"></h2>
+        <div class="p-src" id="pSrc"></div>
+      </div>
+      <div class="p-body" id="pBody"></div>
+    </aside>
+  </div>
+</div>
+
+<h2>How to read it</h2>
+<p>The graph is generated from the other pages of this site — it doesn't hold any canon of its own. If something here disagrees with <a href="undermarch-canon-established.html">Established Canon</a>, that page wins.</p>
+
+<div class="keyrow">
+  <span><b>Node size</b> — number of connections</span>
+  <span><b>Colour</b> — what kind of thing it is</span>
+  <span><b>Ring</b> — how settled it is</span>
+</div>
+
+<table>
+<thead><tr><th>Ring style</th><th>Status</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Solid, heavy</td><td><span class="abadge b-locked">Locked</span></td><td>Settled canon. Build on it freely.</td></tr>
+<tr><td>Solid, light</td><td><span class="abadge b-proposed">Proposed</span></td><td>Written up in detail, never formally confirmed.</td></tr>
+<tr><td>Dashed</td><td><span class="abadge b-open">Open</span> <span class="abadge b-parked">Parked</span> <span class="abadge b-planned">Planned</span></td><td>Undecided, deliberately deferred, or catalogued but not built.</td></tr>
+<tr><td>Dotted, faded</td><td><span class="abadge b-retired">Retired</span></td><td>Superseded. Kept visible so the reasoning isn't lost — see <a href="undermarch-history.html">History</a>.</td></tr>
+<tr><td>Dotted, orange</td><td><span class="abadge b-rework">Needs rework</span></td><td>Still on a page as current, but depends on something that was retired.</td></tr>
+</tbody>
+</table>
+
+<h2>Two views</h2>
+<p><strong>Web</strong> is the default: a free force layout where clusters form around whatever is most densely connected. Useful for finding out what a thing actually touches.</p>
+<p><strong>Depth</strong> pins every node to its band, so the graph reads top-to-bottom as the world does — surface and abstract concepts at the top, the Root at the bottom. Anything without a depth sits in the top row. This is the view that matches <a href="undermarch-map-program.html">Map 1</a>.</p>
+
+<h2>What it can't do yet</h2>
+<p>The connections here are <em>conceptual</em> — "built by," "orphaned by," "rung 3." They are not routes. The atlas can tell you the Weir connects several clusters, but it doesn't know which Mouth opens onto which passage, so it won't work as a navigation map until those adjacencies are decided. That's a separate pass, and it needs decisions from you first.</p>
+
+<p class="lede" style="margin-top:34px;border-top:1px solid var(--edge);padding-top:20px">
+The Undermarch &middot; Atlas &middot; generated from this site &middot;
+<a href="undermarch-index.html">Back to Overview</a></p>
+</main>
+
+<script src="undermarch-atlas-data.js"></script>
+<script src="undermarch-atlas-data-sky.js"></script>
+<script>
+
+
+/* ---------------- config ---------------- */
+const TYPE = {
+  place:      {c:"#B6AC9C", n:"Places"},
+  poi:        {c:"#C08FD1", n:"Points of interest"},
+  faction:    {c:"#8FAAD1", n:"Factions"},
+  npc:        {c:"#7FC7A4", n:"People"},
+  creature:   {c:"#A63D2F", n:"Creatures"},
+  hazard:     {c:"#D9683A", n:"Hazards"},
+  phenomenon: {c:"#6FB8C9", n:"Phenomena"},
+  event:      {c:"#E3B23C", n:"Events"},
+  era:        {c:"#9A7B5A", n:"Eras & history"},
+  adventure:  {c:"#E8D6A0", n:"Adventures"},
+  mechanic:   {c:"#7A8B6F", n:"Rules & systems"},
+  question:   {c:"#7E7A72", n:"Open questions"}
+};
+const STATUS = {
+  locked:{n:"Locked"}, proposed:{n:"Proposed"}, open:{n:"Open"},
+  parked:{n:"Parked"}, planned:{n:"Planned"}, retired:{n:"Retired"}, rework:{n:"Needs rework"}
+};
+const BANDS = [
+  {k:null,       label:"Surface & abstract",   short:"Surface & abstract", y:0.07},
+  {k:"threshold",label:"Threshold · 0–1 km",   short:"Threshold",  y:0.28},
+  {k:"shallows", label:"Shallows · 1–4 km",    short:"Shallows",   y:0.48},
+  {k:"mid",      label:"Mid Reaches · 4–12 km",short:"Mid Reaches",y:0.65},
+  {k:"under",    label:"Under Deeps · 12–40 km",short:"Under Deeps",y:0.81},
+  {k:"root",     label:"The Root · 40 km+",    short:"The Root",   y:0.94}
+];
+/* longest strings first so "Established Canon" wins over a bare "Established" */
+const SRCMAP = [
+  ["Established Canon",  "undermarch-canon-established.html", "Established Canon"],
+  ["Proposed Canon",     "undermarch-canon-proposed.html",    "Proposed Canon"],
+  ["Points of Interest", "undermarch-poi.html",               "Points of Interest"],
+  ["Adventure 01",       "undermarch-adventure-01.html",      "Adventure 01"],
+  ["Adventure 02",       "undermarch-adventure-02.html",      "Adventure 02"],
+  ["Open Questions",     "undermarch-open-questions.html",    "Open Questions"],
+  ["Map Program",        "undermarch-map-program.html",       "Map Program"],
+  ["Work Chunks",        "undermarch-work-chunks.html",       "Work Chunks"],
+  ["Gameplay",           "undermarch-gameplay.html",          "Gameplay"],
+  ["Glossary",           "undermarch-glossary.html",          "Glossary"],
+  ["History",            "undermarch-history.html",           "History"]
+];
+function srcHTML(src){
+  const hits = [];
+  SRCMAP.forEach(([key,url,label])=>{ if(src.includes(key)) hits.push(`<a href="${url}">${label}</a>`); });
+  if(!hits.length && /^Established\b/.test(src))
+    hits.push('<a href="undermarch-canon-established.html">Established Canon</a>');
+  const extra = src.match(/session\s*\d+(\/\d+)?/i);
+  return (hits.length ? hits.join(' &middot; ') : src) + (extra ? ` &middot; ${extra[0]}` : '');
+}
+
+/* ---------------- state ---------------- */
+const nodes = DATA.nodes.map(n => ({...n, x:0, y:0, vx:0, vy:0}));
+const byId = Object.fromEntries(nodes.map(n=>[n.i,n]));
+const links = DATA.edges.map(e => ({s:byId[e[0]], t:byId[e[1]], r:e[2]}));
+nodes.forEach(n=>n.deg=0);
+links.forEach(l=>{l.s.deg++;l.t.deg++});
+const adj = {};
+nodes.forEach(n=>adj[n.i]=[]);
+links.forEach(l=>{adj[l.s.i].push({o:l.t,r:l.r,out:true});adj[l.t.i].push({o:l.s,r:l.r,out:false})});
+
+const off = new Set();
+let showRetired = false;   /* retired nodes are hidden until asked for */
+let depthMode = false, selected = null, hovered = null;
+let view = {x:0, y:0, k:1};
+let alpha = 1;
+
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+let W=0, H=0, dpr=1;
+
+function radius(n){ return 4.4 + Math.min(9, Math.sqrt(n.deg)*2.1); }
+function visible(n){ return !off.has(n.t) && (showRetired || n.s !== 'retired'); }
+function reveal(n){
+  let changed = false;
+  if(off.has(n.t)){ off.delete(n.t); changed = true; }
+  if(n.s === 'retired' && !showRetired){ showRetired = true; changed = true; }
+  if(changed) renderLegend();
+  return changed;
+}
+function band(n){ return BANDS.find(b=>b.k===(n.b||null)) || BANDS[0]; }
+
+/* ---------------- layout ---------------- */
+function seed(){
+  nodes.forEach((n,idx)=>{
+    const a = idx*2.399, r = 30 + Math.sqrt(idx)*46;
+    n.x = W/2 + Math.cos(a)*r;
+    n.y = H/2 + Math.sin(a)*r*0.72;
+    n.vx = 0; n.vy = 0;
+  });
+}
+function tick(){
+  if(alpha < 0.002) return;
+  alpha *= 0.9915;
+  const vis = nodes.filter(visible);
+  for(let i=0;i<vis.length;i++){
+    const a = vis[i];
+    for(let j=i+1;j<vis.length;j++){
+      const b = vis[j];
+      let dx = b.x-a.x, dy = b.y-a.y, d2 = dx*dx+dy*dy;
+      if(d2 < 1){ dx = Math.random()-0.5; dy = Math.random()-0.5; d2 = 1; }
+      if(d2 > 260000) continue;
+      const f = 1500/d2, d = Math.sqrt(d2);
+      const fx = dx/d*f, fy = dy/d*f;
+      a.vx -= fx; a.vy -= fy; b.vx += fx; b.vy += fy;
+    }
+  }
+  for(const l of links){
+    if(!visible(l.s)||!visible(l.t)) continue;
+    const dx = l.t.x-l.s.x, dy = l.t.y-l.s.y;
+    const d = Math.hypot(dx,dy)||1;
+    const rest = 78 + radius(l.s) + radius(l.t);
+    const f = (d-rest)*0.012;
+    const fx = dx/d*f, fy = dy/d*f;
+    l.s.vx += fx; l.s.vy += fy; l.t.vx -= fx; l.t.vy -= fy;
+  }
+  for(const n of vis){
+    if(n === dragging) continue;
+    if(depthMode){
+      n.vy += (band(n).y*H - n.y)*0.055;
+      n.vx += (W/2 - n.x)*0.0016;
+      n.vy *= 0.80; n.vx *= 0.86;
+    } else {
+      n.vx += (W/2 - n.x)*0.0022;
+      n.vy += (H/2 - n.y)*0.0022;
+      n.vx *= 0.85; n.vy *= 0.85;
+    }
+    n.x += n.vx*alpha*2.4; n.y += n.vy*alpha*2.4;
+  }
+}
+function reheat(a=0.6){ alpha = Math.max(alpha, a); }
+
+/* ---------------- drawing ---------------- */
+function toScreen(n){ return {x:n.x*view.k+view.x, y:n.y*view.k+view.y}; }
+
+function draw(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  if(depthMode){
+    ctx.font = "10px 'JetBrains Mono',monospace";
+    for(const b of BANDS){
+      const y = b.y*H*view.k + view.y;
+      if(y < -40 || y > H+40) continue;
+      ctx.strokeStyle = "#231F1A"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+      ctx.fillStyle = "#4A443C";
+      ctx.fillText(b.label.toUpperCase(), 14, y-7);
+    }
+  }
+
+  const nbrs = selected ? new Set(adj[selected.i].map(a=>a.o.i).concat(selected.i)) : null;
+  const hset = hovered ? new Set(adj[hovered.i].map(a=>a.o.i).concat(hovered.i)) : null;
+
+  ctx.lineWidth = 1;
+  for(const l of links){
+    if(!visible(l.s)||!visible(l.t)) continue;
+    const a = toScreen(l.s), b = toScreen(l.t);
+    let col = "rgba(122,112,100,.20)";
+    if(nbrs) col = (l.s===selected||l.t===selected) ? "rgba(227,178,60,.55)" : "rgba(122,112,100,.07)";
+    else if(hset && (l.s===hovered||l.t===hovered)) col = "rgba(228,221,209,.40)";
+    ctx.strokeStyle = col;
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+  }
+
+  if(selected && view.k > 0.55){
+    ctx.font = "10px 'JetBrains Mono',monospace";
+    ctx.textAlign = "center";
+    for(const l of links){
+      if(l.s!==selected && l.t!==selected) continue;
+      if(!visible(l.s)||!visible(l.t)) continue;
+      const a = toScreen(l.s), b = toScreen(l.t);
+      const mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+      const w = ctx.measureText(l.r).width;
+      ctx.fillStyle = "rgba(27,24,21,.9)";
+      ctx.fillRect(mx-w/2-4, my-7, w+8, 13);
+      ctx.fillStyle = "#8B8177";
+      ctx.fillText(l.r, mx, my+3);
+    }
+    ctx.textAlign = "left";
+  }
+
+  for(const n of nodes){
+    if(!visible(n)) continue;
+    const p = toScreen(n), r = radius(n)*Math.max(.62, Math.min(1.25, view.k));
+    ctx.globalAlpha = (nbrs && !nbrs.has(n.i) ? 0.17 : 1) * (n.s==='retired' ? 0.5 : 1);
+    const col = TYPE[n.t].c;
+
+    ctx.beginPath(); ctx.arc(p.x,p.y,r,0,6.2832);
+    ctx.fillStyle = col + (n.s==='retired'||n.t==='question' ? "33" : "");
+    ctx.fill();
+
+    ctx.setLineDash(n.s==='open'||n.s==='parked'||n.s==='planned' ? [3,2.5]
+                  : (n.s==='retired'||n.s==='rework') ? [1.5,2.5] : []);
+    ctx.lineWidth = n.s==='locked' ? 2 : 1.3;
+    ctx.strokeStyle = n.s==='rework' ? "#D9683A" : col;
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    if(n===selected){
+      ctx.beginPath(); ctx.arc(p.x,p.y,r+5,0,6.2832);
+      ctx.strokeStyle = "#E3B23C"; ctx.lineWidth = 1.4; ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  ctx.font = "500 12px Archivo,system-ui,sans-serif";
+  for(const n of nodes){
+    if(!visible(n)) continue;
+    const show = n===selected || n===hovered || (nbrs&&nbrs.has(n.i)) || (hset&&hset.has(n.i))
+              || view.k>1.05 || n.deg>=7;
+    if(!show) continue;
+    const p = toScreen(n), r = radius(n)*Math.max(.62,Math.min(1.25,view.k));
+    ctx.globalAlpha = (nbrs && !nbrs.has(n.i)) ? 0.2 : 1;
+    const w = ctx.measureText(n.l).width;
+    ctx.fillStyle = "rgba(27,24,21,.85)";
+    ctx.fillRect(p.x - w/2 - 4, p.y + r + 2, w + 8, 15);
+    ctx.fillStyle = (n===selected||n===hovered) ? "#F2ECE2" : "#B9B0A5";
+    ctx.textAlign = "center";
+    ctx.fillText(n.l, p.x, p.y + r + 13);
+    ctx.textAlign = "left";
+    ctx.globalAlpha = 1;
+  }
+}
+function loop(){ tick(); draw(); requestAnimationFrame(loop); }
+
+/* ---------------- sizing ---------------- */
+function resize(){
+  const s = document.getElementById('stage').getBoundingClientRect();
+  dpr = Math.min(2, window.devicePixelRatio||1);
+  W = s.width; H = s.height;
+  cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+  cv.style.width = W+'px'; cv.style.height = H+'px';
+}
+window.addEventListener('resize', ()=>{ resize(); reheat(0.35); });
+
+/* ---------------- interaction ---------------- */
+let dragging=null, panning=false, last={x:0,y:0}, moved=false;
+
+function pick(mx,my){
+  let best=null, bd=1e9;
+  for(const n of nodes){
+    if(!visible(n)) continue;
+    const p = toScreen(n);
+    const d = Math.hypot(p.x-mx,p.y-my);
+    const r = radius(n)*Math.max(.62,Math.min(1.25,view.k)) + 7;
+    if(d < r && d < bd){ bd=d; best=n; }
+  }
+  return best;
+}
+function evtPos(e){ const r = cv.getBoundingClientRect(); return {x:e.clientX-r.left, y:e.clientY-r.top}; }
+
+cv.addEventListener('pointerdown', e=>{
+  cv.setPointerCapture(e.pointerId);
+  const p = evtPos(e); moved=false;
+  const n = pick(p.x,p.y);
+  if(n){ dragging=n; reheat(0.5); } else { panning=true; cv.classList.add('grabbing'); }
+  last=p;
+});
+cv.addEventListener('pointermove', e=>{
+  const p = evtPos(e);
+  if(dragging){
+    dragging.x += (p.x-last.x)/view.k; dragging.y += (p.y-last.y)/view.k;
+    dragging.vx=0; dragging.vy=0; reheat(0.35); moved=true;
+  } else if(panning){
+    view.x += p.x-last.x; view.y += p.y-last.y; moved=true;
+  } else {
+    const n = pick(p.x,p.y);
+    if(n!==hovered){ hovered=n; cv.style.cursor = n?'pointer':'grab'; }
+  }
+  last=p;
+});
+cv.addEventListener('pointerup', e=>{
+  if(!moved){ const p = evtPos(e); const n = pick(p.x,p.y); n ? open(n) : close(); }
+  dragging=null; panning=false; cv.classList.remove('grabbing');
+});
+cv.addEventListener('wheel', e=>{
+  e.preventDefault();
+  const p = evtPos(e), f = Math.exp(-e.deltaY*0.0015);
+  const k2 = Math.max(0.3, Math.min(3.2, view.k*f));
+  view.x = p.x - (p.x-view.x)*(k2/view.k);
+  view.y = p.y - (p.y-view.y)*(k2/view.k);
+  view.k = k2;
+}, {passive:false});
+
+/* ---------------- panel ---------------- */
+const panel = document.getElementById('panel');
+function open(n){
+  selected = n;
+  document.getElementById('pKind').innerHTML =
+    `<span class="dot" style="background:${TYPE[n.t].c}"></span>${TYPE[n.t].n}` +
+    (n.b ? ` &middot; ${band(n).short}` : '') +
+    ` <span class="abadge b-${n.s}">${STATUS[n.s].n}</span>`;
+  document.getElementById('pTitle').textContent = n.l;
+  document.getElementById('pSrc').innerHTML = srcHTML(n.src);
+
+  let h = `<p>${n.d}</p>`;
+  if(n.f && n.f.length){
+    h += `<div class="p-sec">Details</div><dl class="facts">`;
+    n.f.forEach(([k,v])=>{ h += `<dt>${k}</dt><dd>${v}</dd>`; });
+    h += `</dl>`;
+  }
+  const cons = adj[n.i].slice().sort((a,b)=>a.o.l.localeCompare(b.o.l));
+  h += `<div class="p-sec">Connected to — ${cons.length}</div><div class="links">`;
+  cons.forEach(c=>{
+    h += `<button class="lnk" data-go="${c.o.i}">
+            <span class="dot" style="background:${TYPE[c.o.t].c}"></span>
+            <span><span class="nm">${c.o.l}</span> <span class="rel">${c.out?'':'← '}${c.r}</span></span>
+          </button>`;
+  });
+  h += `</div>`;
+
+  const body = document.getElementById('pBody');
+  body.innerHTML = h; body.scrollTop = 0;
+  body.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{
+    const t = byId[b.dataset.go];
+    if(reveal(t)) reheat(0.4);
+    open(t); center(t);
+  }));
+  panel.classList.add('open');
+  if(history.replaceState) history.replaceState(null,'','#'+n.i);
+}
+function close(){
+  selected=null; panel.classList.remove('open');
+  if(history.replaceState) history.replaceState(null,'',location.pathname);
+}
+document.getElementById('closeBtn').addEventListener('click', close);
+document.addEventListener('keydown', e=>{
+  if(e.key !== 'Escape') return;
+  const f = document.getElementById('frame');
+  if(f.classList.contains('expanded')) toggleExpand();
+  else { close(); document.getElementById('results').classList.remove('show'); }
+});
+
+function center(n){
+  const tx = W/2 - n.x*view.k, ty = H/2 - n.y*view.k;
+  const sx = view.x, sy = view.y, t0 = performance.now();
+  (function step(t){
+    const p = Math.min(1,(t-t0)/280), e = 1-Math.pow(1-p,3);
+    view.x = sx+(tx-sx)*e; view.y = sy+(ty-sy)*e;
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------------- legend ---------------- */
+function renderLegend(){
+  const el = document.getElementById('legend');
+  const counts = {};
+  nodes.forEach(n=>counts[n.t]=(counts[n.t]||0)+1);
+  const retiredCount = nodes.filter(n=>n.s==='retired').length;
+  el.innerHTML = Object.entries(TYPE).map(([k,v])=>
+    `<button class="chip ${off.has(k)?'':'on'}" data-t="${k}">
+       <span class="sw" style="background:${v.c}"></span>${v.n}<span class="ct">${counts[k]||0}</span>
+     </button>`).join('') +
+    `<span class="rail-sep"></span>` +
+    `<button class="chip ${showRetired?'on':''}" id="retiredChip" title="Superseded entries, kept so the reasoning isn't lost">
+       <span class="sw" style="background:#6A625A"></span>Retired<span class="ct">${retiredCount}</span>
+     </button>` +
+    `<span class="rail-sep"></span>` +
+    `<button class="abtn" id="allBtn" style="font-size:10px;padding:4px 9px">Show all</button>` +
+    `<button class="abtn" id="noneBtn" style="font-size:10px;padding:4px 9px">Hide all</button>`;
+  el.querySelectorAll('[data-t]').forEach(b=>b.addEventListener('click',()=>{
+    const t = b.dataset.t;
+    off.has(t) ? off.delete(t) : off.add(t);
+    if(selected && !visible(selected)) close();
+    renderLegend(); reheat(0.5);
+  }));
+  document.getElementById('retiredChip').addEventListener('click',()=>{
+    showRetired = !showRetired;
+    if(selected && !visible(selected)) close();
+    renderLegend(); reheat(0.5);
+  });
+  document.getElementById('allBtn').addEventListener('click',()=>{
+    off.clear(); showRetired = true;
+    renderLegend(); reheat(0.5);
+  });
+  document.getElementById('noneBtn').addEventListener('click',()=>{
+    Object.keys(TYPE).forEach(k=>off.add(k)); showRetired = false;
+    close(); renderLegend(); reheat(0.5);
+  });
+}
+
+/* ---------------- search ---------------- */
+const search = document.getElementById('search'), results = document.getElementById('results');
+search.addEventListener('input', ()=>{
+  const q = search.value.trim().toLowerCase();
+  if(q.length<2){ results.classList.remove('show'); return; }
+  const hits = nodes.filter(n =>
+    n.l.toLowerCase().includes(q) || n.d.toLowerCase().includes(q) ||
+    (n.f||[]).some(f=>(f[0]+f[1]).toLowerCase().includes(q))
+  ).slice(0,40);
+  results.innerHTML = hits.length
+    ? hits.map(n=>`<button data-go="${n.i}">${n.l}<span class="rt">${TYPE[n.t].n} &middot; ${STATUS[n.s].n}</span></button>`).join('')
+    : `<button style="color:#6E665E;cursor:default">Nothing matches that.</button>`;
+  results.classList.add('show');
+  results.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{
+    const n = byId[b.dataset.go];
+    reveal(n);
+    open(n); center(n); results.classList.remove('show'); search.blur();
+  }));
+});
+document.addEventListener('pointerdown', e=>{
+  if(!results.contains(e.target) && e.target!==search) results.classList.remove('show');
+});
+
+/* ---------------- buttons ---------------- */
+document.getElementById('layoutBtn').addEventListener('click', e=>{
+  depthMode = !depthMode;
+  e.target.textContent = depthMode ? 'Web layout' : 'Depth layout';
+  e.target.classList.toggle('on', depthMode);
+  view = {x:0,y:0,k:1};
+  reheat(1);
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  view = {x:0,y:0,k:1}; seed(); reheat(1); close();
+});
+function toggleExpand(){
+  const f = document.getElementById('frame'), b = document.getElementById('expandBtn');
+  const on = f.classList.toggle('expanded');
+  b.textContent = on ? 'Collapse' : 'Expand';
+  b.classList.toggle('on', on);
+  document.body.style.overflow = on ? 'hidden' : '';
+  requestAnimationFrame(()=>{ resize(); view={x:0,y:0,k:1}; reheat(0.9); });
+}
+document.getElementById('expandBtn').addEventListener('click', toggleExpand);
+
+/* ---------------- go ---------------- */
+resize(); seed(); renderLegend();
+/* counted at load rather than hard-coded, so adding data files can't leave it stale */
+const countEl = document.getElementById('atlasCount');
+if(countEl) countEl.innerHTML = `Reference &middot; ${nodes.length} entries, ${links.length} connections`;
+for(let i=0;i<220;i++) tick();
+loop();
+
+/* deep links: undermarch-atlas.html#drowned-chapel */
+function fromHash(){
+  const id = decodeURIComponent(location.hash.replace(/^#/,''));
+  const n = byId[id];
+  if(!n) return false;
+  reveal(n);
+  open(n);
+  requestAnimationFrame(()=>{ for(let i=0;i<120;i++) tick(); center(n); });
+  return true;
+}
+if(location.hash) fromHash();
+window.addEventListener('hashchange', fromHash);
+</script>
+</body>
+</html>

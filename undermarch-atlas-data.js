@@ -1,7 +1,8 @@
 /* undermarch-atlas-data.js — nodes and edges for the Atlas.
  Loaded before undermarch-atlas.html's engine script.
  This is the file that changes when canon changes.
- Updated 2026-09-12 — Dunthara, the Cassiran Bay and the Ebon Summit named.
+ Updated 2026-10-11 — the giant wasp takes the three; the Mark means Passage 26.
+ Previously 2026-09-12 — Dunthara, the Cassiran Bay and the Ebon Summit named.
    The two moons live in undermarch-atlas-data-sky.js, loaded after this file. */
 const DATA = {
 nodes: [
@@ -518,8 +519,8 @@ d:"Works the winch-heads and knows the shaft face better than anyone at the Lip 
 f:[["Role","Local knowledge, the ungated clue"],["Knows","The chapel by sight, and that nobody has been inside"],["Design","The adventure never gates on a roll — she just tells them"]]},
 
 {i:"chapel-survivors",l:"The Three from the Sacristy",t:"npc",s:"proposed",src:"Adventure 01",
-d:"Three of the congregation survived the fall, barricaded themselves into the sacristy, and counted thirty-one days on the plaster. Then they left through the altar-breach deliberately, taking the lamp oil, and made a camp four hundred metres in. Then something came, and they are gone, and the lamp oil is still sitting by the cold fire.",
-f:[["Status","Missing — deliberately unexplained"],["Evidence","Three sets of bedding; the count stops at 31"],["Why it works","They were alive and managing. That's a rescue the party can still attempt."],["Where the answer is","Deeper"]]},
+d:"Three of the congregation survived the fall, barricaded themselves into the sacristy, and counted thirty-one days on the plaster. Then they left through the altar-breach deliberately, taking the lamp oil, and made a camp four hundred metres in. Then a <a href=\"undermarch-atlas.html#chapel-wasp\">giant wasp</a> came, paralysed them, and carried them down the drop past the Mark to its larder, and the lamp oil is still sitting by the cold fire.",
+f:[["Status","Taken by the giant wasp — alive or dead depending on the party"],["Alive if","The party reach B4 on their first descent"],["The timer","One dies for each day after — larvae, not the wasp"],["Evidence","Three sets of bedding; the count stops at 31; drag-marks to the drop"],["Why it works","They were alive and managing. That's a rescue the party can still attempt."]]},
 
 {i:"grave-tender",l:"The Grave-Tender",t:"npc",b:"shallows",s:"proposed",src:"Adventure 02",
 d:"Pale, thin, carrying a bundle of fungal cuttings wrapped in wet cloth against their chest. Eyes wrong for this light — pupils blown huge by darkness they've never had to leave. Unarmed but for a small bone tool, and reacts to threat with flight rather than violence. The party's first action decides the scene.",
@@ -547,8 +548,16 @@ f:[["Problem 1","His employer and his post no longer exist"],["Problem 2","Dupli
 
 // ---------- CREATURES ----------
 {i:"insectoid-scout",l:"The Scout",t:"creature",s:"proposed",src:"Gameplay / Adventure 01",
-d:"Whatever took the three from the camp. Not a vanguard — reconnaissance. The insectoids emerged expecting an empty surface and are urgently trying to understand what they've run into, so this thing is as unsettled as the colonists are. Worth playing that way if the party ever meets one.",
-f:[["Left behind","A deliberate mark and unplaceable tracks"],["Behaviour","Moved, stopped, came back. Searching."],["Do not","Resolve this. No creature appears."]]},
+d:"Whatever cut the Mark at B3 and left the searching tracks — <strong>not</strong> what took the three, which was a <a href=\"undermarch-atlas.html#chapel-wasp\">giant wasp</a>. Not a vanguard — reconnaissance. It found the route behind the chapel and numbered it <a href=\"undermarch-atlas.html#passage-26\">Passage 26</a>. The insectoids emerged expecting an empty surface and are urgently trying to understand what they've run into, so this thing is as unsettled as the colonists are. Worth playing that way if the party ever meets one.",
+f:[["Left behind","The Passage 26 mark and unplaceable tracks"],["Behaviour","Moved, stopped, came back. Searching."],["Did not","Take the three — the wasp did"],["Do not","Resolve this. No creature appears."]]},
+
+{i:"chapel-wasp",l:"The Giant Wasp",t:"creature",b:"threshold",s:"proposed",src:"Adventure 01",
+d:"The beast that took the three from the camp. Its venom ends in paralysis; it carried them down the sheer drop past the Mark to its larder, where <em>Implant Eggs</em> makes a paralysed body a host. It is what answered the bell in the fallen belfry. It has nothing to do with the insectoids — it just uses the same route.",
+f:[["Stat block","Elite giant wasp, Creature 4 (Monster Core) — 120 XP, Moderate for six level-1s"],["Method","Venom to paralysed, then Implant Eggs"],["Lair","B4 — the larder, down the drop past B3"],["Answers","The bell in A11"],["The three","All alive on the party's first descent; one dies per day after"],["Why it's here","Open — suggested: came up Passage 26 toward the warmth"]]},
+
+{i:"passage-26",l:"Passage 26",t:"place",b:"threshold",s:"proposed",src:"Adventure 01",
+d:"The route behind the Drowned Chapel, past the survivors' camp and the Mark. The insectoids' scouts cut the Mark to label it: in their language it reads <em>Passage 26</em>, a numbered route to the surface. Nobody on the surface can read it. Past B3 it ends, for the party, at a sheer drop — the wasp's way down.",
+f:[["Marked by","The First Sign — an insectoid route label"],["Means","A route to the surface, numbered 26"],["Readable by","Nobody on the surface"],["Implication","26 exceeds the twenty Undertears — the insectoids number side routes too (confirm)"],["Where it goes below the drop","Undetermined"]]},
 
 {i:"zombie-shambler",l:"Zombie Shambler",t:"creature",s:"proposed",src:"Adventure 01 — Monster Core",
 d:"Creature −1. Permanently slowed 1, no reactions, no tactics — it moves toward the nearest living thing and Grabs. The danger is entirely positional: being dragged downhill into the water with four of them.",
@@ -613,8 +622,8 @@ d:"Levels 3–4, two sessions. The colony's food supply is dying at the edges an
 f:[["Acts","The fringe → the old cairns → the tended rows"],["Act 1 payoff","A bearing. The dying spreads inward, so the source is further out."],["Climax","First contact — social, decided in ten seconds"],["Ends at","Contact, not conversation"]]},
 
 {i:"first-sign",l:"The First Sign",t:"event",s:"proposed",src:"Adventure 01 / Gameplay",
-d:"A mark cut into stone at chest height, a hand across — not writing anyone recognises, not a scratch. Even cuts, made with something narrow and very hard, meeting at angles decided in advance. In the silt in front of it, tracks nothing in any bestiary matches, showing a pause-and-return pattern. Searching behaviour.",
-f:[["Survival 16","Not a beast's — too regular, and it came back"],["Nature 18","Nothing catalogued matches"],["Crafting 17","Made with a tool, carefully, by something not in a hurry"],["Perception 20","An older set going the other way, with drag-marks for three bodies"],["Rung","1 — deniable"],["Rule","Do not resolve this"]]},
+d:"A mark cut into stone at chest height, a hand across — not writing anyone recognises, not a scratch. Even cuts, made with something narrow and very hard, meeting at angles decided in advance. In the silt in front of it, tracks nothing in any bestiary matches, showing a pause-and-return pattern. Searching behaviour.<br><br><b>GM only:</b> it is an insectoid route label reading <a href=\"undermarch-atlas.html#passage-26\">Passage 26</a>. The drag-marks nearby are a separate trail — the <a href=\"undermarch-atlas.html#chapel-wasp\">giant wasp</a>'s, not the scouts'.",
+f:[["Survival 16","Not a beast's — too regular, and it came back"],["Nature 18","Nothing catalogued matches"],["Crafting 17","Made with a tool, carefully, by something not in a hurry"],["Perception 20","A separate trail with drag-marks for three bodies, toward the drop — the wasp's"],["Means (GM only)","Passage 26 — a numbered route to the surface"],["Rung","1 — deniable"],["Rule","Do not resolve this"]]},
 
 {i:"hooks-deferred",l:"Session One Hooks (deferred)",t:"adventure",s:"parked",src:"Gameplay",
 d:"Five candidates held until closer to session zero: the Toll Line, Ninefinger's Debt, the Vigil's Excavation, Winter Is Two Months Away, and the Missing Toll-Keeper. Two of them (A and E) depend on the retired local factions and need rework. D was critiqued as the season rather than a session — use it as permanent backdrop.",
@@ -839,7 +848,7 @@ edges: [
 ["reyne","adv01","hook-giver"],["cotter","adv01","hook-giver"],["ashfeld","adv01","hook-giver"],
 ["orrow","adv01","the ungated clue"],["orrow","winch-towers","works"],
 ["ashfeld","cautious-circle","her report vanishes"],["ashfeld","first-sign","takes the rubbing"],
-["cotter","lip-sickness","treats it"],["chapel-survivors","insectoid-scout","taken by"],
+["cotter","lip-sickness","treats it"],["chapel-survivors","chapel-wasp","taken by"],["drowned-chapel","chapel-wasp","answers the bell"],["chapel-wasp","adv01","act 3"],["chapel-wasp","passage-26","lair below the drop"],["first-sign","passage-26","labels"],["insectoid-scout","passage-26","numbered"],["drowned-chapel","passage-26","opens behind"],
 ["chapel-survivors","first-sign","led the party to"],["grave-tender","adv02","climax of"],
 ["sarn","inverted-gradient","evidence of"],["ashgrove","inverted-gradient","holds the data"],
 ["vane","concord","orphaned by"],["marrow","commons","orphaned by"],["vance","concord","orphaned by"],
